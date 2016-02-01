@@ -329,11 +329,17 @@ build/
 
 </project>
 ```
+##### Commit changes and push to the remote repository
+	git status
+	git add --all
+	git commit -m "add config files"
+	git push 
+
 ##### Install Tomcat 6
 	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
 
-##### Ask where is tomcat7?
-	whereis tomcat7
+##### Ask where is Tomcat?
+	whereis tomcat6
 
 ##### Get a listing of the Catalina Base directory
 	ls -l /usr/share/tomcat6/
