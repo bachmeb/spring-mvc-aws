@@ -5,6 +5,8 @@
 * http://tomcat.apache.org/whichversion.html
 * https://docs.oracle.com/cd/E21454_01/html/821-2532/inst_cli_jdk_javahome_t.html
 * https://ant.apache.org/manual/Tasks/property.html
+* http://stackoverflow.com/questions/6568634/how-to-solve-cause-the-class-org-apache-tools-ant-taskdefs-optional-junit-juni
+* http://stackoverflow.com/questions/15601469/jar-not-loaded-see-servlet-spec-2-3-section-9-7-2-offending-class-javax-serv
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -651,10 +653,10 @@ public class HelloController implements Controller {
 
 }
 ```
-##### Copy servlet-api.jar to WEB-INF/lib 
+##### Copy servlet-api.jar to CATALINA_HOME/lib 
 	sudo find / | grep servlet-api.jar
 	sudo find /opt/spring-framework/ | grep servlet-api.jar 
-	sudo find /opt/spring-framework/ | grep servlet-api.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	sudo find /opt/spring-framework/ | grep servlet-api.jar | xargs cp -t /usr/share/tomcat6/lib/
 
 ##### Build the project
 	ant build
@@ -680,7 +682,7 @@ public class HelloControllerTests extends TestCase {
     }
 }
 ```
-##### Add Ant task to build script
+##### Add test tasks to build script
 	vim build.xml
 ```
     <property name="test.dir" value="test"/>
@@ -732,7 +734,7 @@ public class HelloControllerTests extends TestCase {
 	sudo yum search ant-junit
 	sudo yum install ant-junit
 
-##### Run the ant tests
+##### Run test tasks
 	ant tests
 ```
 build:
@@ -756,9 +758,24 @@ BUILD SUCCESSFUL
 Total time: 0 seconds
 
 ```
+##### Make the view
+	vim war/hello.jsp
+```
+<html>
+  <head><title>Hello :: Spring Application</title></head>
+  <body>
+    <h1>Hello - Spring Application</h1>
+    <p>Greetings.</p>
+  </body>
+</html>
+```
+##### Compile and deploy the application
+	sudo ant deploy reload
+
+##### Read the catalina.out file
+	cat /usr/share/tomcat6/logs/catalina.out
+
+##### Test the web page in a browser
+	lynx http://localhost:8080/springapp/hello.htm
 
 
-
-	
-
-	
