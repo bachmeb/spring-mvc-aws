@@ -576,6 +576,9 @@ Total time: 0 seconds
 
 </web-app>
 ```
+##### Build the project
+	ant build
+
 ##### Create springapp-servlet.xml
 	vim war/WEB-INF/springapp-servlet.xml
 ```
@@ -592,6 +595,10 @@ Total time: 0 seconds
 
 </beans>
 ```
+
+##### Build the project
+	ant build
+	
 ##### Make a lib directory in WEB-INF
 	cd ~/git/spring-mvc
 	mkdir war/WEB-INF
@@ -608,6 +615,9 @@ Total time: 0 seconds
 	find . | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
 	find . | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
 
+##### Build the project
+	ant build
+	
 ##### Create HelloController
 	cd ~/git/spring-mvc
 	mkdir -p src/springapp/web
@@ -641,6 +651,14 @@ public class HelloController implements Controller {
 
 }
 ```
+##### Copy servlet-api.jar to WEB-INF/lib 
+	sudo find / | grep servlet-api.jar
+	sudo find /opt/spring-framework/ | grep servlet-api.jar 
+	sudo find /opt/spring-framework/ | grep servlet-api.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+
+##### Build the project
+	ant build
+	
 ##### Create a test class
 	mkdir -p test/springapp/web
 	vim test/springapp/web/HelloControllerTests.java
@@ -676,6 +694,7 @@ public class HelloControllerTests extends TestCase {
             	deprecation="false" 
             	optimize="false" 
             	failonerror="true"
+            	includeantruntime="false"
             	>
             <src path="${test.dir}"/>
             <classpath refid="master-classpath"/>
@@ -709,15 +728,34 @@ public class HelloControllerTests extends TestCase {
         </fail>
     </target>
 ```
-##### Find JUnit in the Spring Framework package and copy it to 
-	cd /opt/spring-framework/spring-framework-2.5
-	find .
-	find . | grep junit
-	find . | grep junit-3.8.2.jar
-	find . | grep junit-3.8.2.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+##### Install Ant JUnit
+	sudo yum search ant-junit
+	sudo yum install ant-junit
 
-##### Go back to the project directory
-	cd ~/git/spring-mvc/
+##### Run the ant tests
+	ant tests
+```
+build:
+
+buildtests:
+
+tests:
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Feb 02, 2016 10:04:35 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.029 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.029 sec
+    [junit]
+    [junit] ------------- Standard Error -----------------
+    [junit] Feb 02, 2016 10:04:35 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] ------------- ---------------- ---------------
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+```
 
 
 
