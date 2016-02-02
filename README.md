@@ -531,3 +531,12 @@ Total time: 0 seconds
 ##### Test the web page
 	lynx localhost:8080/springapp
 
+##### Download the Spring Framework
+	cd /opt
+	sudo mkdir spring-framework
+	cd spring-framework/
+	sudo wget https://github.com/spring-projects/spring-framework/archive/3.0.x.zip
+	sudo unzip 3.0.x.zip
+
+	
+
