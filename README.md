@@ -74,18 +74,9 @@ https://aws.amazon.com/ec2/
 ##### Switch to root 
     sudo su
 
-##### Check the Linux distro version
-    cat /proc/version
-
-##### Check the hostname of the ec2 instance
-    hostname
-
-##### Check the DNS domain name of the ec2 instance
-    dnsdomainname
-
-##### Switch to root
-    sudo su
-
+##### Ask who am I?
+	whoami
+	
 ##### Update yum
     yum update
 
@@ -113,7 +104,22 @@ https://aws.amazon.com/ec2/
 
 ##### Go home
     cd $HOME
-    
+
+##### Check the Linux distro version
+    cat /proc/version
+
+##### Check the hostname of the ec2 instance
+    hostname
+
+##### Check the DNS domain name of the ec2 instance
+    dnsdomainname
+
+##### Check the internal IP address
+    ifconfig
+
+##### Check the external IP address
+    wget http://ipinfo.io/ip -qO -
+	
 ##### Install git
     sudo yum install git
     
