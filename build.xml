@@ -1,16 +1,8 @@
 <?xml version="1.0"?>
 
 <project name="springapp" basedir="." default="usage">
-    <!-- <property file="${user.home}/build.properties"/> -->
-    <!-- <property file="build.properties"/> -->
 
-    <property name="tomcat.manager.username" value="tomcat"/>
-    <property name="tomcat.manager.password" value="s3cret"/>
-    <property name="tomcat.manager.url" value="http://localhost:8080/manager"/>
-
-    <property name="appserver.home" value="/usr/share/tomcat6"/>
-    <property name="appserver.lib" value="${appserver.home}/lib"/>
-    <property name="deploy.path" value="${appserver.home}/webapps"/>
+    <property file="${user.home}/build.properties"/>
 
     <property name="src.dir" value="src"/>
     <property name="web.dir" value="war"/>
