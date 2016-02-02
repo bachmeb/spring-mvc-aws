@@ -3,6 +3,8 @@
 ## References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/
 * http://tomcat.apache.org/whichversion.html
+* https://docs.oracle.com/cd/E21454_01/html/821-2532/inst_cli_jdk_javahome_t.html
+* https://ant.apache.org/manual/Tasks/property.html
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -117,11 +119,73 @@ https://aws.amazon.com/ec2/
 
 ##### Check the external IP address
 	wget http://ipinfo.io/ip -qO -
+
+##### Show all of the environment variables
+	declare
+
+##### Look for JAVA in the list of environmental variables
+	env | grep JAVA
+
+##### Echo the current JAVA_HOME
+	echo $JAVA_HOME
+
+##### Ask where is Java?
+	whereis java
+
+##### Check the Java version
+	java -version
+
+##### See if the Java compiler is installed
+	whereis javac
+	javac -version
+
+##### Search yum for openjdk
+	yum search openjdk
 	
+##### Install the Open JDK version 1.7
+	sudo yum install java-1.7.0-openjdk-devel.x86_64
+
+##### Check the Java compiler version
+	javac -version
+
+##### Tell Linux to use the Java interpreter in the JDK 1.7
+	sudo /usr/sbin/alternatives --config java
+
+##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+
+	ls -l /usr/bin/java
+```
+lrwxrwxrwx 1 root root 22 Feb  2 18:03 /usr/bin/java -> /etc/alternatives/java
+```
+##### Read the symlinks in /usr/lib/jvm/
+	ls -l /usr/lib/jvm/
+
+##### Confirm that /usr/lib/jvm/java -> /etc/alternatives/java_sdk
+	ls -l /usr/lib/jvm/java
+
+##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+	ls -l /etc/alternatives/java_sdk
+
+##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk.x86_64 points to java-1.7.0-openjdk-1.7.0.91.x86_64
+	ls -l /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+
+##### Confirm that the installation directory for the Java SDK is /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
+	ls -l /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
+
+##### Echo the $JAVA_HOME environment variable
+	echo $JAVA_HOME
+
+##### Set the JAVA_HOME environment variable to the Open JDK directory
+	export JAVA_HOME='/usr/lib/jvm/java'
+
+##### Echo the $JAVA_HOME environment variable
+	echo $JAVA_HOME
+
 ##### Install git
 	sudo yum install git
     
 ##### Make a project directory
+	pwd
 	mkdir -p ~/git/projectdirecory
 
 ##### Initialize the git repository
@@ -132,14 +196,11 @@ https://aws.amazon.com/ec2/
 	http://github.com
     
 ##### Add the remote repository
-	git add remote origin https://github.com/[username]/[reponame].git
+	git remote add origin http://github.com/[username]/[reponame].git
 
 ##### Configure git
 	git config user.name [username]
 	git config user.email [your email address]
-    
-##### Fetch from the remote repository
-	git fetch
 
 ##### Pull from the remote directory
 	git pull origin master
@@ -215,9 +276,11 @@ build/
 <?xml version="1.0"?>
 
 <project name="springapp" basedir="." default="usage">
-    <property file="${user.home}/build.properties"/>
+  <!-- This build.properties file is kept in the root of your home directory -->
+    <!-- <property file="${user.home}/build.properties"/> -->
+    <property file="/home/[YOUR USER ACCOUNT NAME]/build.properties"/><!-- UPDATE THIS -->
 
-    <property name="src.dir" value="src"/>
+    <property name="src.dir" value="src"/><!-- Make sure this dir exists -->
     <property name="web.dir" value="war"/>
     <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
     <property name="name" value="springapp"/>
@@ -360,6 +423,9 @@ build/
 
 </project>
 ```
+##### Search yum for Tomcat 6
+	sudo yum search tomcat6
+	
 ##### Install Tomcat 6
 	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
 
@@ -426,38 +492,6 @@ tomcat.manager.password=s3cret
 	git config --global push.default simple
 	git push --set-upstream origin master
 
-##### Show all of the environment variables
-	declare
-
-##### Show the current JAVA_HOME
-	echo $JAVA_HOME
-	env | grep JAVA_HOME
-
-##### Ask where is Java?
-	whereis java
-
-##### Check the Java version
-	java -version
-
-##### See if the Java compiler is installed
-	whereis javac
-	javac -version
-
-##### Search yum for openjdk
-	yum search openjdk
-	
-##### Install the Open JDK version 1.7
-	sudo yum install java-1.7.0-openjdk-devel.x86_64
-
-##### Check the Java compiler version
-	javac -version
-	
-##### Set the JAVA_HOME environment variable to the Open JDK directory
-	export JAVA_HOME='/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64/'
-
-##### Tell Linux to use the Java interpreter in the JDK 1.7
-	sudo /usr/sbin/alternatives --config java
-
 ##### Install Ant
 	sudo yum install ant
 
@@ -465,7 +499,7 @@ tomcat.manager.password=s3cret
 	ant -version
 
 ##### Run ant
-	ant
+	ant -v
 ```
 usage:
      [echo] 
@@ -488,17 +522,18 @@ BUILD SUCCESSFUL
 Total time: 0 seconds
 ```
 
-
 ##### List the intstalled Tomcat applications
-	ant list
-
-##### Set permissions on your home folder
-	ls -l $HOME
-	chmod -R 775 $HOME
-	ls -l $HOME
+	ant -v list
 	
-##### Install the springapp
-	sudo ant deploy
+##### Build the project
+	ant build
+	
+##### Deploy the project
+	ant deploy
+
+##### Install Lynx
+	sudo yum install lynx
 
 ##### Test the web page
 	lynx localhost:8080/springapp
+
