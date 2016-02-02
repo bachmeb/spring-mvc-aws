@@ -17,6 +17,8 @@
 * Build the project
 * Test the project
 
+#### [Part 2](/docs/part2.md)
+
 
 
 
