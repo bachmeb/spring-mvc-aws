@@ -13,10 +13,13 @@ https://aws.amazon.com/ec2/
 	Amazon Linux AMI 2015.09.1 (HVM), SSD Volume Type - ami-f0091d91
 
 ##### Step 2: Choose an Instance Type
-	
-| Family        |  Type  |vCPUs|Memory|Instance Storage|EBS-Optimized|Network Performance|
-|---------------|--------|-----|------|----------------|-------------|-------------------|
-|General purpose|t2.micro|1    |1     |EBS only        |-            |Low to Moderate    |
+	Family: General purpose
+	Type: t2.micro
+	vCPUs: 1
+	Memory: 1
+	Instance Storage: EBS only
+	EBS-Optimized: -
+	Network Performance: Low to Moderate
 
 ##### Step 3: Configure Instance Details
 	Protect against accidental termination
@@ -36,7 +39,7 @@ https://aws.amazon.com/ec2/
 	Value:
 
 ##### Step 6: Configure Security Group 
-####### Allow ICMP, SSH, and TCP traffic from your IP address
+###### Allow ICMP, SSH, and TCP traffic from your IP address
     Type	    Protocol	Port Range	Source
     All TCP	    TCP	        0 - 65535	your ip address/32
     SSH	        TCP	        22	        your ip address/32
