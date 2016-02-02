@@ -68,18 +68,6 @@ https://aws.amazon.com/ec2/
 ##### Ping the IP address to confirm that ICMP traffic is allowed from your IP address
     ping [ec2.ipa.ddr.ess]
 
-##### Update the DNS record at the domain registrar to point the domain name to the new IP address
-    ; A Records
-    @ 600 IN A [000.000.000.000] <-- The EC2 IP address
-    mail 600 IN A [000.000.000.000] <-- The EC2 IP address
-    
-    ; CNAME Records
-    ftp 600 IN CNAME @
-    www 600 IN CNAME @
-    
-    ; MX Records
-    @ 600 IN MX 1 [mail.somedomain.whatever]
-
 ##### Connect via SSH
     ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
 
@@ -88,24 +76,6 @@ https://aws.amazon.com/ec2/
 
 ##### Check the Linux distro version
     cat /proc/version
-
-##### Edit the sysconfig network file
-    nano /etc/sysconfig/network
-    
-##### Change the hostname and save the file
-    HOSTNAME=[subddomain?].[somedomain.whatever]
-
-##### Change the command prompt to show the full hostname
-    export PS1='[\u@\H \W]\$'
-
-##### Reboot
-    reboot
-
-##### Ping the domain name to confirm the DNS update.
-    ping [somedomain.whatever]
-
-##### Reconnect
-    ssh -i [pem file] ec2-user@[somedomain.whatever]
 
 ##### Check the hostname of the ec2 instance
     hostname
