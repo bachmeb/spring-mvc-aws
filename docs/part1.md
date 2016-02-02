@@ -1,4 +1,5 @@
 # Spring MVC on AWS
+[README](/README.md)
 ## Part 1
 
 ##### Create a new vm
