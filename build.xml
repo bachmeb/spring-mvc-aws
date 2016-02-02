@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 
 <project name="springapp" basedir="." default="usage">
+  <!-- This build.properties file is kept in the root of your home directory -->
     <property file="${user.home}/build.properties"/>
 
-    <property name="src.dir" value="src"/>
+    <property name="src.dir" value="src"/><!-- Make sure this dir exists -->
     <property name="web.dir" value="war"/>
     <property name="build.dir" value="${web.dir}/WEB-INF/classes"/>
     <property name="name" value="springapp"/>
