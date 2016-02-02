@@ -437,7 +437,6 @@ lrwxrwxrwx 1 root root     16 Feb  1 22:01 logs -> /var/log/tomcat6
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 temp -> /var/cache/tomcat6/temp
 lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
-
 ```
 ##### Make a build properties file in your home directory
 	vim ~/build.properties
@@ -531,19 +530,23 @@ Total time: 0 seconds
 ##### Test the web page
 	lynx localhost:8080/springapp
 
-##### Find a copy of the Spring Framework 2.5
+##### Find a copy of the Spring Framework 2.5 with dependencies
 * https://spring.io/blog/2007/11/19/spring-framework-2-5-released
 * http://maven.springframework.org/release/org/springframework/spring/
+* http://ebr.springsource.com/repository/app/search?query=junit
+* http://sourceforge.net/projects/springframework/files/springframework-2/2.5/
+* http://docs.spring.io/downloads/nightly/release-download.php?project=SPR
 
-##### Download and uppack Spring Framework 2.5
+
+##### Download and uppack Spring Framework 2.5 with dependencies
 	cd /opt
 	sudo mkdir spring-framework
 	cd spring-framework/
-	sudo wget http://central.maven.org/maven2/org/springframework/spring/2.5/spring-2.5.jar
-	sudo unzip spring-2.5.jar -d spring-2.5
+	sudo wget http://s3.amazonaws.com/dist.springframework.org/release/SPR/spring-framework-2.5-with-dependencies.zip
+	sudo unzip spring-framework-2.5-with-dependencies.zip
 
-##### Edit 
-	cd ~/git/springapp
+##### Define a DispatcherServlet in web.xml. Map the servlet to the *.htm file pattern.
+	cd ~/git/spring-mvc
 	vim war/WEB-INF/web.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -589,6 +592,22 @@ Total time: 0 seconds
 
 </beans>
 ```
+##### Make a lib directory in WEB-INF
+	cd ~/git/spring-mvc
+	mkdir war/WEB-INF
+
+##### Find spring.jar, spring-webmvc.jar, and commons-logging.jar in the spring-framework package
+	cd /opt/spring-framework/spring-framework-2.5/
+	find . | grep spring.jar
+	find . | grep spring-webmvc.jar
+	find . | grep commons-logging.jar
+
+##### Copy the libraries to WEB-INF/lib
+	cd /opt/spring-framework/spring-framework-2.5/
+	find . | grep commons-logging.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find . | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find . | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+
 ##### Create HelloController
 	cd ~/git/spring-mvc
 	mkdir -p src/springapp/web
@@ -647,7 +666,7 @@ public class HelloControllerTests extends TestCase {
 	vim build.xml
 ```
     <property name="test.dir" value="test"/>
-        
+    <!-- SET THE SOURCE AND TARGET VALUES CORRECTLY-->
     <target name="buildtests" description="Compile test tree java files">
         <mkdir dir="${build.dir}"/>
         <javac destdir="${build.dir}" 
@@ -690,5 +709,18 @@ public class HelloControllerTests extends TestCase {
         </fail>
     </target>
 ```
-##### asdf
+##### Find JUnit in the Spring Framework package and copy it to 
+	cd /opt/spring-framework/spring-framework-2.5
+	find .
+	find . | grep junit
+	find . | grep junit-3.8.2.jar
+	find . | grep junit-3.8.2.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+
+##### Go back to the project directory
+	cd ~/git/spring-mvc/
+
+
+
+	
+
 	
