@@ -346,6 +346,16 @@ tomcat.manager.url=http://localhost:8080/manager
 tomcat.manager.username=tomcat
 tomcat.manager.password=s3cret
 ```
+##### Create Tomcat user named 'tomcat' with 's3cret' as their password
+	sudo nano /usr/share/tomcat6/conf/tomcat-users.xml
+```xml
+<?xml version='1.0' encoding='utf-8'?>
+<tomcat-users>
+  <role rolename="manager"/>
+  <user username="tomcat" password="s3cret" roles="manager"/>
+</tomcat-users>
+```
+
 ##### Commit changes and push to the remote repository
 	git status
 	git add --all
@@ -362,13 +372,14 @@ tomcat.manager.password=s3cret
 	ls -l /usr/share/tomcat6/
 ```
 total 4
-drwxr-xr-x 2 root root   4096 Jan 31 18:48 bin
-lrwxrwxrwx 1 root tomcat   12 Jan 31 18:48 conf -> /etc/tomcat7
-lrwxrwxrwx 1 root tomcat   23 Jan 31 18:48 lib -> /usr/share/java/tomcat7
-lrwxrwxrwx 1 root tomcat   16 Jan 31 18:48 logs -> /var/log/tomcat7
-lrwxrwxrwx 1 root tomcat   23 Jan 31 18:48 temp -> /var/cache/tomcat7/temp
-lrwxrwxrwx 1 root tomcat   24 Jan 31 18:48 webapps -> /var/lib/tomcat7/webapps
-lrwxrwxrwx 1 root tomcat   23 Jan 31 18:48 work -> /var/cache/tomcat7/work
+drwxr-xr-x 2 root root   4096 Feb  1 22:01 bin
+lrwxrwxrwx 1 root tomcat   12 Feb  1 22:01 conf -> /etc/tomcat6
+lrwxrwxrwx 1 root root     23 Feb  1 22:01 lib -> /usr/share/java/tomcat6
+lrwxrwxrwx 1 root root     16 Feb  1 22:01 logs -> /var/log/tomcat6
+lrwxrwxrwx 1 root root     23 Feb  1 22:01 temp -> /var/cache/tomcat6/temp
+lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
+lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
+
 ```
 
 ##### See what is listening on port 8080
@@ -391,3 +402,38 @@ lrwxrwxrwx 1 root tomcat   23 Jan 31 18:48 work -> /var/cache/tomcat7/work
 
 ##### Check the Ant version
 	ant -version
+
+##### Run ant
+	ant
+```
+usage:
+     [echo] 
+     [echo] springapp build file
+     [echo] -----------------------------------
+     [echo] 
+     [echo] Available targets are:
+     [echo] 
+     [echo] build     --> Build the application
+     [echo] deploy    --> Deploy application as directory
+     [echo] deploywar --> Deploy application as a WAR file
+     [echo] install   --> Install application in Tomcat
+     [echo] reload    --> Reload application in Tomcat
+     [echo] start     --> Start Tomcat application
+     [echo] stop      --> Stop Tomcat application
+     [echo] list      --> List Tomcat applications
+     [echo] 
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+```
+##### Tell Linux to use the Java interpreter in the JDK 1.7
+	sudo /usr/sbin/alternatives --config java
+
+##### List the intstalled Tomcat applications
+	ant list
+
+##### Install the springapp
+	sudo ant deploy
+
+##### Test the web page
+	lynx localhost:8080/springapp
