@@ -363,19 +363,6 @@ build/
 
 </project>
 ```
-##### Make a build properties file in your home directory
-	vim ~/build.properties
-```
-# Ant properties for building the springapp
-
-appserver.home=/usr/share/tomcat6
-appserver.lib=${appserver.home}/lib
-deploy.path=${appserver.home}/webapps
-
-tomcat.manager.url=http://localhost:8080/manager
-tomcat.manager.username=tomcat
-tomcat.manager.password=s3cret
-```
 ##### Install Tomcat 6
 	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
 
@@ -395,9 +382,19 @@ lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
 
 ```
-##### See what is listening on port 8080
-	sudo lsof -ni:8080
+##### Make a build properties file in your home directory
+	vim ~/build.properties
+```
+# Ant properties for building the springapp
 
+appserver.home=/usr/share/tomcat6
+appserver.lib=${appserver.home}/lib
+deploy.path=${appserver.home}/webapps
+
+tomcat.manager.url=http://localhost:8080/manager
+tomcat.manager.username=tomcat
+tomcat.manager.password=s3cret
+```
 ##### Create Tomcat user named 'tomcat' with 's3cret' as their password
 	sudo vim /usr/share/tomcat6/conf/tomcat-users.xml
 ```xml
@@ -407,6 +404,9 @@ lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
   <user username="tomcat" password="s3cret" roles="manager"/>
 </tomcat-users>
 ```
+##### See what is listening on port 8080
+	sudo lsof -ni:8080
+	
 ##### Start the Tomcat service
 	sudo service tomcat6 status
 	sudo service tomcat6 start
