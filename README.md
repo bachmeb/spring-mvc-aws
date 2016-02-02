@@ -172,19 +172,16 @@ build/
 	vim war/WEB-INF/web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-
 <web-app version="2.4"
          xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
-
   <welcome-file-list>
     <welcome-file>
       index.jsp
     </welcome-file>
   </welcome-file-list>
-
 </web-app>
 ```
 ##### Create a build.xml file. Change the springapp value to whatever you would like. 
@@ -356,6 +353,11 @@ tomcat.manager.password=s3cret
 </tomcat-users>
 ```
 
+##### Set permissions on your home folder
+	ls -l $HOME
+	chmod -R 775 $HOME
+	ls -l $HOME
+  
 ##### Commit changes and push to the remote repository
 	git status
 	git add --all
