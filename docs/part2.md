@@ -16,3 +16,7 @@
 ##### Copy standard.jar to the project library
         cp /opt/spring-framework/spring-framework-2.5/lib/jakarta-taglibs/standard.jar ~/git/spring-mvc/war/WEB-INF/lib/
 
+##### Create a header file for inclusion in all JSPs
+        pwdcd ~/git/spring-mvc
+        
+        vim war/WEB-INF/jsp/include.jsp
