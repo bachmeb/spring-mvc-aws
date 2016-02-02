@@ -2,8 +2,6 @@
 [README](/README.md)
 ## Part 2
 
-##### Configure JSTL and add JSP header file
-
 ##### Find a copy of jstl.jar
         sudo find / |grep jstl.jar
 
