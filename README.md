@@ -180,10 +180,10 @@ https://aws.amazon.com/ec2/
     
 ##### Make a project directory
 	pwd
-	mkdir -p ~/git/projectdirecory
+	mkdir -p ~/git/spring-mvc
 
 ##### Initialize the git repository
-	cd ~/git/projectdirectory
+	cd ~/git/spring-mvc
 	git init
 
 ##### Make a remote repository
@@ -532,8 +532,8 @@ Total time: 0 seconds
 	lynx localhost:8080/springapp
 
 ##### Find a copy of the Spring Framework 2.5
-https://spring.io/blog/2007/11/19/spring-framework-2-5-released
-http://mvnrepository.com/artifact/org.springframework/spring/2.5
+* https://spring.io/blog/2007/11/19/spring-framework-2-5-released
+* http://maven.springframework.org/release/org/springframework/spring/
 
 ##### Download and uppack Spring Framework 2.5
 	cd /opt
@@ -543,7 +543,7 @@ http://mvnrepository.com/artifact/org.springframework/spring/2.5
 	sudo unzip spring-2.5.jar -d spring-2.5
 
 ##### Edit 
-	cd ~/git/projectfolder
+	cd ~/git/springapp
 	vim war/WEB-INF/web.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -590,6 +590,7 @@ http://mvnrepository.com/artifact/org.springframework/spring/2.5
 </beans>
 ```
 ##### Create HelloController
+	cd ~/git/spring-mvc
 	mkdir -p src/springapp/web
 	vim src/springapp/web/HelloController.java
 ```
