@@ -531,12 +531,163 @@ Total time: 0 seconds
 ##### Test the web page
 	lynx localhost:8080/springapp
 
-##### Download the Spring Framework
+##### Find a copy of the Spring Framework 2.5
+https://spring.io/blog/2007/11/19/spring-framework-2-5-released
+http://mvnrepository.com/artifact/org.springframework/spring/2.5
+
+##### Download and uppack Spring Framework 2.5
 	cd /opt
 	sudo mkdir spring-framework
 	cd spring-framework/
-	sudo wget https://github.com/spring-projects/spring-framework/archive/3.0.x.zip
-	sudo unzip 3.0.x.zip
+	sudo wget http://central.maven.org/maven2/org/springframework/spring/2.5/spring-2.5.jar
+	sudo unzip spring-2.5.jar -d spring-2.5
 
+##### Edit 
+	cd ~/git/projectfolder
+	vim war/WEB-INF/web.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
+
+  <servlet>
+    <servlet-name>springapp</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>springapp</servlet-name>
+    <url-pattern>*.htm</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>
+      index.jsp
+    </welcome-file>
+  </welcome-file-list>
+
+</web-app>
+```
+##### Create springapp-servlet.xml
+	vim war/WEB-INF/springapp-servlet.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- the application context definition for the springapp DispatcherServlet -->
+
+  <bean name="/hello.htm" class="springapp.web.HelloController"/>
+
+</beans>
+```
+##### Create HelloController
+	mkdir -p src/springapp/web
+	vim src/springapp/web/HelloController.java
+```
+package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+
+public class HelloController implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        logger.info("Returning hello view");
+
+        return new ModelAndView("hello.jsp");
+    }
+
+}
+```
+##### Create a test class
+	mkdir -p test/springapp/web
+	vim test/springapp/web/HelloControllerTests.java
+```
+package springapp.web;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import springapp.web.HelloController;
+
+import junit.framework.TestCase;
+
+public class HelloControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{		
+        HelloController controller = new HelloController();
+        ModelAndView modelAndView = controller.handleRequest(null, null);		
+        assertEquals("hello.jsp", modelAndView.getViewName());
+    }
+}
+```
+##### Add Ant task to build script
+	vim build.xml
+```
+    <property name="test.dir" value="test"/>
+        
+    <target name="buildtests" description="Compile test tree java files">
+        <mkdir dir="${build.dir}"/>
+        <javac destdir="${build.dir}" 
+        	source="1.7" 
+        	target="1.7" 
+        	debug="true"
+            	deprecation="false" 
+            	optimize="false" 
+            	failonerror="true"
+            	>
+            <src path="${test.dir}"/>
+            <classpath refid="master-classpath"/>
+        </javac>
+    </target>
+    
+    <target name="tests" depends="build, buildtests" description="Run tests">
+        <junit printsummary="on"
+            fork="false"
+            haltonfailure="false"
+            failureproperty="tests.failed"
+            showoutput="true">
+            <classpath refid="master-classpath"/>
+            <formatter type="brief" usefile="false"/>
+            
+            <batchtest>
+                <fileset dir="${build.dir}">
+                    <include name="**/*Tests.*"/>
+                </fileset>
+            </batchtest>
+            
+        </junit>
+        
+        <fail if="tests.failed">
+            tests.failed=${tests.failed}
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+        </fail>
+    </target>
+```
+##### asdf
 	
-
