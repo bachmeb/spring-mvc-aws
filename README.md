@@ -193,7 +193,7 @@ build/
 <?xml version="1.0"?>
 
 <project name="springapp" basedir="." default="usage">
-    <property file="build.properties"/>
+    <property file="${user.home}/build.properties"/>
 
     <property name="src.dir" value="src"/>
     <property name="web.dir" value="war"/>
@@ -329,11 +329,28 @@ build/
 
 </project>
 ```
+##### Make a build properties file in your home directory
+	nano ~/build.properties
+```
+# Ant properties for building the springapp
+
+# appserver.home=${user.home}/apache-tomcat-6.0.14
+appserver.home=/usr/share/tomcat6
+# for Tomcat 5 use $appserver.home}/server/lib
+# for Tomcat 6 use $appserver.home}/lib
+appserver.lib=${appserver.home}/lib
+
+deploy.path=${appserver.home}/webapps
+
+tomcat.manager.url=http://localhost:8080/manager
+tomcat.manager.username=tomcat
+tomcat.manager.password=s3cret
+```
 ##### Commit changes and push to the remote repository
 	git status
 	git add --all
 	git commit -m "add config files"
-	git push 
+	git config --global push.default simple
 
 ##### Install Tomcat 6
 	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
