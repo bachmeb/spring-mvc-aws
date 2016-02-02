@@ -1,5 +1,7 @@
 # spring-mvc-aws
 
+
+
 ## References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/
 
@@ -7,7 +9,34 @@
 ##### Create a new vm
 https://aws.amazon.com/ec2/
 
-##### Configure the security group to allow ICMP, SSH, and TCP traffic from your IP address
+##### Step 1: Choose an Amazon Machine Image (AMI)
+	Amazon Linux AMI 2015.09.1 (HVM), SSD Volume Type - ami-f0091d91
+
+##### Step 2: Choose an Instance Type
+	
+| Family        |  Type  |vCPUs|Memory|Instance Storage|EBS-Optimized|Network Performance|
+|---------------|--------|-----|------|----------------|-------------|-------------------|
+|General purpose|t2.micro|1    |1     |EBS only        |-            |Low to Moderate    |
+
+##### Step 3: Configure Instance Details
+	Protect against accidental termination
+
+##### Step 4: Add Storage
+	Volume Type: Root
+	Device: /dev/xvda
+	Snapshot: snap-ad8e61f8
+	Size (GiB): 8
+	Volume Type: General Purpose SSD (GP2)
+	IOPS: 24 / 3000
+	Delete on Termination: Yes
+	Encrypted: Not Encrypted
+
+##### Step 5: Tag Instance
+	Key: Name
+	Value:
+
+##### Step 6: Configure Security Group 
+####### Allow ICMP, SSH, and TCP traffic from your IP address
     Type	    Protocol	Port Range	Source
     All TCP	    TCP	        0 - 65535	your ip address/32
     SSH	        TCP	        22	        your ip address/32
