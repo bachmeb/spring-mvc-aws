@@ -4,6 +4,7 @@
 
 ## References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/
+* http://tomcat.apache.org/whichversion.html
 
 
 ##### Create a new vm
@@ -255,7 +256,8 @@ build/
 
     <target name="build" description="Compile main source tree java files">
         <mkdir dir="${build.dir}"/>
-        <javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+        <!-- SET THE SOURCE AND TARGET CORRECTLY -->
+        <javac destdir="${build.dir}" source="1.7" target="1.7" debug="true"
                deprecation="false" optimize="false" failonerror="true">
             <src path="${src.dir}"/>
             <classpath refid="master-classpath"/>
