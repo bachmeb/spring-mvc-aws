@@ -151,16 +151,10 @@ https://aws.amazon.com/ec2/
 ##### Tell Linux to use the Java interpreter in the JDK 1.7
 	sudo /usr/sbin/alternatives --config java
 
-##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
-
-	ls -l /usr/bin/java
-```
-lrwxrwxrwx 1 root root 22 Feb  2 18:03 /usr/bin/java -> /etc/alternatives/java
-```
 ##### Read the symlinks in /usr/lib/jvm/
 	ls -l /usr/lib/jvm/
 
-##### Confirm that /usr/lib/jvm/java -> /etc/alternatives/java_sdk
+##### Confirm that /usr/lib/jvm/java points to etc/alternatives/java_sdk
 	ls -l /usr/lib/jvm/java
 
 ##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
