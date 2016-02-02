@@ -8,6 +8,15 @@
 * http://stackoverflow.com/questions/6568634/how-to-solve-cause-the-class-org-apache-tools-ant-taskdefs-optional-junit-juni
 * http://stackoverflow.com/questions/15601469/jar-not-loaded-see-servlet-spec-2-3-section-9-7-2-offending-class-javax-serv
 
-[Part 1](/docs/part1)
+## Sequence
+#### [Part 1](/docs/part1)
+* Setup a VM
+* Install Java, Tomcat, and Ant
+* Build a project
+* Copy the required libraries to the project
+* Build the project
+* Test the project
+
+
 
 
