@@ -4,6 +4,7 @@
 
 ## References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/
+* http://tomcat.apache.org/whichversion.html
 
 
 ##### Create a new vm
@@ -74,18 +75,9 @@ https://aws.amazon.com/ec2/
 ##### Switch to root 
     sudo su
 
-##### Check the Linux distro version
-    cat /proc/version
-
-##### Check the hostname of the ec2 instance
-    hostname
-
-##### Check the DNS domain name of the ec2 instance
-    dnsdomainname
-
-##### Switch to root
-    sudo su
-
+##### Ask who am I?
+	whoami
+	
 ##### Update yum
     yum update
 
@@ -113,7 +105,22 @@ https://aws.amazon.com/ec2/
 
 ##### Go home
     cd $HOME
-    
+
+##### Check the Linux distro version
+    cat /proc/version
+
+##### Check the hostname of the ec2 instance
+    hostname
+
+##### Check the DNS domain name of the ec2 instance
+    dnsdomainname
+
+##### Check the internal IP address
+    ifconfig
+
+##### Check the external IP address
+    wget http://ipinfo.io/ip -qO -
+	
 ##### Install git
     sudo yum install git
     
@@ -249,7 +256,8 @@ build/
 
     <target name="build" description="Compile main source tree java files">
         <mkdir dir="${build.dir}"/>
-        <javac destdir="${build.dir}" source="1.5" target="1.5" debug="true"
+        <!-- SET THE SOURCE AND TARGET CORRECTLY -->
+        <javac destdir="${build.dir}" source="1.7" target="1.7" debug="true"
                deprecation="false" optimize="false" failonerror="true">
             <src path="${src.dir}"/>
             <classpath refid="master-classpath"/>
