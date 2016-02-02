@@ -1,11 +1,8 @@
 # spring-mvc-aws
 
-
-
 ## References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/
 * http://tomcat.apache.org/whichversion.html
-
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -64,91 +61,91 @@ https://aws.amazon.com/ec2/
     All ICMP	All	        N/A         your ip address/32
 
 ##### Download the key pair and change the mode to 400
-    chmod 400 pemfile.pem
+	chmod 400 pemfile.pem
 
 ##### Ping the IP address to confirm that ICMP traffic is allowed from your IP address
-    ping [ec2.ipa.ddr.ess]
+	ping [ec2.ipa.ddr.ess]
 
 ##### Connect via SSH
-    ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
+	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
 
 ##### Switch to root 
-    sudo su
+	sudo su
 
 ##### Ask who am I?
 	whoami
 	
 ##### Update yum
-    yum update
+	yum update
 
 ##### Create a user account for development
-    useradd [your new account name]
+	useradd [your new account name]
     
 ##### Set the password for your development account
-    passwd [your new account name]
+	passwd [your new account name]
 
 ##### Edit sudoers file
-    vim /etc/sudoers
+	vim /etc/sudoers
 
 ##### Add development account to sudoers file
-    ## ALLOW {MYACCOUNT} TO SUDO
-    [your new account name] ALL=(ALL) ALL
+	## ALLOW {MYACCOUNT} TO SUDO
+	[your new account name] ALL=(ALL) ALL
 
 ##### Switch to development user
-    su [your new account name]
+	su [your new account name]
     
 ##### Ask who am I?
-    whoami
+	whoami
     
 ##### Check the value of the home directory environment variable
-    echo $HOME
+	echo $HOME
 
 ##### Go home
-    cd $HOME
+	cd $HOME
 
 ##### Check the Linux distro version
-    cat /proc/version
+	cat /proc/version
 
 ##### Check the hostname of the ec2 instance
-    hostname
+	hostname
 
 ##### Check the DNS domain name of the ec2 instance
-    dnsdomainname
+	dnsdomainname
 
 ##### Check the internal IP address
-    ifconfig
+	ifconfig
 
 ##### Check the external IP address
-    wget http://ipinfo.io/ip -qO -
+	wget http://ipinfo.io/ip -qO -
 	
 ##### Install git
-    sudo yum install git
+	sudo yum install git
     
 ##### Make a project directory
-    mkdir -p ~/git/projectdirecory
+	mkdir -p ~/git/projectdirecory
 
 ##### Initialize the git repository
-    cd ~/git/projectdirectory
-    git init
+	cd ~/git/projectdirectory
+	git init
 
 ##### Make a remote repository
-    http://github.com
+	http://github.com
     
 ##### Add the remote repository
-    git add remote origin https://github.com/[username]/[reponame].git
+	git add remote origin https://github.com/[username]/[reponame].git
 
 ##### Configure git
-    git config user.name [username]
-    git config user.email [your email address]
+	git config user.name [username]
+	git config user.email [your email address]
     
 ##### Fetch from the remote repository
-    git fetch
+	git fetch
 
 ##### Pull from the remote directory
-    git pull origin master
+	git pull origin master
 
 ##### Make a .gitignore file
-    nano .gitignore
+	nano .gitignore
 ```
 *.class
 
@@ -174,10 +171,10 @@ build/
 .gradle/
 ```
 ##### Commit changes and push to the remote repository
-    git status
-    git add --all
-    git commit -m "git ignore"
-    git push --set-upstream origin master
+	git status
+	git add --all
+	git commit -m "git ignore"
+	git push --set-upstream origin master
 
 ##### Make a directory for source files
 	mkdir src  
@@ -425,8 +422,41 @@ tomcat.manager.password=s3cret
 	git status
 	git add --all
 	git commit -m "add config files"
+	git pull
 	git config --global push.default simple
 	git push --set-upstream origin master
+
+##### Show all of the environment variables
+	declare
+
+##### Show the current JAVA_HOME
+	echo $JAVA_HOME
+	env | grep JAVA_HOME
+
+##### Ask where is Java?
+	whereis java
+
+##### Check the Java version
+	java -version
+
+##### See if the Java compiler is installed
+	whereis javac
+	javac -version
+
+##### Search yum for openjdk
+	yum search openjdk
+	
+##### Install the Open JDK version 1.7
+	sudo yum install java-1.7.0-openjdk-devel.x86_64
+
+##### Check the Java compiler version
+	javac -version
+	
+##### Set the JAVA_HOME environment variable to the Open JDK directory
+	export JAVA_HOME='/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64/'
+
+##### Tell Linux to use the Java interpreter in the JDK 1.7
+	sudo /usr/sbin/alternatives --config java
 
 ##### Install Ant
 	sudo yum install ant
@@ -457,36 +487,7 @@ usage:
 BUILD SUCCESSFUL
 Total time: 0 seconds
 ```
-##### Show all of the environment variables
-	declare
 
-##### Show the current JAVA_HOME
-	env | grep JAVA_HOME
-
-##### Ask where is Java?
-	whereis java
-
-##### Check the Java version
-	java -version
-
-##### See if the Java compiler is installed
-	whereis javac
-	javac -version
-
-##### Search yum for openjdk
-	yum search openjdk
-	
-##### Install the Open JDK version 1.7
-	sudo yum install java-1.7.0-openjdk-devel.x86_64
-
-##### Check the Java compiler version
-	javac -version
-	
-##### Set the JAVA_HOME environment variable to the Open JDK directory
-	export JAVA_HOME='/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64/'
-
-##### Tell Linux to use the Java interpreter in the JDK 1.7
-	sudo /usr/sbin/alternatives --config java
 
 ##### List the intstalled Tomcat applications
 	ant list
