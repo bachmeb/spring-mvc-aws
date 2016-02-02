@@ -181,8 +181,10 @@ build/
 
 ##### Make a directory for source files
 	mkdir src  
+
 ##### Make a directory for the web.xml file
 	mkdir -p war/WEB-INF
+
 ##### Make an index file
 	vim war/index.jsp
 ```html
@@ -257,8 +259,16 @@ build/
     <target name="build" description="Compile main source tree java files">
         <mkdir dir="${build.dir}"/>
         <!-- SET THE SOURCE AND TARGET CORRECTLY -->
-        <javac destdir="${build.dir}" source="1.7" target="1.7" debug="true"
-               deprecation="false" optimize="false" failonerror="true">
+        <!-- ADD THE includeantruntime PROPERTY -->
+        <javac destdir="${build.dir}" 
+        	source="1.7" 
+        	target="1.7" 
+        	debug="true"
+        	deprecation="false" 
+        	optimize="false" 
+        	failonerror="true"
+        	includeantruntime="false"
+        	>
             <src path="${src.dir}"/>
             <classpath refid="master-classpath"/>
         </javac>
@@ -354,43 +364,18 @@ build/
 </project>
 ```
 ##### Make a build properties file in your home directory
-	nano ~/build.properties
+	vim ~/build.properties
 ```
 # Ant properties for building the springapp
 
-# appserver.home=${user.home}/apache-tomcat-6.0.14
 appserver.home=/usr/share/tomcat6
-# for Tomcat 5 use $appserver.home}/server/lib
-# for Tomcat 6 use $appserver.home}/lib
 appserver.lib=${appserver.home}/lib
-
 deploy.path=${appserver.home}/webapps
 
 tomcat.manager.url=http://localhost:8080/manager
 tomcat.manager.username=tomcat
 tomcat.manager.password=s3cret
 ```
-##### Create Tomcat user named 'tomcat' with 's3cret' as their password
-	sudo nano /usr/share/tomcat6/conf/tomcat-users.xml
-```xml
-<?xml version='1.0' encoding='utf-8'?>
-<tomcat-users>
-  <role rolename="manager"/>
-  <user username="tomcat" password="s3cret" roles="manager"/>
-</tomcat-users>
-```
-
-##### Set permissions on your home folder
-	ls -l $HOME
-	chmod -R 775 $HOME
-	ls -l $HOME
-  
-##### Commit changes and push to the remote repository
-	git status
-	git add --all
-	git commit -m "add config files"
-	git config --global push.default simple
-
 ##### Install Tomcat 6
 	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
 
@@ -410,11 +395,21 @@ lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
 
 ```
-
 ##### See what is listening on port 8080
 	sudo lsof -ni:8080
 
+##### Create Tomcat user named 'tomcat' with 's3cret' as their password
+	sudo vim /usr/share/tomcat6/conf/tomcat-users.xml
+```xml
+<?xml version='1.0' encoding='utf-8'?>
+<tomcat-users>
+  <role rolename="manager"/>
+  <user username="tomcat" password="s3cret" roles="manager"/>
+</tomcat-users>
+```
 ##### Start the Tomcat service
+	sudo service tomcat6 status
+	sudo service tomcat6 start
 	sudo service tomcat6 status
 	
 ##### See what is listening on port 8080
@@ -425,6 +420,13 @@ lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
 
 ##### Open a web browser on your local machine and go to http://[ec2 ip address]:8080
 	If you're seeing this page via a web browser, it means you've setup Tomcat successfully. Congratulations!
+  
+##### Commit changes and push to the remote repository
+	git status
+	git add --all
+	git commit -m "add config files"
+	git config --global push.default simple
+	git push --set-upstream origin master
 
 ##### Install Ant
 	sudo yum install ant
@@ -455,12 +457,45 @@ usage:
 BUILD SUCCESSFUL
 Total time: 0 seconds
 ```
+##### Show all of the environment variables
+	declare
+
+##### Show the current JAVA_HOME
+	env | grep JAVA_HOME
+
+##### Ask where is Java?
+	whereis java
+
+##### Check the Java version
+	java -version
+
+##### See if the Java compiler is installed
+	whereis javac
+	javac -version
+
+##### Search yum for openjdk
+	yum search openjdk
+	
+##### Install the Open JDK version 1.7
+	sudo yum install java-1.7.0-openjdk-devel.x86_64
+
+##### Check the Java compiler version
+	javac -version
+	
+##### Set the JAVA_HOME environment variable to the Open JDK directory
+	export JAVA_HOME='/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64/'
+
 ##### Tell Linux to use the Java interpreter in the JDK 1.7
 	sudo /usr/sbin/alternatives --config java
 
 ##### List the intstalled Tomcat applications
 	ant list
 
+##### Set permissions on your home folder
+	ls -l $HOME
+	chmod -R 775 $HOME
+	ls -l $HOME
+	
 ##### Install the springapp
 	sudo ant deploy
 
