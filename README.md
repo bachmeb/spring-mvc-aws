@@ -5,6 +5,8 @@
 * http://tomcat.apache.org/whichversion.html
 * https://docs.oracle.com/cd/E21454_01/html/821-2532/inst_cli_jdk_javahome_t.html
 * https://ant.apache.org/manual/Tasks/property.html
+* http://stackoverflow.com/questions/6568634/how-to-solve-cause-the-class-org-apache-tools-ant-taskdefs-optional-junit-juni
+* http://stackoverflow.com/questions/15601469/jar-not-loaded-see-servlet-spec-2-3-section-9-7-2-offending-class-javax-serv
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -151,16 +153,10 @@ https://aws.amazon.com/ec2/
 ##### Tell Linux to use the Java interpreter in the JDK 1.7
 	sudo /usr/sbin/alternatives --config java
 
-##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
-
-	ls -l /usr/bin/java
-```
-lrwxrwxrwx 1 root root 22 Feb  2 18:03 /usr/bin/java -> /etc/alternatives/java
-```
 ##### Read the symlinks in /usr/lib/jvm/
 	ls -l /usr/lib/jvm/
 
-##### Confirm that /usr/lib/jvm/java -> /etc/alternatives/java_sdk
+##### Confirm that /usr/lib/jvm/java points to etc/alternatives/java_sdk
 	ls -l /usr/lib/jvm/java
 
 ##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
@@ -186,10 +182,10 @@ lrwxrwxrwx 1 root root 22 Feb  2 18:03 /usr/bin/java -> /etc/alternatives/java
     
 ##### Make a project directory
 	pwd
-	mkdir -p ~/git/projectdirecory
+	mkdir -p ~/git/spring-mvc
 
 ##### Initialize the git repository
-	cd ~/git/projectdirectory
+	cd ~/git/spring-mvc
 	git init
 
 ##### Make a remote repository
@@ -443,7 +439,6 @@ lrwxrwxrwx 1 root root     16 Feb  1 22:01 logs -> /var/log/tomcat6
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 temp -> /var/cache/tomcat6/temp
 lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
-
 ```
 ##### Make a build properties file in your home directory
 	vim ~/build.properties
@@ -536,4 +531,251 @@ Total time: 0 seconds
 
 ##### Test the web page
 	lynx localhost:8080/springapp
+
+##### Find a copy of the Spring Framework 2.5 with dependencies
+* https://spring.io/blog/2007/11/19/spring-framework-2-5-released
+* http://maven.springframework.org/release/org/springframework/spring/
+* http://ebr.springsource.com/repository/app/search?query=junit
+* http://sourceforge.net/projects/springframework/files/springframework-2/2.5/
+* http://docs.spring.io/downloads/nightly/release-download.php?project=SPR
+
+
+##### Download and uppack Spring Framework 2.5 with dependencies
+	cd /opt
+	sudo mkdir spring-framework
+	cd spring-framework/
+	sudo wget http://s3.amazonaws.com/dist.springframework.org/release/SPR/spring-framework-2.5-with-dependencies.zip
+	sudo unzip spring-framework-2.5-with-dependencies.zip
+
+##### Define a DispatcherServlet in web.xml. Map the servlet to the *.htm file pattern.
+	cd ~/git/spring-mvc
+	vim war/WEB-INF/web.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
+
+  <servlet>
+    <servlet-name>springapp</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>springapp</servlet-name>
+    <url-pattern>*.htm</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>
+      index.jsp
+    </welcome-file>
+  </welcome-file-list>
+
+</web-app>
+```
+##### Build the project
+	ant build
+
+##### Create springapp-servlet.xml
+	vim war/WEB-INF/springapp-servlet.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <!-- the application context definition for the springapp DispatcherServlet -->
+
+  <bean name="/hello.htm" class="springapp.web.HelloController"/>
+
+</beans>
+```
+
+##### Build the project
+	ant build
+	
+##### Make a lib directory in WEB-INF
+	cd ~/git/spring-mvc
+	mkdir war/WEB-INF
+
+##### Find spring.jar, spring-webmvc.jar, and commons-logging.jar in the spring-framework package
+	cd /opt/spring-framework/spring-framework-2.5/
+	find . | grep spring.jar
+	find . | grep spring-webmvc.jar
+	find . | grep commons-logging.jar
+
+##### Copy the libraries to WEB-INF/lib
+	cd /opt/spring-framework/spring-framework-2.5/
+	find . | grep commons-logging.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find . | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find . | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+
+##### Build the project
+	ant build
+	
+##### Create HelloController
+	cd ~/git/spring-mvc
+	mkdir -p src/springapp/web
+	vim src/springapp/web/HelloController.java
+```
+package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+
+public class HelloController implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        logger.info("Returning hello view");
+
+        return new ModelAndView("hello.jsp");
+    }
+
+}
+```
+##### Copy servlet-api.jar to CATALINA_HOME/lib 
+	sudo find / | grep servlet-api.jar
+	sudo find /opt/spring-framework/ | grep servlet-api.jar 
+	sudo find /opt/spring-framework/ | grep servlet-api.jar | xargs cp -t /usr/share/tomcat6/lib/
+
+##### Build the project
+	ant build
+	
+##### Create a test class
+	mkdir -p test/springapp/web
+	vim test/springapp/web/HelloControllerTests.java
+```
+package springapp.web;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import springapp.web.HelloController;
+
+import junit.framework.TestCase;
+
+public class HelloControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{		
+        HelloController controller = new HelloController();
+        ModelAndView modelAndView = controller.handleRequest(null, null);		
+        assertEquals("hello.jsp", modelAndView.getViewName());
+    }
+}
+```
+##### Add test tasks to build script
+	vim build.xml
+```
+    <property name="test.dir" value="test"/>
+    <!-- SET THE SOURCE AND TARGET VALUES CORRECTLY-->
+    <target name="buildtests" description="Compile test tree java files">
+        <mkdir dir="${build.dir}"/>
+        <javac destdir="${build.dir}" 
+        	source="1.7" 
+        	target="1.7" 
+        	debug="true"
+            	deprecation="false" 
+            	optimize="false" 
+            	failonerror="true"
+            	includeantruntime="false"
+            	>
+            <src path="${test.dir}"/>
+            <classpath refid="master-classpath"/>
+        </javac>
+    </target>
+    
+    <target name="tests" depends="build, buildtests" description="Run tests">
+        <junit printsummary="on"
+            fork="false"
+            haltonfailure="false"
+            failureproperty="tests.failed"
+            showoutput="true">
+            <classpath refid="master-classpath"/>
+            <formatter type="brief" usefile="false"/>
+            
+            <batchtest>
+                <fileset dir="${build.dir}">
+                    <include name="**/*Tests.*"/>
+                </fileset>
+            </batchtest>
+            
+        </junit>
+        
+        <fail if="tests.failed">
+            tests.failed=${tests.failed}
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+        </fail>
+    </target>
+```
+##### Install Ant JUnit
+	sudo yum search ant-junit
+	sudo yum install ant-junit
+
+##### Run test tasks
+	ant tests
+```
+build:
+
+buildtests:
+
+tests:
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Feb 02, 2016 10:04:35 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.029 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.029 sec
+    [junit]
+    [junit] ------------- Standard Error -----------------
+    [junit] Feb 02, 2016 10:04:35 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] ------------- ---------------- ---------------
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+```
+##### Make the view
+	vim war/hello.jsp
+```
+<html>
+  <head><title>Hello :: Spring Application</title></head>
+  <body>
+    <h1>Hello - Spring Application</h1>
+    <p>Greetings.</p>
+  </body>
+</html>
+```
+##### Compile and deploy the application
+	sudo ant deploy reload
+
+##### Read the catalina.out file
+	cat /usr/share/tomcat6/logs/catalina.out
+
+##### Test the web page in a browser
+	lynx http://localhost:8080/springapp/hello.htm
+
 
