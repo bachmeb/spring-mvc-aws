@@ -15,9 +15,6 @@ hs_err_pid*
 # AWS key
 *.pem
 
-# Tomcat build.properties file
-build.properties
-
 # Gradle folders
 build/
 .gradle/
