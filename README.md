@@ -9,7 +9,7 @@
 * http://stackoverflow.com/questions/15601469/jar-not-loaded-see-servlet-spec-2-3-section-9-7-2-offending-class-javax-serv
 
 ## Sequence
-#### [Part 1](/docs/part1)
+#### [Part 1](/docs/part1.md)
 * Setup a VM
 * Install Java, Tomcat, and Ant
 * Build a project
