@@ -28,6 +28,8 @@
 <c:redirect url="/hello.htm"/>
 ```
 ##### Move 'hello.jsp' to the 'WEB-INF/jsp' directory
+        mkdir war/WEB-INF/jsp
+        mv war/hello.jsp war/WEB-INF/jsp
 
 ##### Add the same include directive we added to index.jsp to hello.jsp
         vim war/WEB-INF/jsp/hello.jsp
@@ -41,4 +43,27 @@
     <p>Greetings, it is now <c:out value="${now}"/></p>
   </body>
 </html>
+```
+##### Update the unit test class
+        vim tests/HelloControllerTests.java':
+```
+package springapp.web;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import springapp.web.HelloController;
+
+import junit.framework.TestCase;
+
+public class HelloControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{
+        HelloController controller = new HelloController();
+        ModelAndView modelAndView = controller.handleRequest(null, null);
+        assertEquals("WEB-INF/jsp/hello.jsp", modelAndView.getViewName());
+        assertNotNull(modelAndView.getModel());
+        String nowValue = (String) modelAndView.getModel().get("now");
+        assertNotNull(nowValue);
+    }
+}
 ```
