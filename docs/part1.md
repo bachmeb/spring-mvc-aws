@@ -728,6 +728,11 @@ public class HelloControllerTests extends TestCase {
 	sudo yum search ant-junit
 	sudo yum install ant-junit
 
+##### Copy junit-3.8.2.jar to the WEB-INF/lib directory
+	find /opt/spring-framework/spring-framework-2.5 
+	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar 
+	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+
 ##### Run test tasks
 	ant tests
 ```
