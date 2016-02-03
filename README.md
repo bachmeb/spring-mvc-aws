@@ -28,3 +28,5 @@
 * Add a path prefix and a *.jsp suffix to each view name by adding a viewResolver to springapp-servlet.xml
 * Update the unit test to look for a logical view name, rather than a full path the the view file
 * Update the controller to return a logical view name, rather than a full path to the view file
+
+#### [Part 3](/docs/part3.md)
