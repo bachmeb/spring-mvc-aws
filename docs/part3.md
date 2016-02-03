@@ -4,6 +4,7 @@
 ## Part 3
 
 ##### Make a POJO for a domain class called Product
+    mkdir src/springapp/domain
     vim src/springapp/domain/Product.java
 ```java
 package springapp.domain;
