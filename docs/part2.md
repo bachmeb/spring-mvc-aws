@@ -136,3 +136,27 @@ public class HelloController implements Controller {
 
 }
 ```
+##### Rerun the unit tests
+    ant tests
+```
+build:
+    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+
+buildtests:
+
+tests:
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Feb 03, 2016 1:40:24 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 01:40:24 UTC 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.039 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.039 sec
+    [junit] 
+    [junit] ------------- Standard Error -----------------
+    [junit] Feb 03, 2016 1:40:24 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 01:40:24 UTC 2016
+    [junit] ------------- ---------------- ---------------
+
+BUILD SUCCESSFUL
+Total time: 1 second
+```
