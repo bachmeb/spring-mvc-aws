@@ -103,3 +103,36 @@ BUILD FAILED
 
 Total time: 1 second
 ```
+##### Update HelloController by setting the view's resource reference to WEB-INF/jsp/hello.jsp. Set the key/value pair for the current date and time value in the model with the key identifier: "now" and the string value: 'now'
+    vim src/springapp/web/HelloController.java
+```java
+package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+import java.util.Date;
+
+public class HelloController implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String now = (new Date()).toString();
+        logger.info("Returning hello view with " + now);
+
+        return new ModelAndView("WEB-INF/jsp/hello.jsp", "now", now);
+    }
+
+}
+```
