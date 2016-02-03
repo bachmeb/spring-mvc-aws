@@ -17,7 +17,13 @@
 ##### Create a header file for inclusion in all JSPs
     pwd
     cd ~/git/spring-mvc
+    mkdir war/WEB-INF/jsp
     vim war/WEB-INF/jsp/include.jsp
+```
+<%@ page session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+```
 
 ##### Update 'index.jsp' to use the include file
     vim war/index.jsp
@@ -28,7 +34,6 @@
 <c:redirect url="/hello.htm"/>
 ```
 ##### Move 'hello.jsp' to the 'WEB-INF/jsp' directory
-    mkdir war/WEB-INF/jsp
     mv war/hello.jsp war/WEB-INF/jsp
 
 ##### Add the same include directive we added to index.jsp to hello.jsp
