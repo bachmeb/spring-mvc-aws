@@ -12,10 +12,12 @@
 #### [Part 1](/docs/part1.md)
 * Setup a VM
 * Install Java, Tomcat, and Ant
-* Build a project
+* Create a project folder
+* Create the project files
 * Copy the required libraries to the project
-* Build the project
+* Compile the project 
 * Test the project
+* Deploy the project
 
 #### [Part 2](/docs/part2.md)
 
