@@ -70,7 +70,7 @@ public class ProductTests extends TestCase {
   
 }
 ```
-##### Create the service class
+##### Create the service interface
   vim src/springapp/service/ProductManager.java':
 ```
 package springapp.service;
@@ -89,7 +89,31 @@ public interface ProductManager extends Serializable{
 }
 ```
 
-##### 
+##### Create the service class
+    vim src/springapp/service/SimpleProductManager.java':
+```
+package springapp.service;
+
+import java.util.List;
+
+import springapp.domain.Product;
+
+public class SimpleProductManager implements ProductManager {
+
+    public List<Product> getProducts() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void increasePrice(int percentage) {
+        throw new UnsupportedOperationException();        
+    }
+
+    public void setProducts(List<Product> products) {
+        throw new UnsupportedOperationException();        
+    }
+
+}
+```
 ##### 
 ##### 
 ##### 
