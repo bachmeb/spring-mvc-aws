@@ -3,7 +3,7 @@
 
 ## Part 3
 
-##### Make a POJO for the domain class called Product
+##### Make a POJO for a domain class called Product
   vim src/springapp/domain/Product.java
 ```java
 package springapp.domain;
