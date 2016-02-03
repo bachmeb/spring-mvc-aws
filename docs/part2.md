@@ -3,24 +3,24 @@
 ## Part 2
 
 ##### Find a copy of jstl.jar
-        sudo find / |grep jstl.jar
+    sudo find / |grep jstl.jar
 
 ##### Copy jstl.jar to the project library
-        cp /opt/spring-framework/spring-framework-2.5/lib/j2ee/jstl.jar ~/git/spring-mvc/war/WEB-INF/lib/
+    cp /opt/spring-framework/spring-framework-2.5/lib/j2ee/jstl.jar ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### Find a copy of standard.jar
-        sudo find / |grep standard.jar
+    sudo find / |grep standard.jar
 
 ##### Copy standard.jar to the project library
-        cp /opt/spring-framework/spring-framework-2.5/lib/jakarta-taglibs/standard.jar ~/git/spring-mvc/war/WEB-INF/lib/
+    cp /opt/spring-framework/spring-framework-2.5/lib/jakarta-taglibs/standard.jar ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### Create a header file for inclusion in all JSPs
-      pwd
-      cd ~/git/spring-mvc
-      vim war/WEB-INF/jsp/include.jsp
+    pwd
+    cd ~/git/spring-mvc
+    vim war/WEB-INF/jsp/include.jsp
 
 ##### Update 'index.jsp' to use the include file
-        vim war/index.jsp
+    vim war/index.jsp
 ```
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
@@ -28,11 +28,11 @@
 <c:redirect url="/hello.htm"/>
 ```
 ##### Move 'hello.jsp' to the 'WEB-INF/jsp' directory
-        mkdir war/WEB-INF/jsp
-        mv war/hello.jsp war/WEB-INF/jsp
+    mkdir war/WEB-INF/jsp
+    mv war/hello.jsp war/WEB-INF/jsp
 
 ##### Add the same include directive we added to index.jsp to hello.jsp
-        vim war/WEB-INF/jsp/hello.jsp
+    vim war/WEB-INF/jsp/hello.jsp
 ```
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
@@ -45,7 +45,7 @@
 </html>
 ```
 ##### Update the unit test class
-        vim tests/HelloControllerTests.java':
+    vim tests/HelloControllerTests.java':
 ```
 package springapp.web;
 
