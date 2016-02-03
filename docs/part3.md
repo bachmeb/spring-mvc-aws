@@ -41,7 +41,8 @@ public class Product implements Serializable {
 }
 ```
 ##### Write the unit tests for the Product class
-  vim test/springapp/domain/ProductTests.java
+    mkdir test/springapp/domain
+    vim test/springapp/domain/ProductTests.java
 ```
 package springapp.domain;
 
@@ -72,7 +73,8 @@ public class ProductTests extends TestCase {
 }
 ```
 ##### Create the service interface
-  vim src/springapp/service/ProductManager.java':
+    mkdir src/springapp/service
+    vim src/springapp/service/ProductManager.java
 ```
 package springapp.service;
 
@@ -116,7 +118,8 @@ public class SimpleProductManager implements ProductManager {
 }
 ```
 ##### Write a unit test for the service class
-  vim test/springapp/service/SimpleProductManagerTests.java
+    mkdir test/springapp/service
+    vim test/springapp/service/SimpleProductManagerTests.java
 ```
 package springapp.service;
 
