@@ -90,7 +90,7 @@ public interface ProductManager extends Serializable{
 ```
 
 ##### Create the service class
-    vim src/springapp/service/SimpleProductManager.java':
+    vim src/springapp/service/SimpleProductManager.java
 ```
 package springapp.service;
 
@@ -114,7 +114,28 @@ public class SimpleProductManager implements ProductManager {
 
 }
 ```
-##### 
+##### Write a unit test for the service class
+  vim test/springapp/service/SimpleProductManagerTests.java
+```
+package springapp.service;
+
+import junit.framework.TestCase;
+
+public class SimpleProductManagerTests extends TestCase {
+
+    private SimpleProductManager productManager;
+        
+    protected void setUp() throws Exception {
+        productManager = new SimpleProductManager();
+    }
+
+    public void testGetProductsWithNoProducts() {
+        productManager = new SimpleProductManager();
+        assertNull(productManager.getProducts());
+    }
+
+}
+```
 ##### 
 ##### 
 ##### 
