@@ -103,7 +103,7 @@ BUILD FAILED
 
 Total time: 1 second
 ```
-##### Update HelloController by setting the view's resource reference to WEB-INF/jsp/hello.jsp. Set the key/value pair for the current date and time value in the model with the key identifier: "now" and the string value: 'now'
+##### Update HelloController 
     vim src/springapp/web/HelloController.java
 ```java
 package springapp.web;
