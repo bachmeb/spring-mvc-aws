@@ -160,3 +160,81 @@ tests:
 BUILD SUCCESSFUL
 Total time: 1 second
 ```
+##### Update springapp-servlet.xml
+    vim war/WEB-INF/springapp-servlet.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    
+    <!-- the application context definition for the springapp DispatcherServlet -->
+    
+    <bean name="/hello.htm" class="springapp.web.HelloController"/>
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+        <property name="prefix" value="/WEB-INF/jsp/"></property>
+        <property name="suffix" value=".jsp"></property>        
+    </bean>
+            
+</beans>
+```
+    vim test/springapp/web/HelloControllerTests.java
+```
+package springapp.web;
+
+import org.springframework.web.servlet.ModelAndView;
+import springapp.web.HelloController;
+import junit.framework.TestCase;
+
+public class HelloControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{
+        HelloController controller = new HelloController();
+        ModelAndView modelAndView = controller.handleRequest(null, null);
+        assertEquals("hello", modelAndView.getViewName());
+        assertNotNull(modelAndView.getModel());
+        String nowValue = (String) modelAndView.getModel().get("now");
+        assertNotNull(nowValue);
+    }
+}
+```
+##### Run the unit tests
+    ant tests
+```
+buildtests:
+    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+
+tests:
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Feb 03, 2016 1:48:22 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 01:48:22 UTC 2016
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.036 sec
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.036 sec
+    [junit] 
+    [junit] ------------- Standard Error -----------------
+    [junit] Feb 03, 2016 1:48:22 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 01:48:22 UTC 2016
+    [junit] ------------- ---------------- ---------------
+    [junit] Testcase: testHandleRequestView(springapp.web.HelloControllerTests):	FAILED
+    [junit] expected:<[hello]> but was:<[WEB-INF/jsp/hello.jsp]>
+    [junit] junit.framework.ComparisonFailure: expected:<[hello]> but was:<[WEB-INF/jsp/hello.jsp]>
+    [junit] 	at springapp.web.HelloControllerTests.testHandleRequestView(HelloControllerTests.java:12)
+    [junit] 
+    [junit] 
+    [junit] Test springapp.web.HelloControllerTests FAILED
+
+BUILD FAILED
+/home/brian/git/spring-mvc/build.xml:61: tests.failed=true
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+
+
+```
