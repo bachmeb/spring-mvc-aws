@@ -50,14 +50,12 @@
 </html>
 ```
 ##### Update the unit test class
-    vim tests/HelloControllerTests.java':
+    vim test/springapp/web/HelloControllerTests.java
 ```
 package springapp.web;
 
 import org.springframework.web.servlet.ModelAndView;
-
 import springapp.web.HelloController;
-
 import junit.framework.TestCase;
 
 public class HelloControllerTests extends TestCase {
@@ -71,4 +69,9 @@ public class HelloControllerTests extends TestCase {
         assertNotNull(nowValue);
     }
 }
+```
+##### Run the Ant 'tests' target. The test should fail.
+    ant tests
+```
+
 ```
