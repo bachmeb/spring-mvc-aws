@@ -20,7 +20,12 @@
 * Deploy the project
 
 #### [Part 2](/docs/part2.md)
-
-
-
-
+* Add the Java Standard Tag Library
+* Make a JSP header file
+* Add the header to the index and the hello files
+* Update the unit test to look for the view name and a time value
+* Update the controller to provide a view name and a time value
+* Update the controller to map the view using a logical name
+* Add a viewResolver to springapp-servlet.xml
+* Update the unit test to look for a logical view name, rather than a full path the the view file
+* Update the controller to return a logical view name, rather than a full path to the view file
