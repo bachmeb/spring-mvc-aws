@@ -193,7 +193,7 @@ BUILD FAILED
 ```
 
 ##### Implement the unit tests
-    vim test/springapp/service/SimpleProductManagerTests.java
+    nano test/springapp/service/SimpleProductManagerTests.java
 ```
 package springapp.service;
 
@@ -313,7 +313,7 @@ Total time: 1 second
 ```
     
 ##### Implement the getters and setters for the Product class
-    vim src/springapp/service/SimpleProductManager.java
+    nano src/springapp/service/SimpleProductManager.java
 ```
 package springapp.service;
 
@@ -343,7 +343,39 @@ public class SimpleProductManager implements ProductManager {
 
 ##### Run the unit tests
     ant tests
-    
+```
+build:
+    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+
+buildtests:
+
+tests:
+    [junit] Running springapp.domain.ProductTests
+    [junit] Testsuite: springapp.domain.ProductTests
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
+    [junit] 
+    [junit] Running springapp.service.SimpleProductManagerTests
+    [junit] Testsuite: springapp.service.SimpleProductManagerTests
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.001 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.001 sec
+    [junit] 
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Feb 03, 2016 7:38:03 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 19:38:03 UTC 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.049 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.049 sec
+    [junit] 
+    [junit] ------------- Standard Error -----------------
+    [junit] Feb 03, 2016 7:38:03 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 19:38:03 UTC 2016
+    [junit] ------------- ---------------- ---------------
+
+BUILD SUCCESSFUL
+Total time: 1 second
+
+```
 ##### Implememt the test for increasePrice()
     vim test/springapp/service/SimpleProductManagerTests.java
 ```
