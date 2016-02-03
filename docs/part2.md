@@ -238,3 +238,69 @@ BUILD FAILED
 
 
 ```
+##### Update HelloController.java
+    vim src/springapp/web/HelloController.java
+```
+package springapp.web;
+
+import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+import java.util.Date;
+
+public class HelloController implements Controller {
+
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String now = (new Date()).toString();
+        logger.info("Returning hello view with " + now);
+
+        return new ModelAndView("hello", "now", now);
+    }
+
+}
+```
+##### Run the unit tests
+    ant tests
+```
+buildtests:
+
+tests:
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Feb 03, 2016 1:52:46 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 01:52:46 UTC 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.043 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.043 sec
+    [junit] 
+    [junit] ------------- Standard Error -----------------
+    [junit] Feb 03, 2016 1:52:46 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Wed Feb 03 01:52:46 UTC 2016
+    [junit] ------------- ---------------- ---------------
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+```
+##### Redeploy the project
+    sudo ant deploy reload
+
+##### Test the web page
+    lynx localhost:8080/springapp
+```
+               Hello - Spring Application
+
+   Greetings, it is now Wed Feb 03 01:54:55 UTC 2016
+
+```
+    
