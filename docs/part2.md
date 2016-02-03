@@ -73,5 +73,33 @@ public class HelloControllerTests extends TestCase {
 ##### Run the Ant 'tests' target. The test should fail.
     ant tests
 ```
+tests:
+    [junit] Running springapp.web.HelloControllerTests
+    [junit] Testsuite: springapp.web.HelloControllerTests
+    [junit] Feb 03, 2016 1:30:41 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.031 sec
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.031 sec
+    [junit] 
+    [junit] ------------- Standard Error -----------------
+    [junit] Feb 03, 2016 1:30:41 AM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view
+    [junit] ------------- ---------------- ---------------
+    [junit] Testcase: testHandleRequestView(springapp.web.HelloControllerTests):	FAILED
+    [junit] expected:<[WEB-INF/jsp/]hello.jsp> but was:<[]hello.jsp>
+    [junit] junit.framework.ComparisonFailure: expected:<[WEB-INF/jsp/]hello.jsp> but was:<[]hello.jsp>
+    [junit] 	at springapp.web.HelloControllerTests.testHandleRequestView(HelloControllerTests.java:12)
+    [junit] 
+    [junit] 
+    [junit] Test springapp.web.HelloControllerTests FAILED
 
+BUILD FAILED
+/home/brian/git/spring-mvc/build.xml:61: tests.failed=true
+            ***********************************************************
+            ***********************************************************
+            ****  One or more tests failed!  Check the output ...  ****
+            ***********************************************************
+            ***********************************************************
+
+Total time: 1 second
 ```
