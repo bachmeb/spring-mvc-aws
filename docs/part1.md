@@ -56,7 +56,7 @@ https://aws.amazon.com/ec2/
     Type	    Protocol	Port Range	Source
     All TCP	    TCP	        0 - 65535	your ip address/32
     SSH	        TCP	        22	        your ip address/32
-    All ICMP	All	        N/A         your ip address/32
+    All ICMP	All	        N/A         	your ip address/32
 
 ##### Download the key pair and change the mode to 400
 	chmod 400 pemfile.pem
@@ -156,10 +156,10 @@ https://aws.amazon.com/ec2/
 ##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
 	ls -l /etc/alternatives/java_sdk
 
-##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk.x86_64 points to java-1.7.0-openjdk-1.7.0.91.x86_64
+##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk.x86_64 points to /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
 	ls -l /usr/lib/jvm/java-1.7.0-openjdk.x86_64
 
-##### Confirm that the installation directory for the Java SDK is /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
+##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64 is the installation directory for Java SDK 1.7
 	ls -l /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
 
 ##### Echo the $JAVA_HOME environment variable
