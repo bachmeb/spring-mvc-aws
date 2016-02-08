@@ -244,6 +244,7 @@ dist/
 ```
 ##### Make the web.xml file
 	vim war/WEB-INF/web.xml
+*Update the property file value*
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4"
@@ -309,8 +310,8 @@ dist/
         <!-- SET THE SOURCE AND TARGET CORRECTLY -->
         <!-- ADD THE includeantruntime PROPERTY -->
         <javac destdir="${build.dir}" 
-        	source="1.7" 
-        	target="1.7" 
+        	source="1.6" 
+        	target="1.6" 
         	debug="true"
         	deprecation="false" 
         	optimize="false" 
@@ -482,7 +483,12 @@ tomcat.manager.password=s3cret
   <user username="tomcat" password="s3cret" roles="manager"/>
 </tomcat-users>
 ```
-
+	
+##### Restart the Tomcat service to get the server to pick up the config file changes
+	sudo service tomcat6 status
+	sudo service tomcat6 restart
+	sudo service --status-all | grep tomcat
+	
 ##### Install Ant
 	sudo yum install ant
 
