@@ -56,7 +56,7 @@ https://aws.amazon.com/ec2/
     Type	    Protocol	Port Range	Source
     All TCP	    TCP	        0 - 65535	your ip address/32
     SSH	        TCP	        22	        your ip address/32
-    All ICMP	All	        N/A         	your ip address/32
+    All ICMP	All	        N/A         your ip address/32
 
 ##### Download the key pair and change the mode to 400
 	chmod 400 pemfile.pem
