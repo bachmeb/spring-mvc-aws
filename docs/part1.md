@@ -314,7 +314,7 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 
 ##### Create a build.xml file. Change the springapp value to whatever you would like. 
 	vim build.xml
-*Set the path to the property file to correctly point to your home directory*
+*Set the property file attribute to correctly point to your home directory*
 ```xml
 <?xml version="1.0"?>
 
