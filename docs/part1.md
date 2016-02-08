@@ -550,7 +550,7 @@ Total time: 0 seconds
 ##### Define a DispatcherServlet in web.xml. Map the servlet to the *.htm file pattern.
 	cd ~/git/spring-mvc
 	vim war/WEB-INF/web.xml
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app version="2.4"
@@ -583,7 +583,7 @@ Total time: 0 seconds
 
 ##### Create springapp-servlet.xml
 	vim war/WEB-INF/springapp-servlet.xml
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -621,7 +621,7 @@ Total time: 0 seconds
 ##### Create HelloController
 	mkdir -p ~/git/spring-mvc/src/springapp/web
 	vim src/springapp/web/HelloController.java
-```
+```java
 package springapp.web;
 
 import org.springframework.web.servlet.mvc.Controller;
@@ -662,7 +662,7 @@ public class HelloController implements Controller {
 ##### Create a test class
 	mkdir -p ~/git/spring-mvc/test/springapp/web
 	vim test/springapp/web/HelloControllerTests.java
-```
+```java
 package springapp.web;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -680,7 +680,7 @@ public class HelloControllerTests extends TestCase {
 ```
 ##### Add test tasks to build script
 	vim build.xml
-```
+```xml
     <property name="test.dir" value="test"/>
     <!-- SET THE SOURCE AND TARGET VALUES CORRECTLY-->
     <target name="buildtests" description="Compile test tree java files">
@@ -764,7 +764,7 @@ Total time: 1 second
 ```
 ##### Make the view
 	vim war/hello.jsp
-```
+```html
 <html>
   <head><title>Hello :: Spring Application</title></head>
   <body>
