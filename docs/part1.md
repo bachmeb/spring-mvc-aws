@@ -285,7 +285,7 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 	mkdir -p war/WEB-INF
 
 ##### Make the web.xml file
-	vim war/WEB-INF/web.xml
+	vim ~/git/spring-mvc/war/WEB-INF/web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4"
@@ -301,7 +301,7 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 </web-app>
 ```
 ##### Make an index file
-	vim war/index.jsp
+	vim ~/git/spring-mvc/war/index.jsp
 ```html
 <html>
   <head><title>Example :: Spring Application</title></head>
@@ -598,7 +598,7 @@ Total time: 0 seconds
 	ant build
 
 ##### Create springapp-servlet.xml
-	vim war/WEB-INF/springapp-servlet.xml
+	vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -619,7 +619,7 @@ Total time: 0 seconds
 	
 ##### Create HelloController
 	mkdir -p ~/git/spring-mvc/src/springapp/web
-	vim src/springapp/web/HelloController.java
+	vim ~/git/spring-mvc/src/springapp/web/HelloController.java
 ```java
 package springapp.web;
 
@@ -679,7 +679,7 @@ public class HelloControllerTests extends TestCase {
 }
 ```
 ##### Add test tasks to build script
-	vim build.xml
+	vim ~/git/spring-mvc/build.xml
 ```xml
     <property name="test.dir" value="test"/>
     <!-- SET THE SOURCE AND TARGET VALUES CORRECTLY-->
@@ -763,7 +763,7 @@ BUILD SUCCESSFUL
 Total time: 1 second
 ```
 ##### Make the view
-	vim war/hello.jsp
+	vim ~/git/spring-mvc/war/hello.jsp
 ```html
 <html>
   <head><title>Hello :: Spring Application</title></head>
