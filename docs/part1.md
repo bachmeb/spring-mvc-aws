@@ -602,27 +602,24 @@ Total time: 0 seconds
 	ant build
 	
 ##### Make a lib directory in WEB-INF
-	cd ~/git/spring-mvc
-	mkdir war/WEB-INF
+	mkdir ~/git/spring-mvc/war/WEB-INF/lib
 
 ##### Find spring.jar, spring-webmvc.jar, and commons-logging.jar in the spring-framework package
-	cd /opt/spring-framework/spring-framework-2.5/
-	find . | grep spring.jar
-	find . | grep spring-webmvc.jar
-	find . | grep commons-logging.jar
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar
+	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar
 
 ##### Copy the libraries to WEB-INF/lib
-	cd /opt/spring-framework/spring-framework-2.5/
-	find . | grep commons-logging.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	find . | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	find . | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### Build the project
 	ant build
 	
 ##### Create HelloController
-	cd ~/git/spring-mvc
-	mkdir -p src/springapp/web
+	mkdir -p ~/git/spring-mvc/src/springapp/web
 	vim src/springapp/web/HelloController.java
 ```
 package springapp.web;
@@ -656,21 +653,20 @@ public class HelloController implements Controller {
 ##### Copy servlet-api.jar to CATALINA_HOME/lib 
 	sudo find / | grep servlet-api.jar
 	sudo find /opt/spring-framework/ | grep servlet-api.jar 
-	sudo find /opt/spring-framework/ | grep servlet-api.jar | xargs cp -t /usr/share/tomcat6/lib/
+	sudo find /opt/spring-framework/ | grep servlet-api.jar | xargs sudo cp -t /usr/share/tomcat6/lib/
+	ls -la /usr/share/tomcat6/lib/
 
 ##### Build the project
 	ant build
 	
 ##### Create a test class
-	mkdir -p test/springapp/web
+	mkdir -p ~/git/spring-mvc/test/springapp/web
 	vim test/springapp/web/HelloControllerTests.java
 ```
 package springapp.web;
 
 import org.springframework.web.servlet.ModelAndView;
-
 import springapp.web.HelloController;
-
 import junit.framework.TestCase;
 
 public class HelloControllerTests extends TestCase {
@@ -690,8 +686,8 @@ public class HelloControllerTests extends TestCase {
     <target name="buildtests" description="Compile test tree java files">
         <mkdir dir="${build.dir}"/>
         <javac destdir="${build.dir}" 
-        	source="1.7" 
-        	target="1.7" 
+        	source="1.6" 
+        	target="1.6" 
         	debug="true"
             	deprecation="false" 
             	optimize="false" 
@@ -738,30 +734,33 @@ public class HelloControllerTests extends TestCase {
 	find /opt/spring-framework/spring-framework-2.5 
 	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar 
 	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	ls -la ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### Run test tasks
 	ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
 build:
 
 buildtests:
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 tests:
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 02, 2016 10:04:35 PM springapp.web.HelloController handleRequest
+    [junit] Feb 8, 2016 9:17:45 PM springapp.web.HelloController handleRequest
     [junit] INFO: Returning hello view
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.029 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.029 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.043 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.043 sec
     [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 02, 2016 10:04:35 PM springapp.web.HelloController handleRequest
+    [junit] Feb 8, 2016 9:17:45 PM springapp.web.HelloController handleRequest
     [junit] INFO: Returning hello view
     [junit] ------------- ---------------- ---------------
 
 BUILD SUCCESSFUL
-Total time: 0 seconds
-
+Total time: 1 second
 ```
 ##### Make the view
 	vim war/hello.jsp
