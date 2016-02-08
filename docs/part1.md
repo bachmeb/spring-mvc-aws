@@ -214,12 +214,10 @@ hs_err_pid*
 # AWS key
 *.pem
 
-# Tomcat build.properties file
+# Tomcat
 build.properties
-
-# Gradle folders
 build/
-.gradle/
+dist/
 ```
 ##### Commit changes and push to the remote repository
 	git status
@@ -413,8 +411,8 @@ build/
 
 </project>
 ```
-##### Search yum for Tomcat 6
-	sudo yum search tomcat6
+##### Search yum for Tomcat
+	sudo yum search tomcat
 	
 ##### Install Tomcat 6
 	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
@@ -434,6 +432,34 @@ lrwxrwxrwx 1 root root     23 Feb  1 22:01 temp -> /var/cache/tomcat6/temp
 lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
 ```
+##### See what is listening on port 8080
+	sudo lsof -ni:8080
+	
+##### Start the Tomcat service
+	sudo service tomcat6 status
+	sudo service tomcat6 start
+	sudo service --status-all | grep tomcat
+	
+##### See what is listening on port 8080
+	sudo lsof -ni:8080
+
+##### Install Lynx
+	sudo yum install lynx
+
+##### Try the default Tomcat home page
+	lynx localhost:8080
+```
+If you're seeing this page via a web browser, it means you've setup Tomcat successfully. Congratulations!
+```
+
+##### Check the external IP address
+	wget http://ipinfo.io/ip -qO -
+
+##### Open a web browser on your local machine and go to http://[ec2 ip address]:8080
+```
+ As you may have guessed by now, this is the default Tomcat home page.
+```
+	
 ##### Make a build properties file in your home directory
 	vim ~/build.properties
 ```
@@ -456,30 +482,6 @@ tomcat.manager.password=s3cret
   <user username="tomcat" password="s3cret" roles="manager"/>
 </tomcat-users>
 ```
-##### See what is listening on port 8080
-	sudo lsof -ni:8080
-	
-##### Start the Tomcat service
-	sudo service tomcat6 status
-	sudo service tomcat6 start
-	sudo service tomcat6 status
-	
-##### See what is listening on port 8080
-	sudo lsof -ni:8080
-
-##### Check the external IP address
-	wget http://ipinfo.io/ip -qO -
-
-##### Open a web browser on your local machine and go to http://[ec2 ip address]:8080
-	If you're seeing this page via a web browser, it means you've setup Tomcat successfully. Congratulations!
-  
-##### Commit changes and push to the remote repository
-	git status
-	git add --all
-	git commit -m "add config files"
-	git pull
-	git config --global push.default simple
-	git push --set-upstream origin master
 
 ##### Install Ant
 	sudo yum install ant
