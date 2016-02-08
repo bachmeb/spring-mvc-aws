@@ -244,7 +244,6 @@ dist/
 ```
 ##### Make the web.xml file
 	vim war/WEB-INF/web.xml
-*Update the property file value*
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4"
@@ -261,6 +260,7 @@ dist/
 ```
 ##### Create a build.xml file. Change the springapp value to whatever you would like. 
 	vim build.xml
+*Set the path to the property file to correctly point to your home directory*
 ```xml
 <?xml version="1.0"?>
 
