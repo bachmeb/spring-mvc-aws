@@ -2,6 +2,9 @@
 [README](/README.md)
 ## Part 2
 
+### References
+* http://docs.spring.io/docs/Spring-MVC-step-by-step/part2.html
+
 ##### Find a copy of jstl.jar
     sudo find / |grep jstl.jar
 
