@@ -572,6 +572,12 @@ Total time: 0 seconds
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
 
+  <welcome-file-list>
+    <welcome-file>
+      index.jsp
+    </welcome-file>
+  </welcome-file-list>
+  
   <servlet>
     <servlet-name>springapp</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -582,12 +588,6 @@ Total time: 0 seconds
     <servlet-name>springapp</servlet-name>
     <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
-
-  <welcome-file-list>
-    <welcome-file>
-      index.jsp
-    </welcome-file>
-  </welcome-file-list>
 
 </web-app>
 ```
