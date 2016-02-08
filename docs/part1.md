@@ -195,6 +195,10 @@ https://aws.amazon.com/ec2/
 ##### Pull from the remote directory
 	git pull origin master
 
+##### Check the permissions on the files in the project folder and make sure that you can read, write, and execute them
+	ls -l ~/git/spring-mvc
+	chmod -R 775 ~/git/spring-mvc
+
 ##### Make a .gitignore file
 	nano .gitignore
 ```
@@ -534,12 +538,7 @@ Total time: 0 seconds
 	lynx localhost:8080/springapp
 
 ##### Find a copy of the Spring Framework 2.5 with dependencies
-* https://spring.io/blog/2007/11/19/spring-framework-2-5-released
-* http://maven.springframework.org/release/org/springframework/spring/
-* http://ebr.springsource.com/repository/app/search?query=junit
-* http://sourceforge.net/projects/springframework/files/springframework-2/2.5/
-* http://docs.spring.io/downloads/nightly/release-download.php?project=SPR
-
+* https://github.com/bachmeb/spring-framework-2.5
 
 ##### Download and uppack Spring Framework 2.5 with dependencies
 	cd /opt
