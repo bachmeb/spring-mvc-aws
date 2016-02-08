@@ -562,8 +562,7 @@ Total time: 0 seconds
 	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
 	
 ##### Define a DispatcherServlet in web.xml. Map the servlet to the *.htm file pattern.
-	cd ~/git/spring-mvc
-	vim war/WEB-INF/web.xml
+	vim ~/git/spring-mvc/war/WEB-INF/web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
