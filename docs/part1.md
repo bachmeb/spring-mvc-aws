@@ -546,7 +546,21 @@ Total time: 0 seconds
 	cd spring-framework/
 	sudo wget http://s3.amazonaws.com/dist.springframework.org/release/SPR/spring-framework-2.5-with-dependencies.zip
 	sudo unzip spring-framework-2.5-with-dependencies.zip
+	
+##### Make a lib directory in WEB-INF
+	mkdir ~/git/spring-mvc/war/WEB-INF/lib
 
+##### Find spring.jar, spring-webmvc.jar, and commons-logging.jar in the spring-framework package
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar
+	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar
+
+##### Copy the libraries to WEB-INF/lib
+	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
+	
 ##### Define a DispatcherServlet in web.xml. Map the servlet to the *.htm file pattern.
 	cd ~/git/spring-mvc
 	vim war/WEB-INF/web.xml
@@ -601,23 +615,6 @@ Total time: 0 seconds
 ##### Build the project
 	ant build
 	
-##### Make a lib directory in WEB-INF
-	mkdir ~/git/spring-mvc/war/WEB-INF/lib
-
-##### Find spring.jar, spring-webmvc.jar, and commons-logging.jar in the spring-framework package
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar
-	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar
-
-##### Copy the libraries to WEB-INF/lib
-	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
-
-##### Build the project
-	ant build
-	
 ##### Create HelloController
 	mkdir -p ~/git/spring-mvc/src/springapp/web
 	vim src/springapp/web/HelloController.java
@@ -650,6 +647,7 @@ public class HelloController implements Controller {
 
 }
 ```
+
 ##### Copy servlet-api.jar to CATALINA_HOME/lib 
 	sudo find / | grep servlet-api.jar
 	sudo find /opt/spring-framework/ | grep servlet-api.jar 
