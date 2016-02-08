@@ -2,6 +2,9 @@
 [README](/README.md)
 ## Part 1
 
+### References
+http://docs.spring.io/docs/Spring-MVC-step-by-step/part1.html
+
 ##### Create a new vm
 https://aws.amazon.com/ec2/
 
