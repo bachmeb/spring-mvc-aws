@@ -658,7 +658,7 @@ public class HelloController implements Controller {
 	
 ##### Create a test class
 	mkdir -p ~/git/spring-mvc/test/springapp/web
-	vim test/springapp/web/HelloControllerTests.java
+	vim ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java
 ```java
 package springapp.web;
 
