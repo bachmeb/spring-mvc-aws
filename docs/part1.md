@@ -776,11 +776,12 @@ Total time: 1 second
 ##### Compile and deploy the application
 	sudo ant deploy reload
 
+##### Test the web page in a browser
+	lynx http://localhost:8080/springapp/hello.htm
+	
 ##### Read the catalina.out file
 	cat /usr/share/tomcat6/logs/catalina.out
 
-##### Test the web page in a browser
-	lynx http://localhost:8080/springapp/hello.htm
 
 * * *
 [README](/README.md)
