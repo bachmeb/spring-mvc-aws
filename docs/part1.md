@@ -769,7 +769,7 @@ Total time: 1 second
   <head><title>Hello :: Spring Application</title></head>
   <body>
     <h1>Hello - Spring Application</h1>
-    <p>Greetings.</p>
+    <p>Greetings. You have reached hello.jsp</p>
   </body>
 </html>
 ```
