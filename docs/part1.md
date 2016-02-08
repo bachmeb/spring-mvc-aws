@@ -224,24 +224,59 @@ dist/
 	git add --all
 	git commit -m "git ignore"
 	git push --set-upstream origin master
+	
+##### Search yum for Tomcat
+	sudo yum search tomcat
+	
+##### Install Tomcat 6
+	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
 
-##### Make a directory for source files
-	mkdir src  
+##### Ask where is Tomcat?
+	whereis tomcat6
+
+##### Get a listing of the Catalina Base directory
+	ls -l /usr/share/tomcat6/
+```
+total 4
+drwxr-xr-x 2 root root   4096 Feb  1 22:01 bin
+lrwxrwxrwx 1 root tomcat   12 Feb  1 22:01 conf -> /etc/tomcat6
+lrwxrwxrwx 1 root root     23 Feb  1 22:01 lib -> /usr/share/java/tomcat6
+lrwxrwxrwx 1 root root     16 Feb  1 22:01 logs -> /var/log/tomcat6
+lrwxrwxrwx 1 root root     23 Feb  1 22:01 temp -> /var/cache/tomcat6/temp
+lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
+lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
+```
+##### See what is listening on port 8080
+	sudo lsof -ni:8080
+	
+##### Start the Tomcat service
+	sudo service tomcat6 status
+	sudo service tomcat6 start
+	sudo service --status-all | grep tomcat
+	
+##### See what is listening on port 8080
+	sudo lsof -ni:8080
+
+##### Install Lynx
+	sudo yum install lynx
+
+##### Try the default Tomcat home page
+	lynx localhost:8080
+```
+If you're seeing this page via a web browser, it means you've setup Tomcat successfully. Congratulations!
+```
+
+##### Check the external IP address
+	wget http://ipinfo.io/ip -qO -
+
+##### Open a web browser on your local machine and go to http://[ec2 ip address]:8080
+```
+ As you may have guessed by now, this is the default Tomcat home page.
+```
 
 ##### Make a directory for the web.xml file
 	mkdir -p war/WEB-INF
 
-##### Make an index file
-	vim war/index.jsp
-```html
-<html>
-  <head><title>Example :: Spring Application</title></head>
-  <body>
-    <h1>Example - Spring Application</h1>
-    <p>This is my test.</p>
-  </body>
-</html>
-```
 ##### Make the web.xml file
 	vim war/WEB-INF/web.xml
 ```xml
@@ -258,6 +293,18 @@ dist/
   </welcome-file-list>
 </web-app>
 ```
+##### Make an index file
+	vim war/index.jsp
+```html
+<html>
+  <head><title>Example :: Spring Application</title></head>
+  <body>
+    <h1>Example - Spring Application</h1>
+    <p>This is my test.</p>
+  </body>
+</html>
+```
+
 ##### Create a build.xml file. Change the springapp value to whatever you would like. 
 	vim build.xml
 *Set the path to the property file to correctly point to your home directory*
@@ -412,55 +459,7 @@ dist/
 
 </project>
 ```
-##### Search yum for Tomcat
-	sudo yum search tomcat
-	
-##### Install Tomcat 6
-	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
 
-##### Ask where is Tomcat?
-	whereis tomcat6
-
-##### Get a listing of the Catalina Base directory
-	ls -l /usr/share/tomcat6/
-```
-total 4
-drwxr-xr-x 2 root root   4096 Feb  1 22:01 bin
-lrwxrwxrwx 1 root tomcat   12 Feb  1 22:01 conf -> /etc/tomcat6
-lrwxrwxrwx 1 root root     23 Feb  1 22:01 lib -> /usr/share/java/tomcat6
-lrwxrwxrwx 1 root root     16 Feb  1 22:01 logs -> /var/log/tomcat6
-lrwxrwxrwx 1 root root     23 Feb  1 22:01 temp -> /var/cache/tomcat6/temp
-lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
-lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
-```
-##### See what is listening on port 8080
-	sudo lsof -ni:8080
-	
-##### Start the Tomcat service
-	sudo service tomcat6 status
-	sudo service tomcat6 start
-	sudo service --status-all | grep tomcat
-	
-##### See what is listening on port 8080
-	sudo lsof -ni:8080
-
-##### Install Lynx
-	sudo yum install lynx
-
-##### Try the default Tomcat home page
-	lynx localhost:8080
-```
-If you're seeing this page via a web browser, it means you've setup Tomcat successfully. Congratulations!
-```
-
-##### Check the external IP address
-	wget http://ipinfo.io/ip -qO -
-
-##### Open a web browser on your local machine and go to http://[ec2 ip address]:8080
-```
- As you may have guessed by now, this is the default Tomcat home page.
-```
-	
 ##### Make a build properties file in your home directory
 	vim ~/build.properties
 ```
@@ -521,17 +520,17 @@ Total time: 0 seconds
 
 ##### List the intstalled Tomcat applications
 	ant -v list
+
+##### Make a directory for Java files
+	mkdir src  
 	
 ##### Build the project
-	ant build
+	ant -v build
 	
 ##### Deploy the project
-	ant deploy
+	sudo ant -v deploy
 
-##### Install Lynx
-	sudo yum install lynx
-
-##### Test the web page
+##### Test the web app
 	lynx localhost:8080/springapp
 
 ##### Find a copy of the Spring Framework 2.5 with dependencies
