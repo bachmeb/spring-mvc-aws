@@ -4,6 +4,8 @@
 
 ### References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/part1.html
+* http://stackoverflow.com/questions/8611777/java-lang-nosuchmethoderror-javax-servlet-servletcontext-getcontextpathljava
+* http://wiki.metawerx.net/wiki/JARFilesYouShouldNeverIncludeInYourWebapp
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -307,13 +309,13 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
   <head><title>Example :: Spring Application</title></head>
   <body>
     <h1>Example - Spring Application</h1>
-    <p>This is my test.</p>
+    <p>This is my test. Welcome to index.jsp</p>
   </body>
 </html>
 ```
 
 ##### Create a build.xml file. Change the springapp value to whatever you would like. 
-	vim build.xml
+	vim ~/git/spring-mvc/build.xml
 *Set the property file attribute to correctly point to your home directory*
 ```xml
 <?xml version="1.0"?>
@@ -494,13 +496,18 @@ tomcat.manager.password=s3cret
 	sudo service tomcat6 status
 	sudo service tomcat6 restart
 	sudo service --status-all | grep tomcat
+
+##### Visit the default Tomcat home page to make sure it is up an running
+	lynx localhost:8080
 	
 ##### Install Ant
 	sudo yum install ant
 
 ##### Check the Ant version
 	ant -version
-
+```
+Apache Ant(TM) version 1.8.3 compiled on February 25 2015
+```
 ##### Run ant
 	ant -v
 ```
@@ -594,8 +601,10 @@ Total time: 0 seconds
 
 </web-app>
 ```
-##### Build the project
+##### Build, deploy, and test the project
 	ant build
+	sudo ant deploy
+	lynx localhost:8080/springapp
 
 ##### Create springapp-servlet.xml
 	vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
@@ -614,8 +623,10 @@ Total time: 0 seconds
 </beans>
 ```
 
-##### Build the project
+##### Build, deploy, and test the project
 	ant build
+	sudo ant deploy
+	lynx localhost:8080/springapp
 	
 ##### Create HelloController
 	mkdir -p ~/git/spring-mvc/src/springapp/web
@@ -649,12 +660,6 @@ public class HelloController implements Controller {
 
 }
 ```
-
-##### Copy servlet-api.jar to CATALINA_HOME/lib 
-	sudo find / | grep servlet-api.jar
-	sudo find /opt/spring-framework/ | grep servlet-api.jar 
-	sudo find /opt/spring-framework/ | grep servlet-api.jar | xargs sudo cp -t /usr/share/tomcat6/lib/
-	ls -la /usr/share/tomcat6/lib/
 
 ##### Build the project
 	ant build
