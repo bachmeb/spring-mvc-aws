@@ -215,3 +215,12 @@ greeting=Greetings, it is now
    Table $75.25
    Chair $22.79
 ```
+##### Find a copy of spring-form.tld in the spring framework 2.5 package
+    sudo find / | grep spring-form.tld
+
+##### Make a tld directory in WEB-INF
+    mkdir ~/git/spring-mvc/war/WEB-INF/tld
+    
+##### Copy spring-form.tld to 
+    cp /opt/spring-framework/spring-framework-2.5/dist/resources/spring-form.tld ~/git/spring-mvc/war/WEB-INF/tld
+    ls -l ~/git/spring-mvc/war/WEB-INF/tld
