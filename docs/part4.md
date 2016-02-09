@@ -221,6 +221,44 @@ greeting=Greetings, it is now
 ##### Make a tld directory in WEB-INF
     mkdir ~/git/spring-mvc/war/WEB-INF/tld
     
-##### Copy spring-form.tld to 
+##### Copy spring-form.tld to the tld directory in WEB-INF
     cp /opt/spring-framework/spring-framework-2.5/dist/resources/spring-form.tld ~/git/spring-mvc/war/WEB-INF/tld
     ls -l ~/git/spring-mvc/war/WEB-INF/tld
+
+##### Add a taglib entry to web.xml
+    vim ~/git/spring-mvc/war/WEB-INF/web.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" >
+
+  <servlet>
+    <servlet-name>springapp</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>springapp</servlet-name>
+    <url-pattern>*.htm</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>
+      index.jsp
+    </welcome-file>
+  </welcome-file-list>
+
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/spring</taglib-uri>
+      <taglib-location>/WEB-INF/tld/spring-form.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+
+</web-app>
+```
