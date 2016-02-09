@@ -8,6 +8,7 @@
 * http://wiki.metawerx.net/wiki/JARFilesYouShouldNeverIncludeInYourWebapp
 * https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/DispatcherServlet.html
 * http://docs.spring.io/spring-framework/docs/2.0.8/reference/mvc.html
+* http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -74,12 +75,31 @@ https://aws.amazon.com/ec2/
 ##### Connect via SSH
 	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
 
+##### List the available time zones
+	ls /usr/share/zoneinfo/
+
+##### Update the /etc/sysconfig/clock file with the new time zone
+	sudo vim /etc/sysconfig/clock
+```
+ZONE="America/New_York"
+UTC=false
+```
+
+##### Create a symbolic link between /etc/localtime and your time zone file
+	sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
+##### Reboot the system to pick up the new time zone information in all services and applications
+	reboot
+
+##### Connect via SSH
+	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
+	
 ##### Switch to root 
 	sudo su
 
 ##### Ask who am I?
 	whoami
-	
+
 ##### Update yum
 	yum update
 
