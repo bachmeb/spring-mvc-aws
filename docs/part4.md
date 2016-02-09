@@ -6,14 +6,14 @@
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/part4.html
 
 ##### Rename HelloController to InventoryController
-    mv src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
+    mv ~/git/spring-mvc/src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
 
 ##### Rename HelloControllerTests to InventoryControllerTests
-    mv test/springapp/web/HelloControllerTests.java test/springapp/web/InventoryControllerTests.java
+    mv ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java test/springapp/web/InventoryControllerTests.java
 
 ##### Update InventoryController
-    vim src/springapp/web/InventoryController.java
-```
+    vim ~/git/spring-mvc/src/springapp/web/InventoryController.java
+```java
 package springapp.web;
 
 import org.springframework.web.servlet.mvc.Controller;
@@ -56,5 +56,33 @@ public class InventoryController implements Controller {
         this.productManager = productManager;
     }
 
+}
+```
+##### Update InventoryControllerTests
+    vim ~/git/spring-mvc/test/springapp/web/InventoryControllerTests.java':
+```java
+package springapp.web;
+
+import java.util.Map;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import springapp.service.SimpleProductManager;
+import springapp.web.InventoryController;
+
+import junit.framework.TestCase;
+
+public class InventoryControllerTests extends TestCase {
+
+    public void testHandleRequestView() throws Exception{
+        InventoryController controller = new InventoryController();
+        controller.setProductManager(new SimpleProductManager());
+        ModelAndView modelAndView = controller.handleRequest(null, null);
+        assertEquals("hello", modelAndView.getViewName());
+        assertNotNull(modelAndView.getModel());
+        Map modelMap = (Map) modelAndView.getModel().get("model");
+        String nowValue = (String) modelMap.get("now");
+        assertNotNull(nowValue);
+    }
 }
 ```
