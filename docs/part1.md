@@ -119,7 +119,7 @@ UTC=false
 	vim /etc/sudoers
 
 ##### Add development account to sudoers file
-	## ALLOW {MYACCOUNT} TO SUDO
+	## LET ME SUDO
 	[your new account name] ALL=(ALL) ALL
 
 ##### Switch to development user
