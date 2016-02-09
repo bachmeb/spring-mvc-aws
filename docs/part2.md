@@ -18,18 +18,16 @@
     cp /opt/spring-framework/spring-framework-2.5/lib/jakarta-taglibs/standard.jar ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### Create a header file for inclusion in all JSPs
-    pwd
-    cd ~/git/spring-mvc
-    mkdir war/WEB-INF/jsp
-    vim war/WEB-INF/jsp/include.jsp
+    mkdir ~/git/spring-mvc/war/WEB-INF/jsp
+    vim ~/git/spring-mvc/war/WEB-INF/jsp/include.jsp
 ```
 <%@ page session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 ```
 
-##### Update 'index.jsp' to use the include file
-    vim war/index.jsp
+##### Delete the contents of 'index.jsp' and replace with the following
+    vim  ~/git/spring-mvc/war/index.jsp
 ```
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
@@ -37,10 +35,10 @@
 <c:redirect url="/hello.htm"/>
 ```
 ##### Move 'hello.jsp' to the 'WEB-INF/jsp' directory
-    mv war/hello.jsp war/WEB-INF/jsp
+    mv ~/git/spring-mvc/war/hello.jsp ~/git/spring-mvc/war/WEB-INF/jsp
 
 ##### Add the same include directive we added to index.jsp to hello.jsp
-    vim war/WEB-INF/jsp/hello.jsp
+    vim ~/git/spring-mvc/war/WEB-INF/jsp/hello.jsp
 ```
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
@@ -53,7 +51,7 @@
 </html>
 ```
 ##### Update the unit test class
-    vim test/springapp/web/HelloControllerTests.java
+    vim ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java
 ```
 package springapp.web;
 
@@ -107,7 +105,7 @@ BUILD FAILED
 Total time: 1 second
 ```
 ##### Update HelloController 
-    vim src/springapp/web/HelloController.java
+    vim ~/git/spring-mvc/src/springapp/web/HelloController.java
 ```java
 package springapp.web;
 
@@ -164,7 +162,7 @@ BUILD SUCCESSFUL
 Total time: 1 second
 ```
 ##### Update springapp-servlet.xml
-    vim war/WEB-INF/springapp-servlet.xml
+    vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -185,7 +183,7 @@ Total time: 1 second
             
 </beans>
 ```
-    vim test/springapp/web/HelloControllerTests.java
+    vim ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java
 ```
 package springapp.web;
 
@@ -242,7 +240,7 @@ BUILD FAILED
 
 ```
 ##### Update HelloController.java
-    vim src/springapp/web/HelloController.java
+    vim ~/git/spring-mvc/src/springapp/web/HelloController.java
 ```
 package springapp.web;
 
@@ -296,7 +294,7 @@ BUILD SUCCESSFUL
 Total time: 0 seconds
 ```
 ##### Redeploy the project
-    sudo ant deploy reload
+    ant deploy reload
 
 ##### Test the web page
     lynx localhost:8080/springapp
