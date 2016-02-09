@@ -760,7 +760,17 @@ public class HelloControllerTests extends TestCase {
 	find /opt/spring-framework/spring-framework-2.5 
 	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar 
 	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+
+##### List the contents of the WEB-INF/lib directory	
 	ls -la ~/git/spring-mvc/war/WEB-INF/lib/
+```
+drwxrwxr-x 2 bachmeb bachmeb    4096 Feb  9 15:12 .
+drwxrwxr-x 4 bachmeb bachmeb    4096 Feb  9 14:43 ..
+-rw-r--r-- 1 bachmeb bachmeb   52915 Feb  9 14:37 commons-logging.jar
+-rw-r--r-- 1 bachmeb bachmeb  120640 Feb  9 15:12 junit-3.8.2.jar
+-rw-r--r-- 1 bachmeb bachmeb 2838649 Feb  9 14:37 spring.jar
+-rw-r--r-- 1 bachmeb bachmeb  330204 Feb  9 14:37 spring-webmvc.jar
+```
 
 ##### Run test tasks
 	ant tests
@@ -788,7 +798,7 @@ tests:
 BUILD SUCCESSFUL
 Total time: 1 second
 ```
-##### Make the view
+##### Make a hello.jsp file next to the index file
 	vim ~/git/spring-mvc/war/hello.jsp
 ```html
 <html>
@@ -799,6 +809,10 @@ Total time: 1 second
   </body>
 </html>
 ```
+
+##### Run test tasks
+	ant tests
+
 ##### Compile and deploy the application
 	sudo ant deploy reload
 
