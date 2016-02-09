@@ -12,7 +12,8 @@
     mv ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java test/springapp/web/InventoryControllerTests.java
 
 ##### Update InventoryController
-*Give the InventoryController a reference to the ProductManager*
+*Give the InventoryController a reference to the ProductManager*  
+*Return a Map with both the date and time and the Products list given by the ProductManager.*  
 ```
 vim ~/git/spring-mvc/src/springapp/web/InventoryController.java
 ```
