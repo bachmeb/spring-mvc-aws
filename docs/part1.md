@@ -463,8 +463,11 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 </html>
 ```
 
-##### Create a build.xml file. Change the springapp value to whatever you would like. 
-	vim ~/git/spring-mvc/build.xml
+##### Create a build.xml file.
+*Mind the project name, property file, and javac source and destination values.*
+```
+vim ~/git/spring-mvc/build.xml
+```
 ```xml
 <?xml version="1.0"?>
 
