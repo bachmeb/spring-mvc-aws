@@ -316,14 +316,12 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 
 ##### Create a build.xml file. Change the springapp value to whatever you would like. 
 	vim ~/git/spring-mvc/build.xml
-*Set the property file attribute to correctly point to your home directory*
 ```xml
 <?xml version="1.0"?>
 
 <project name="springapp" basedir="." default="usage">
   <!-- This build.properties file is kept in the root of your home directory -->
-    <!-- <property file="${user.home}/build.properties"/> -->
-    <property file="/home/[YOUR USER ACCOUNT NAME]/build.properties"/><!-- UPDATE THIS -->
+    <property file="${user.home}/build.properties"/>
 
     <property name="src.dir" value="src"/><!-- Make sure this dir exists -->
     <property name="web.dir" value="war"/>
@@ -540,9 +538,12 @@ Total time: 0 seconds
 	
 ##### Build the project
 	ant -v build
-	
+
+##### Give your developer account permission to write to the webapps directory
+	sudo chown -R [YOUR DEVELOPER ACCOUNT] /usr/share/tomcat6/webapps
+
 ##### Deploy the project
-	sudo ant -v deploy
+	ant -v deploy
 
 ##### Test the web app
 	lynx localhost:8080/springapp
@@ -570,7 +571,12 @@ Total time: 0 seconds
 	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
 	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
 	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
-	
+
+##### List the contents of each jar file
+	jar tf war/WEB-INF/lib/spring.jar
+	jar tf war/WEB-INF/lib/spring-webmvc.jar 
+	jar tf war/WEB-INF/lib/commons-logging.jar 
+
 ##### Define a DispatcherServlet in web.xml. Map the servlet to the *.htm file pattern.
 	vim ~/git/spring-mvc/war/WEB-INF/web.xml
 ```xml
@@ -634,15 +640,15 @@ Total time: 0 seconds
 ```java
 package springapp.web;
 
-import org.springframework.web.servlet.mvc.Controller;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller; // spring-webmvc.jar
+import org.springframework.web.servlet.ModelAndView; // spring-webmvc.jar
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException; // servlet-api.jar
+import javax.servlet.http.HttpServletRequest; // servlet-api.jar
+import javax.servlet.http.HttpServletResponse; // servlet-api.jar
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.Log; // commons-logging.jar
+import org.apache.commons.logging.LogFactory; // commons-logging.jar
 
 import java.io.IOException;
 
