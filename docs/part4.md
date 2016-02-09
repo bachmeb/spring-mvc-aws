@@ -5,6 +5,7 @@
 ### References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/part4.html
 * http://docs.spring.io/spring-framework/docs/2.5.x/api/org/springframework/web/servlet/ModelAndView.html
+* http://jeromejaglale.com/doc/java/spring/mvc
 
 ##### Rename HelloController to InventoryController
     mv ~/git/spring-mvc/src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
@@ -92,4 +93,21 @@ public class InventoryControllerTests extends TestCase {
         assertNotNull(nowValue);
     }
 }
+```
+##### Iterate the Products from the model with the JSTL forEach tag
+    vim ~/git/spring-mvc/war/WEB-INF/jsp/hello.jsp
+```
+<%@ include file="/WEB-INF/jsp/include.jsp" %>
+
+<html>
+  <head><title><fmt:message key="title"/></title></head>
+  <body>
+    <h1><fmt:message key="heading"/></h1>
+    <p><fmt:message key="greeting"/> <c:out value="${model.now}"/></p>
+    <h3>Products</h3>
+    <c:forEach items="${model.products}" var="prod">
+      <c:out value="${prod.description}"/> <i>$<c:out value="${prod.price}"/></i><br><br>
+    </c:forEach>
+  </body>
+</html>
 ```
