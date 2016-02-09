@@ -75,6 +75,9 @@ https://aws.amazon.com/ec2/
 ##### Connect via SSH
 	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
 
+##### Check the time
+	date
+	
 ##### List the available time zones
 	ls /usr/share/zoneinfo/
 
@@ -93,6 +96,9 @@ UTC=false
 
 ##### Connect via SSH
 	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
+
+##### Check the time
+	date
 	
 ##### Switch to root 
 	sudo su
