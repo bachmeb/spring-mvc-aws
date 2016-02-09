@@ -18,18 +18,16 @@
     cp /opt/spring-framework/spring-framework-2.5/lib/jakarta-taglibs/standard.jar ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### Create a header file for inclusion in all JSPs
-    pwd
-    cd ~/git/spring-mvc
-    mkdir war/WEB-INF/jsp
-    vim war/WEB-INF/jsp/include.jsp
+    mkdir ~/git/spring-mvc/war/WEB-INF/jsp
+    vim ~/git/spring-mvc/war/WEB-INF/jsp/include.jsp
 ```
 <%@ page session="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 ```
 
-##### Update 'index.jsp' to use the include file
-    vim war/index.jsp
+##### Delete the contents of 'index.jsp' and replace with the following
+    vim  ~/git/spring-mvc/war/index.jsp
 ```
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
@@ -37,10 +35,10 @@
 <c:redirect url="/hello.htm"/>
 ```
 ##### Move 'hello.jsp' to the 'WEB-INF/jsp' directory
-    mv war/hello.jsp war/WEB-INF/jsp
+    mv ~/git/spring-mvc/war/hello.jsp ~/git/spring-mvc/war/WEB-INF/jsp
 
 ##### Add the same include directive we added to index.jsp to hello.jsp
-    vim war/WEB-INF/jsp/hello.jsp
+    vim ~/git/spring-mvc/war/WEB-INF/jsp/hello.jsp
 ```
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
@@ -48,12 +46,13 @@
   <head><title>Hello :: Spring Application</title></head>
   <body>
     <h1>Hello - Spring Application</h1>
-    <p>Greetings, it is now <c:out value="${now}"/></p>
+    <p>Greetings, you have reached hello.jsp</p>
+    <p>The time is now <c:out value="${now}"/></p>
   </body>
 </html>
 ```
 ##### Update the unit test class
-    vim test/springapp/web/HelloControllerTests.java
+    vim ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java
 ```
 package springapp.web;
 
@@ -76,28 +75,35 @@ public class HelloControllerTests extends TestCase {
 ##### Run the Ant 'tests' target. The test should fail.
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
+build:
+
+buildtests:
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
+
 tests:
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 1:30:41 AM springapp.web.HelloController handleRequest
+    [junit] Feb 9, 2016 3:59:47 PM springapp.web.HelloController handleRequest
     [junit] INFO: Returning hello view
-    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.031 sec
-    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.031 sec
-    [junit] 
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.041 sec
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.041 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 1:30:41 AM springapp.web.HelloController handleRequest
+    [junit] Feb 9, 2016 3:59:47 PM springapp.web.HelloController handleRequest
     [junit] INFO: Returning hello view
     [junit] ------------- ---------------- ---------------
-    [junit] Testcase: testHandleRequestView(springapp.web.HelloControllerTests):	FAILED
+    [junit] Testcase: testHandleRequestView(springapp.web.HelloControllerTests):        FAILED
     [junit] expected:<[WEB-INF/jsp/]hello.jsp> but was:<[]hello.jsp>
     [junit] junit.framework.ComparisonFailure: expected:<[WEB-INF/jsp/]hello.jsp> but was:<[]hello.jsp>
-    [junit] 	at springapp.web.HelloControllerTests.testHandleRequestView(HelloControllerTests.java:12)
-    [junit] 
-    [junit] 
+    [junit]     at springapp.web.HelloControllerTests.testHandleRequestView(HelloControllerTests.java:12)
+    [junit]
+    [junit]
     [junit] Test springapp.web.HelloControllerTests FAILED
 
 BUILD FAILED
-/home/brian/git/spring-mvc/build.xml:61: tests.failed=true
+/home/bachmeb/git/spring-mvc/build.xml:71: tests.failed=true
             ***********************************************************
             ***********************************************************
             ****  One or more tests failed!  Check the output ...  ****
@@ -107,7 +113,7 @@ BUILD FAILED
 Total time: 1 second
 ```
 ##### Update HelloController 
-    vim src/springapp/web/HelloController.java
+    vim ~/git/spring-mvc/src/springapp/web/HelloController.java
 ```java
 package springapp.web;
 
@@ -142,29 +148,31 @@ public class HelloController implements Controller {
 ##### Rerun the unit tests
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
 build:
-    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 buildtests:
 
 tests:
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 1:40:24 AM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 01:40:24 UTC 2016
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.039 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.039 sec
-    [junit] 
+    [junit] Feb 9, 2016 4:03:12 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:03:12 EST 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.059 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.059 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 1:40:24 AM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 01:40:24 UTC 2016
+    [junit] Feb 9, 2016 4:03:12 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:03:12 EST 2016
     [junit] ------------- ---------------- ---------------
 
 BUILD SUCCESSFUL
 Total time: 1 second
 ```
 ##### Update springapp-servlet.xml
-    vim war/WEB-INF/springapp-servlet.xml
+    vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -185,7 +193,7 @@ Total time: 1 second
             
 </beans>
 ```
-    vim test/springapp/web/HelloControllerTests.java
+    vim ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java
 ```
 package springapp.web;
 
@@ -208,41 +216,45 @@ public class HelloControllerTests extends TestCase {
 ##### Run the unit tests
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
+build:
+
 buildtests:
-    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 tests:
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 1:48:22 AM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 01:48:22 UTC 2016
-    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.036 sec
-    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.036 sec
-    [junit] 
+    [junit] Feb 9, 2016 4:06:13 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:06:13 EST 2016
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.063 sec
+    [junit] Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0.063 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 1:48:22 AM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 01:48:22 UTC 2016
+    [junit] Feb 9, 2016 4:06:13 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:06:13 EST 2016
     [junit] ------------- ---------------- ---------------
-    [junit] Testcase: testHandleRequestView(springapp.web.HelloControllerTests):	FAILED
+    [junit] Testcase: testHandleRequestView(springapp.web.HelloControllerTests):        FAILED
     [junit] expected:<[hello]> but was:<[WEB-INF/jsp/hello.jsp]>
     [junit] junit.framework.ComparisonFailure: expected:<[hello]> but was:<[WEB-INF/jsp/hello.jsp]>
-    [junit] 	at springapp.web.HelloControllerTests.testHandleRequestView(HelloControllerTests.java:12)
-    [junit] 
-    [junit] 
+    [junit]     at springapp.web.HelloControllerTests.testHandleRequestView(HelloControllerTests.java:12)
+    [junit]
+    [junit]
     [junit] Test springapp.web.HelloControllerTests FAILED
 
 BUILD FAILED
-/home/brian/git/spring-mvc/build.xml:61: tests.failed=true
+/home/bachmeb/git/spring-mvc/build.xml:71: tests.failed=true
             ***********************************************************
             ***********************************************************
             ****  One or more tests failed!  Check the output ...  ****
             ***********************************************************
             ***********************************************************
 
-
+Total time: 1 second
 ```
 ##### Update HelloController.java
-    vim src/springapp/web/HelloController.java
+    vim ~/git/spring-mvc/src/springapp/web/HelloController.java
 ```
 package springapp.web;
 
@@ -277,33 +289,90 @@ public class HelloController implements Controller {
 ##### Run the unit tests
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
+build:
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
+
 buildtests:
 
 tests:
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 1:52:46 AM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 01:52:46 UTC 2016
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.043 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.043 sec
-    [junit] 
+    [junit] Feb 9, 2016 4:07:42 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:07:42 EST 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.031 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.031 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 1:52:46 AM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 01:52:46 UTC 2016
+    [junit] Feb 9, 2016 4:07:42 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:07:42 EST 2016
     [junit] ------------- ---------------- ---------------
+
+BUILD SUCCESSFUL
+Total time: 1 second
+```
+##### Redeploy the project
+    ant -v deploy reload
+```
+
+Apache Ant(TM) version 1.8.3 compiled on February 25 2015
+Trying the default build file: build.xml
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+Detected Java version: 1.6 in: /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre
+Detected OS: Linux
+parsing buildfile /home/bachmeb/git/spring-mvc/build.xml with URI = file:/home/bachmeb/git/spring-mvc/build.xml
+Project base dir set to: /home/bachmeb/git/spring-mvc
+parsing buildfile jar:file:/usr/share/java/ant.jar!/org/apache/tools/ant/antlib.xml with URI = jar:file:/usr/share/java/ant.jar!/org/apache/tools/ant/antlib.xml from a zip file
+ [property] Loading /home/bachmeb/build.properties
+Build sequence for target(s) `deploy' is [build, deploy]
+Complete build sequence is [build, deploy, reload, start, install, buildtests, tests, list, usage, stop, deploywar, ]
+
+build:
+    [mkdir] Skipping /home/bachmeb/git/spring-mvc/war/WEB-INF/classes because it already exists.
+    [javac] springapp/web/HelloController.java omitted as /home/bachmeb/git/spring-mvc/war/WEB-INF/classes/springapp/web/HelloController.class is up to date.
+
+deploy:
+     [copy] WEB-INF/classes/springapp/web/HelloController.class added as WEB-INF/classes/springapp/web/HelloController.class is outdated.
+     [copy] WEB-INF/classes/springapp/web/HelloControllerTests.class added as WEB-INF/classes/springapp/web/HelloControllerTests.class is outdated.
+     [copy] WEB-INF/jsp/hello.jsp added as WEB-INF/jsp/hello.jsp doesn't exist.
+     [copy] WEB-INF/jsp/include.jsp added as WEB-INF/jsp/include.jsp doesn't exist.
+     [copy] WEB-INF/lib/commons-logging.jar omitted as /usr/share/tomcat6/webapps/springapp/WEB-INF/lib/commons-logging.jar is up to date.
+     [copy] WEB-INF/lib/jstl.jar added as WEB-INF/lib/jstl.jar doesn't exist.
+     [copy] WEB-INF/lib/junit-3.8.2.jar omitted as /usr/share/tomcat6/webapps/springapp/WEB-INF/lib/junit-3.8.2.jar is up to date.
+     [copy] WEB-INF/lib/spring-webmvc.jar omitted as /usr/share/tomcat6/webapps/springapp/WEB-INF/lib/spring-webmvc.jar is up to date.
+     [copy] WEB-INF/lib/spring.jar omitted as /usr/share/tomcat6/webapps/springapp/WEB-INF/lib/spring.jar is up to date.
+     [copy] WEB-INF/lib/standard.jar added as WEB-INF/lib/standard.jar doesn't exist.
+     [copy] WEB-INF/springapp-servlet.xml added as WEB-INF/springapp-servlet.xml is outdated.
+     [copy] WEB-INF/web.xml omitted as /usr/share/tomcat6/webapps/springapp/WEB-INF/web.xml is up to date.
+     [copy] index.jsp added as index.jsp is outdated.
+     [copy] No sources found.
+     [copy] Copying 8 files to /usr/share/tomcat6/webapps/springapp
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/WEB-INF/classes/springapp/web/HelloController.class to /usr/share/tomcat6/webapps/springapp/WEB-INF/classes/springapp/web/HelloController.class
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/WEB-INF/classes/springapp/web/HelloControllerTests.class to /usr/share/tomcat6/webapps/springapp/WEB-INF/classes/springapp/web/HelloControllerTests.class
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/WEB-INF/jsp/hello.jsp to /usr/share/tomcat6/webapps/springapp/WEB-INF/jsp/hello.jsp
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/WEB-INF/jsp/include.jsp to /usr/share/tomcat6/webapps/springapp/WEB-INF/jsp/include.jsp
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/WEB-INF/lib/jstl.jar to /usr/share/tomcat6/webapps/springapp/WEB-INF/lib/jstl.jar
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/WEB-INF/lib/standard.jar to /usr/share/tomcat6/webapps/springapp/WEB-INF/lib/standard.jar
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/WEB-INF/springapp-servlet.xml to /usr/share/tomcat6/webapps/springapp/WEB-INF/springapp-servlet.xml
+     [copy] Copying /home/bachmeb/git/spring-mvc/war/index.jsp to /usr/share/tomcat6/webapps/springapp/index.jsp
+Build sequence for target(s) `reload' is [reload]
+Complete build sequence is [reload, start, install, build, buildtests, tests, deploy, list, usage, stop, deploywar, ]
+
+reload:
+   [reload] OK - Reloaded application at context path /springapp
 
 BUILD SUCCESSFUL
 Total time: 0 seconds
 ```
-##### Redeploy the project
-    sudo ant deploy reload
-
 ##### Test the web page
     lynx localhost:8080/springapp
 ```
-               Hello - Spring Application
+        Hello - Spring Application
 
-   Greetings, it is now Wed Feb 03 01:54:55 UTC 2016
+   Greetings, you have reached hello.jsp
+
+   The time is now Tue Feb 09 16:10:38 EST 2016
 
 ```
 * * *

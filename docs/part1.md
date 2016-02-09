@@ -175,7 +175,10 @@ UTC=false
 	sudo yum install java-1.6.0-openjdk-devel
 
 ##### Check the Java compiler version
-	javac -version
+```
+javac -version
+```
+*Should be:*
 ```
 javac 1.6.0_37
 ```
@@ -272,7 +275,7 @@ dist/
 	sudo yum search tomcat
 	
 ##### Install Tomcat 6
-	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
+	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps tomcat-native
 
 ##### Ask where is Tomcat?
 	whereis tomcat6
@@ -296,7 +299,122 @@ lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
 	sudo service tomcat6 status
 	sudo service tomcat6 start
 	sudo service --status-all | grep tomcat
-	
+
+##### Use the process id to see which files tomcat has open 
+	lsof -p [process id]
+```
+COMMAND   PID   USER   FD   TYPE DEVICE  SIZE/OFF   NODE NAME
+java    28171 tomcat  cwd    DIR  202,1      4096  17757 /usr/share/tomcat6
+java    28171 tomcat  rtd    DIR  202,1      4096      2 /
+java    28171 tomcat  txt    REG  202,1     37856 144207 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/bin/java
+java    28171 tomcat  mem    REG  202,1     89768 135342 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/libnet.so
+java    28171 tomcat  mem    REG  202,1     25232 133052 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/headless/libmawt.so
+java    28171 tomcat  mem    REG  202,1    703616 133065 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/libawt.so
+java    28171 tomcat  mem    REG  202,1     27736 135340 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/libmanagement.so
+java    28171 tomcat  mem    REG  202,1 106065056 408306 /usr/lib/locale/locale-archive
+java    28171 tomcat  mem    REG  202,1   3534509 141580 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/charsets.jar
+java    28171 tomcat  mem    REG  202,1    215355 143735 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/ext/sunjce_provider.jar
+java    28171 tomcat  mem    REG  202,1    248596 143736 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/ext/sunpkcs11.jar
+java    28171 tomcat  mem    REG  202,1     98229 143756 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/jce.jar
+java    28171 tomcat  mem    REG  202,1    501379 143733 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/ext/localedata.jar
+java    28171 tomcat  mem    REG  202,1    259156 144417 /usr/share/java/mx4j/mx4j-jmx-3.0.1.jar
+java    28171 tomcat  mem    REG  202,1    155739 144324 /usr/share/java/apache-commons-dbcp.jar
+java    28171 tomcat  mem    REG  202,1     53900 144456 /usr/share/java/tomcat6/tomcat-i18n-ja-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1     97002 144296 /usr/share/java/apache-commons-pool-1.5.6.jar
+java    28171 tomcat  mem    REG  202,1    799981 144450 /usr/share/java/tomcat6/tomcat-coyote-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    133917 144419 /usr/share/java/mx4j/mx4j-remote-3.0.1.jar
+java    28171 tomcat  mem    REG  202,1     76583 144349 /usr/share/java/tomcat6-jsp-2.1-api-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1     34604 144378 /usr/share/java/tomcat6-el-2.1-api-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    131802 144337 /usr/share/java/tomcat6-servlet-2.5-api-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    400811 144335 /usr/share/java/log4j-1.2.16.jar
+java    28171 tomcat  mem    REG  202,1     51673 144454 /usr/share/java/tomcat6/tomcat-i18n-fr-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1     54649 144432 /usr/share/java/tomcat6/catalina-ant-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1     70507 144452 /usr/share/java/tomcat6/tomcat-i18n-es-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    546385 144442 /usr/share/java/tomcat6/jasper-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    131986 144434 /usr/share/java/tomcat6/catalina-ha-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1   1247327 144431 /usr/share/java/tomcat6/catalina-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    238835 144436 /usr/share/java/tomcat6/catalina-tribes-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    594048 144340 /usr/share/java/apache-commons-collections.jar
+java    28171 tomcat  mem    REG  202,1   1521592 144344 /usr/share/java/ecj.jar
+java    28171 tomcat  mem    REG  202,1    285423 143758 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/jsse.jar
+java    28171 tomcat  mem    REG  202,1  29116948 143773 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/rt.jar
+java    28171 tomcat  mem    REG  202,1     31904 139128 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/libzip.so
+java    28171 tomcat  mem    REG  202,1     61920 396039 /lib64/libnss_files-2.17.so
+java    28171 tomcat  mem    REG  202,1     15244 144429 /usr/share/java/tomcat6/annotations-api-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1    113320 396031 /lib64/libnsl-2.17.so
+java    28171 tomcat  mem    REG  202,1    205304 134197 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/libjava.so
+java    28171 tomcat  mem    REG  202,1     69864 139127 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/libverify.so
+java    28171 tomcat  mem    REG  202,1     44088 396051 /lib64/librt-2.17.so
+java    28171 tomcat  mem    REG  202,1     89312 395976 /lib64/libgcc_s-4.8.3-20140911.so.1
+java    28171 tomcat  mem    REG  202,1   1141552 396029 /lib64/libm-2.17.so
+java    28171 tomcat  mem    REG  202,1    983552 396536 /usr/lib64/libstdc++.so.6.0.19
+java    28171 tomcat  mem    REG  202,1  11239440 140749 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/amd64/server/libjvm.so
+java    28171 tomcat  mem    REG  202,1     18232 396591 /lib64/libattr.so.1.1.0
+java    28171 tomcat  mem    REG  202,1   2112376 396021 /lib64/libc-2.17.so
+java    28171 tomcat  mem    REG  202,1     19512 396027 /lib64/libdl-2.17.so
+java    28171 tomcat  mem    REG  202,1     17328 144253 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/lib/amd64/jli/libjli.so
+java    28171 tomcat  mem    REG  202,1    142296 396047 /lib64/libpthread-2.17.so
+java    28171 tomcat  mem    REG  202,1     88608 396431 /lib64/libz.so.1.2.8
+java    28171 tomcat  mem    REG  202,1     16600 396696 /lib64/libcap.so.2.16
+java    28171 tomcat  mem    REG  202,1    164432 396014 /lib64/ld-2.17.so
+java    28171 tomcat  mem    REG  202,1    112407 144443 /usr/share/java/tomcat6/jasper-el-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1     32768   4958 /tmp/hsperfdata_tomcat/28171
+java    28171 tomcat  mem    REG  202,1     21528 144382 /usr/share/java/apache-commons-daemon.jar
+java    28171 tomcat  mem    REG  202,1     32355  17767 /usr/share/tomcat6/bin/tomcat-juli-6.0.44.jar
+java    28171 tomcat  mem    REG  202,1     22755  17764 /usr/share/tomcat6/bin/bootstrap-6.0.44.jar
+java    28171 tomcat    0r   CHR    1,3       0t0   5666 /dev/null
+java    28171 tomcat    1w   REG  202,1      1986 264235 /var/log/tomcat6/catalina.out
+java    28171 tomcat    2w   REG  202,1      1986 264235 /var/log/tomcat6/catalina.out
+java    28171 tomcat    3r   REG  202,1  29116948 143773 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/rt.jar
+java    28171 tomcat    4r   REG  202,1     22755  17764 /usr/share/tomcat6/bin/bootstrap-6.0.44.jar
+java    28171 tomcat    5r   REG  202,1    285423 143758 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/jsse.jar
+java    28171 tomcat    6r   CHR    1,8       0t0   5670 /dev/random
+java    28171 tomcat    7r   CHR    1,9       0t0   5671 /dev/urandom
+java    28171 tomcat    8r   REG  202,1     32355  17767 /usr/share/tomcat6/bin/tomcat-juli-6.0.44.jar
+java    28171 tomcat    9r   REG  202,1     21528 144382 /usr/share/java/apache-commons-daemon.jar
+java    28171 tomcat   10w   REG  202,1      1986 265017 /var/log/tomcat6/catalina.2016-02-09.log
+java    28171 tomcat   11w   REG  202,1       230 265018 /var/log/tomcat6/localhost.2016-02-09.log
+java    28171 tomcat   12w   REG  202,1         0 265019 /var/log/tomcat6/manager.2016-02-09.log
+java    28171 tomcat   13w   REG  202,1         0 265020 /var/log/tomcat6/host-manager.2016-02-09.log
+java    28171 tomcat   14r   REG  202,1   1521592 144344 /usr/share/java/ecj.jar
+java    28171 tomcat   15r   REG  202,1    594048 144340 /usr/share/java/apache-commons-collections.jar
+java    28171 tomcat   16r   REG  202,1    238835 144436 /usr/share/java/tomcat6/catalina-tribes-6.0.44.jar
+java    28171 tomcat   17r   REG  202,1    112407 144443 /usr/share/java/tomcat6/jasper-el-6.0.44.jar
+java    28171 tomcat   18r   REG  202,1   1247327 144431 /usr/share/java/tomcat6/catalina-6.0.44.jar
+java    28171 tomcat   19r   REG  202,1    131986 144434 /usr/share/java/tomcat6/catalina-ha-6.0.44.jar
+java    28171 tomcat   20r   REG  202,1    546385 144442 /usr/share/java/tomcat6/jasper-6.0.44.jar
+java    28171 tomcat   21r   REG  202,1     70507 144452 /usr/share/java/tomcat6/tomcat-i18n-es-6.0.44.jar
+java    28171 tomcat   22r   REG  202,1     54649 144432 /usr/share/java/tomcat6/catalina-ant-6.0.44.jar
+java    28171 tomcat   23r   REG  202,1     51673 144454 /usr/share/java/tomcat6/tomcat-i18n-fr-6.0.44.jar
+java    28171 tomcat   24r   REG  202,1    400811 144335 /usr/share/java/log4j-1.2.16.jar
+java    28171 tomcat   25r   REG  202,1     15244 144429 /usr/share/java/tomcat6/annotations-api-6.0.44.jar
+java    28171 tomcat   26r   REG  202,1    131802 144337 /usr/share/java/tomcat6-servlet-2.5-api-6.0.44.jar
+java    28171 tomcat   27r   REG  202,1     34604 144378 /usr/share/java/tomcat6-el-2.1-api-6.0.44.jar
+java    28171 tomcat   28r   REG  202,1     76583 144349 /usr/share/java/tomcat6-jsp-2.1-api-6.0.44.jar
+java    28171 tomcat   29r   REG  202,1    133917 144419 /usr/share/java/mx4j/mx4j-remote-3.0.1.jar
+java    28171 tomcat   30r   REG  202,1    799981 144450 /usr/share/java/tomcat6/tomcat-coyote-6.0.44.jar
+java    28171 tomcat   31r   REG  202,1     97002 144296 /usr/share/java/apache-commons-pool-1.5.6.jar
+java    28171 tomcat   32r   REG  202,1     53900 144456 /usr/share/java/tomcat6/tomcat-i18n-ja-6.0.44.jar
+java    28171 tomcat   33r   REG  202,1    155739 144324 /usr/share/java/apache-commons-dbcp.jar
+java    28171 tomcat   34r   REG  202,1    259156 144417 /usr/share/java/mx4j/mx4j-jmx-3.0.1.jar
+java    28171 tomcat   35r   REG  202,1     98229 143756 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/jce.jar
+java    28171 tomcat   36r   REG  202,1    501379 143733 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/ext/localedata.jar
+java    28171 tomcat   37r   REG  202,1    248596 143736 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/ext/sunpkcs11.jar
+java    28171 tomcat   38r   REG  202,1    215355 143735 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/ext/sunjce_provider.jar
+java    28171 tomcat   39u  IPv6  34451       0t0    TCP *:webcache (LISTEN)
+java    28171 tomcat   40u  sock    0,7       0t0  34449 can't identify protocol
+java    28171 tomcat   41r   CHR    1,9       0t0   5671 /dev/urandom
+java    28171 tomcat   42r   CHR    1,9       0t0   5671 /dev/urandom
+java    28171 tomcat   43r   CHR    1,9       0t0   5671 /dev/urandom
+java    28171 tomcat   44r   CHR    1,9       0t0   5671 /dev/urandom
+java    28171 tomcat   45r   CHR    1,9       0t0   5671 /dev/urandom
+java    28171 tomcat   46u  IPv6  34881       0t0    TCP *:8009 (LISTEN)
+java    28171 tomcat   47u  IPv6  34904       0t0    TCP localhost:mxi (LISTEN)
+java    28171 tomcat   48r   REG  202,1   3534509 141580 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/charsets.jar
+java    28171 tomcat   49r   REG  202,1   3534509 141580 /usr/lib/jvm/java-1.6.0-openjdk-1.6.0.37.x86_64/jre/lib/charsets.jar
+
+```
+
 ##### See what is listening on port 8080
 	sudo lsof -ni:8080
 
@@ -348,8 +466,11 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 </html>
 ```
 
-##### Create a build.xml file. Change the springapp value to whatever you would like. 
-	vim ~/git/spring-mvc/build.xml
+##### Create a build.xml file.
+*Mind the project name, property file, and javac source and destination values.*
+```
+vim ~/git/spring-mvc/build.xml
+```
 ```xml
 <?xml version="1.0"?>
 
@@ -607,9 +728,9 @@ Total time: 0 seconds
 	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### List the contents of each jar file
-	jar tf war/WEB-INF/lib/spring.jar
-	jar tf war/WEB-INF/lib/spring-webmvc.jar 
-	jar tf war/WEB-INF/lib/commons-logging.jar 
+	jar tf ~/git/spring-mvc/war/WEB-INF/lib/spring.jar
+	jar tf ~/git/spring-mvc/war/WEB-INF/lib/spring-webmvc.jar 
+	jar tf ~/git/spring-mvc/war/WEB-INF/lib/commons-logging.jar 
 
 ##### Define a [DispatcherServlet](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/DispatcherServlet.html) in web.xml. Map the servlet to the *.htm file pattern.
 	vim ~/git/spring-mvc/war/WEB-INF/web.xml
@@ -643,7 +764,7 @@ Total time: 0 seconds
 ```
 ##### Build, deploy, and test the project
 	ant build
-	sudo ant deploy
+ 	ant deploy
 	lynx localhost:8080/springapp
 
 ##### Create springapp-servlet.xml
@@ -665,7 +786,7 @@ Total time: 0 seconds
 
 ##### Build, deploy, and test the project
 	ant build
-	sudo ant deploy
+	ant deploy
 	lynx localhost:8080/springapp
 	
 ##### Create HelloController
@@ -853,14 +974,13 @@ Total time: 1 second
 ##### Run test tasks
 	ant tests
 
-##### Compile and deploy the application
-	sudo ant deploy
-	ant reload
+##### Deploy and reload the application
+	ant deploy reload
 
 ##### Test the web page in a browser
 	lynx http://localhost:8080/springapp/hello.htm
 ```
-The HTTP request goes to springapp/hello.htm
+The HTTP request from the browser goes to springapp/hello.htm
 hello.htm is mapped to HelloController.java in springapp-servlet.xml
 HelloController returns a ModelAndView named "hello.jsp"
 The springapp/hello.jsp page is returned to the browser
