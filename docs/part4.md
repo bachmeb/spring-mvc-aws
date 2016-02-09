@@ -59,7 +59,10 @@ public class InventoryController implements Controller {
 }
 ```
 ##### Update InventoryControllerTests
-    vim ~/git/spring-mvc/test/springapp/web/InventoryControllerTests.java':
+*Give the InventoryController a reference to the ProductManager*
+```
+vim ~/git/spring-mvc/test/springapp/web/InventoryControllerTests.java
+```
 ```java
 package springapp.web;
 
