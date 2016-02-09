@@ -96,7 +96,7 @@ public class InventoryControllerTests extends TestCase {
 ```
 ##### Iterate the Products from the model with the JSTL forEach tag
     vim ~/git/spring-mvc/war/WEB-INF/jsp/hello.jsp
-```
+```html
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
 <html>
@@ -117,7 +117,7 @@ vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
 ```
 *Add product beans written in XML*  
 *Define a ResourceBundleMessageSource called messageSource*  
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -167,4 +167,14 @@ vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
     </bean>
 
 </beans>
+```
+##### Create a ResourceBundleMessageSource
+```
+vim ~/git/spring-mvc/war/WEB-INF/classes/messages.properties
+```
+*Add three entries whose keys match the <fmt:message/> tags added to 'hello.jsp'*
+```
+title=SpringApp
+heading=Hello :: SpringApp
+greeting=Greetings, it is now
 ```
