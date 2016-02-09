@@ -171,14 +171,16 @@ UTC=false
 ##### Search yum for openjdk
 	yum search openjdk
 	
-##### Install the Open JDK version 1.7
-	sudo yum install java-1.7.0-openjdk-devel.x86_64
+##### Install the Open JDK version 1.6
+	sudo yum install java-1.6.0-openjdk-devel
 
 ##### Check the Java compiler version
 	javac -version
-
-##### Tell Linux to use the Java interpreter in the JDK 1.7
-	sudo /usr/sbin/alternatives --config java
+```
+javac 1.6.0_37
+```
+##### Tell Linux to use the Java interpreter in the JDK 1.6
+	sudo alternatives --config java
 
 ##### Read the symlinks in /usr/lib/jvm/
 	ls -l /usr/lib/jvm/
@@ -211,6 +213,34 @@ UTC=false
 	pwd
 	mkdir -p ~/git/spring-mvc
 
+##### Make a .gitignore file
+	nano ~/git/spring-mvc.gitignore
+```
+# .GITIGNORE FOR SPRING MVC ON AWS
+
+# Java
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# AWS
+*.pem
+
+# Tomcat
+build.properties
+build/
+dist/
+```
+
 ##### Initialize the git repository
 	cd ~/git/spring-mvc
 	git init
@@ -232,30 +262,6 @@ UTC=false
 	ls -l ~/git/spring-mvc
 	chmod -R 775 ~/git/spring-mvc
 
-##### Make a .gitignore file
-	nano .gitignore
-```
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-# AWS key
-*.pem
-
-# Tomcat
-build.properties
-build/
-dist/
-```
 ##### Commit changes and push to the remote repository
 	git status
 	git add --all
