@@ -660,7 +660,28 @@ public class HelloController implements Controller {
 
 }
 ```
+##### Update the master-classpath in build.xml to look for servlet*.jar in the spring framework 2.5 directory
+	vim ~/git/spring-mvc/build.xml
+```
+    <path id="master-classpath">
+        <fileset dir="${web.dir}/WEB-INF/lib">
+            <include name="*.jar"/>
+        </fileset>
+        <!-- We need the servlet API classes: -->
+        <!--  * for Tomcat 5/6 use servlet-api.jar -->
+        <!--  * for other app servers - check the docs -->
+        <fileset dir="${appserver.lib}">
+            <include name="servlet*.jar"/>
+        </fileset>
 
+        <fileset dir="/opt/spring-framework/spring-framework-2.5/lib/j2ee/">
+            <include name="servlet*.jar"/>
+        </fileset>
+
+        <pathelement path="${build.dir}"/>
+    </path>
+
+```
 ##### Build the project
 	ant build
 	
