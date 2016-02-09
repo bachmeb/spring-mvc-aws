@@ -364,14 +364,15 @@ reload:
 
 BUILD SUCCESSFUL
 Total time: 0 seconds
-
 ```
 ##### Test the web page
     lynx localhost:8080/springapp
 ```
-               Hello - Spring Application
+        Hello - Spring Application
 
-   Greetings, it is now Wed Feb 03 01:54:55 UTC 2016
+   Greetings, you have reached hello.jsp
+
+   The time is now Tue Feb 09 16:10:38 EST 2016
 
 ```
 * * *
