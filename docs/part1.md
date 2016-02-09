@@ -89,10 +89,10 @@ UTC=false
 ```
 
 ##### Create a symbolic link between /etc/localtime and your time zone file
-	sudo ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+	sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
 ##### Reboot the system to pick up the new time zone information in all services and applications
-	reboot
+	sudo reboot
 
 ##### Connect via SSH
 	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
