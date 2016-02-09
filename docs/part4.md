@@ -172,7 +172,7 @@ vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
 ```
 vim ~/git/spring-mvc/war/WEB-INF/classes/messages.properties
 ```
-*Add three entries whose keys match the fmt:message tags added to 'hello.jsp'*
+*Add three entries whose keys match the fmt:message tags in 'hello.jsp'*
 ```
 title=SpringApp
 heading=Hello :: SpringApp
