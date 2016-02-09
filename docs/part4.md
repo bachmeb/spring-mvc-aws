@@ -178,3 +178,22 @@ title=SpringApp
 heading=Hello :: SpringApp
 greeting=Greetings, it is now
 ```
+##### Add 'clean' and 'undeploy' targets to build.xml
+    vim ~/git/spring-mvc/build.xml
+```
+    <target name="clean" description="Clean output directories">
+        <delete>
+            <fileset dir="${build.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target name="undeploy" description="Un-Deploy application">
+        <delete>
+            <fileset dir="${deploy.path}/${name}">
+                <include name="**/*.*"/>
+            </fileset>
+        </delete>
+    </target>
+```
