@@ -12,7 +12,10 @@
     mv ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java test/springapp/web/InventoryControllerTests.java
 
 ##### Update InventoryController
-    vim ~/git/spring-mvc/src/springapp/web/InventoryController.java
+*Give the InventoryController a reference to the ProductManager*
+```
+vim ~/git/spring-mvc/src/springapp/web/InventoryController.java
+```
 ```java
 package springapp.web;
 
@@ -59,7 +62,6 @@ public class InventoryController implements Controller {
 }
 ```
 ##### Update InventoryControllerTests
-*Give the InventoryController a reference to the ProductManager*
 ```
 vim ~/git/spring-mvc/test/springapp/web/InventoryControllerTests.java
 ```
