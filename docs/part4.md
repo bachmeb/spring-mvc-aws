@@ -4,6 +4,7 @@
 
 ### References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/part4.html
+* http://docs.spring.io/spring-framework/docs/2.5.x/api/org/springframework/web/servlet/ModelAndView.html
 
 ##### Rename HelloController to InventoryController
     mv ~/git/spring-mvc/src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
