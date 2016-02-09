@@ -275,7 +275,7 @@ dist/
 	sudo yum search tomcat
 	
 ##### Install Tomcat 6
-	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps
+	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps tomcat-native
 
 ##### Ask where is Tomcat?
 	whereis tomcat6
@@ -728,9 +728,9 @@ Total time: 0 seconds
 	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
 
 ##### List the contents of each jar file
-	jar tf war/WEB-INF/lib/spring.jar
-	jar tf war/WEB-INF/lib/spring-webmvc.jar 
-	jar tf war/WEB-INF/lib/commons-logging.jar 
+	jar tf ~/git/spring-mvc/war/WEB-INF/lib/spring.jar
+	jar tf ~/git/spring-mvc/war/WEB-INF/lib/spring-webmvc.jar 
+	jar tf ~/git/spring-mvc/war/WEB-INF/lib/commons-logging.jar 
 
 ##### Define a [DispatcherServlet](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/DispatcherServlet.html) in web.xml. Map the servlet to the *.htm file pattern.
 	vim ~/git/spring-mvc/war/WEB-INF/web.xml
@@ -764,7 +764,7 @@ Total time: 0 seconds
 ```
 ##### Build, deploy, and test the project
 	ant build
-	sudo ant deploy
+ 	ant deploy
 	lynx localhost:8080/springapp
 
 ##### Create springapp-servlet.xml
@@ -786,7 +786,7 @@ Total time: 0 seconds
 
 ##### Build, deploy, and test the project
 	ant build
-	sudo ant deploy
+	ant deploy
 	lynx localhost:8080/springapp
 	
 ##### Create HelloController
@@ -974,14 +974,13 @@ Total time: 1 second
 ##### Run test tasks
 	ant tests
 
-##### Compile and deploy the application
-	sudo ant deploy
-	ant reload
+##### Deploy and reload the application
+	ant deploy reload
 
 ##### Test the web page in a browser
 	lynx http://localhost:8080/springapp/hello.htm
 ```
-The HTTP request goes to springapp/hello.htm
+The HTTP request from the browser goes to springapp/hello.htm
 hello.htm is mapped to HelloController.java in springapp-servlet.xml
 HelloController returns a ModelAndView named "hello.jsp"
 The springapp/hello.jsp page is returned to the browser
