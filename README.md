@@ -30,3 +30,19 @@
 * Update the controller to return a logical view name, rather than a full path to the view file
 
 #### [Part 3](/docs/part3.md)
+* Make a POJO for the domain class
+* Write a unit test for the domain class
+* Create a service interface
+* Create a service class and implement the service interface
+* Write a unit test for the service class
+* Run the unit tests
+* Implement the unit tests
+* Run the unit tests
+* Implement the getters and setters for the domain class
+* Run the unit tests
+* Implement the tests for the service class methods
+* Implement the service class methods
+* Run the unit tests
+
+#### [Part 4](/docs/part4.md)
+* 
