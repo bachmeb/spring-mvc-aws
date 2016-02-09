@@ -175,7 +175,10 @@ UTC=false
 	sudo yum install java-1.6.0-openjdk-devel
 
 ##### Check the Java compiler version
-	javac -version
+```
+javac -version
+```
+*Should be:*
 ```
 javac 1.6.0_37
 ```
