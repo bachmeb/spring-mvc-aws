@@ -143,53 +143,54 @@ public class SimpleProductManagerTests extends TestCase {
 ##### Run the unit tests
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
 
 build:
-    [javac] Compiling 3 source files to /home/brian/git/spring-mvc/war/WEB-INF/classes
+    [javac] Compiling 3 source files to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 buildtests:
-    [javac] Compiling 2 source files to /home/brian/git/spring-mvc/war/WEB-INF/classes
+    [javac] Compiling 2 source files to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 tests:
     [junit] Running springapp.domain.ProductTests
     [junit] Testsuite: springapp.domain.ProductTests
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.005 sec
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.005 sec
-    [junit] 
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
+    [junit]
     [junit] Running springapp.service.SimpleProductManagerTests
     [junit] Testsuite: springapp.service.SimpleProductManagerTests
-    [junit] Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0.007 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0.007 sec
-    [junit] 
-    [junit] Testcase: testGetProductsWithNoProducts(springapp.service.SimpleProductManagerTests):	Caused an ERROR
+    [junit] Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0.009 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0.009 sec
+    [junit]
+    [junit] Testcase: testGetProductsWithNoProducts(springapp.service.SimpleProductManagerTests):       Caused an ERROR
     [junit] null
     [junit] java.lang.UnsupportedOperationException
-    [junit] 	at springapp.service.SimpleProductManager.getProducts(SimpleProductManager.java:10)
-    [junit] 	at springapp.service.SimpleProductManagerTests.testGetProductsWithNoProducts(SimpleProductManagerTests.java:15)
-    [junit] 
-    [junit] 
+    [junit]     at springapp.service.SimpleProductManager.getProducts(SimpleProductManager.java:10)
+    [junit]     at springapp.service.SimpleProductManagerTests.testGetProductsWithNoProducts(SimpleProductManagerTests.java:15)
+    [junit]
+    [junit]
     [junit] Test springapp.service.SimpleProductManagerTests FAILED
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 7:28:31 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:28:31 UTC 2016
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.07 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.07 sec
-    [junit] 
+    [junit] Feb 9, 2016 4:30:27 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:30:27 EST 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.059 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.059 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 7:28:31 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:28:31 UTC 2016
+    [junit] Feb 9, 2016 4:30:27 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:30:27 EST 2016
     [junit] ------------- ---------------- ---------------
 
 BUILD FAILED
-/home/brian/git/spring-mvc/build.xml:61: tests.failed=true
+/home/bachmeb/git/spring-mvc/build.xml:71: tests.failed=true
             ***********************************************************
             ***********************************************************
             ****  One or more tests failed!  Check the output ...  ****
             ***********************************************************
             ***********************************************************
 
-
+Total time: 1 second
 ```
 
 ##### Implement the unit tests
@@ -258,51 +259,53 @@ public class SimpleProductManagerTests extends TestCase {
 ##### Run the unit tests
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
 build:
 
 buildtests:
-    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 tests:
     [junit] Running springapp.domain.ProductTests
     [junit] Testsuite: springapp.domain.ProductTests
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
-    [junit] 
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.001 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.001 sec
+    [junit]
     [junit] Running springapp.service.SimpleProductManagerTests
     [junit] Testsuite: springapp.service.SimpleProductManagerTests
-    [junit] Tests run: 2, Failures: 0, Errors: 2, Time elapsed: 0.007 sec
-    [junit] Tests run: 2, Failures: 0, Errors: 2, Time elapsed: 0.007 sec
-    [junit] 
-    [junit] Testcase: testGetProductsWithNoProducts(springapp.service.SimpleProductManagerTests):	Caused an ERROR
+    [junit] Tests run: 2, Failures: 0, Errors: 2, Time elapsed: 0.003 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 2, Time elapsed: 0.003 sec
+    [junit]
+    [junit] Testcase: testGetProductsWithNoProducts(springapp.service.SimpleProductManagerTests):       Caused an ERROR
     [junit] null
     [junit] java.lang.UnsupportedOperationException
-    [junit] 	at springapp.service.SimpleProductManager.setProducts(SimpleProductManager.java:18)
-    [junit] 	at springapp.service.SimpleProductManagerTests.setUp(SimpleProductManagerTests.java:38)
-    [junit] 
-    [junit] 
-    [junit] Testcase: testGetProducts(springapp.service.SimpleProductManagerTests):	Caused an ERROR
+    [junit]     at springapp.service.SimpleProductManager.setProducts(SimpleProductManager.java:18)
+    [junit]     at springapp.service.SimpleProductManagerTests.setUp(SimpleProductManagerTests.java:38)
+    [junit]
+    [junit]
+    [junit] Testcase: testGetProducts(springapp.service.SimpleProductManagerTests):     Caused an ERROR
     [junit] null
     [junit] java.lang.UnsupportedOperationException
-    [junit] 	at springapp.service.SimpleProductManager.setProducts(SimpleProductManager.java:18)
-    [junit] 	at springapp.service.SimpleProductManagerTests.setUp(SimpleProductManagerTests.java:38)
-    [junit] 
-    [junit] 
+    [junit]     at springapp.service.SimpleProductManager.setProducts(SimpleProductManager.java:18)
+    [junit]     at springapp.service.SimpleProductManagerTests.setUp(SimpleProductManagerTests.java:38)
+    [junit]
+    [junit]
     [junit] Test springapp.service.SimpleProductManagerTests FAILED
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 7:35:51 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:35:51 UTC 2016
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.056 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.056 sec
-    [junit] 
+    [junit] Feb 9, 2016 4:34:10 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:34:10 EST 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.073 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.073 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 7:35:51 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:35:51 UTC 2016
+    [junit] Feb 9, 2016 4:34:10 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:34:10 EST 2016
     [junit] ------------- ---------------- ---------------
 
 BUILD FAILED
-/home/brian/git/spring-mvc/build.xml:61: tests.failed=true
+/home/bachmeb/git/spring-mvc/build.xml:71: tests.failed=true
             ***********************************************************
             ***********************************************************
             ****  One or more tests failed!  Check the output ...  ****
@@ -344,8 +347,10 @@ public class SimpleProductManager implements ProductManager {
 ##### Run the unit tests
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
 build:
-    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 buildtests:
 
@@ -354,27 +359,26 @@ tests:
     [junit] Testsuite: springapp.domain.ProductTests
     [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
     [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
-    [junit] 
+    [junit]
     [junit] Running springapp.service.SimpleProductManagerTests
     [junit] Testsuite: springapp.service.SimpleProductManagerTests
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.001 sec
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.001 sec
-    [junit] 
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.003 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.003 sec
+    [junit]
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 7:38:03 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:38:03 UTC 2016
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.049 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.049 sec
-    [junit] 
+    [junit] Feb 9, 2016 4:35:11 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:35:11 EST 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.072 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.072 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 7:38:03 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:38:03 UTC 2016
+    [junit] Feb 9, 2016 4:35:11 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:35:11 EST 2016
     [junit] ------------- ---------------- ---------------
 
 BUILD SUCCESSFUL
 Total time: 1 second
-
 ```
 ##### Implememt the test for increasePrice()
     nano ~/git/spring-mvc/test/springapp/service/SimpleProductManagerTests.java
@@ -513,33 +517,34 @@ public class SimpleProductManager implements ProductManager {
 ##### Run the unit tests
     ant tests
 ```
+Buildfile: /home/bachmeb/git/spring-mvc/build.xml
+
 build:
-    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
+    [javac] Compiling 1 source file to /home/bachmeb/git/spring-mvc/war/WEB-INF/classes
 
 buildtests:
-    [javac] Compiling 1 source file to /home/brian/git/spring-mvc/war/WEB-INF/classes
 
 tests:
     [junit] Running springapp.domain.ProductTests
     [junit] Testsuite: springapp.domain.ProductTests
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.006 sec
-    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.006 sec
-    [junit] 
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.004 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.004 sec
+    [junit]
     [junit] Running springapp.service.SimpleProductManagerTests
     [junit] Testsuite: springapp.service.SimpleProductManagerTests
-    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.007 sec
-    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.007 sec
-    [junit] 
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 0.002 sec
+    [junit]
     [junit] Running springapp.web.HelloControllerTests
     [junit] Testsuite: springapp.web.HelloControllerTests
-    [junit] Feb 03, 2016 7:40:13 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:40:13 UTC 2016
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.07 sec
-    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.07 sec
-    [junit] 
+    [junit] Feb 9, 2016 4:37:51 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:37:51 EST 2016
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.069 sec
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.069 sec
+    [junit]
     [junit] ------------- Standard Error -----------------
-    [junit] Feb 03, 2016 7:40:13 PM springapp.web.HelloController handleRequest
-    [junit] INFO: Returning hello view with Wed Feb 03 19:40:13 UTC 2016
+    [junit] Feb 9, 2016 4:37:51 PM springapp.web.HelloController handleRequest
+    [junit] INFO: Returning hello view with Tue Feb 09 16:37:51 EST 2016
     [junit] ------------- ---------------- ---------------
 
 BUILD SUCCESSFUL
