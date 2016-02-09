@@ -3,6 +3,9 @@
 
 ## Part 3
 
+### References
+* http://docs.spring.io/docs/Spring-MVC-step-by-step/part3.html
+
 ##### Make a POJO for a domain class called Product
     mkdir ~/git/spring-mvc/src/springapp/domain
     vim ~/git/spring-mvc/src/springapp/domain/Product.java
