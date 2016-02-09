@@ -132,7 +132,7 @@ UTC=false
 	echo $HOME
 
 ##### Go home
-	cd $HOME
+	cd ~
 
 ##### Check the Linux distro version
 	cat /proc/version
