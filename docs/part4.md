@@ -197,3 +197,21 @@ greeting=Greetings, it is now
         </delete>
     </target>
 ```
+##### Clean, undeploy and redeploy the app
+    ant clean
+    ant undeploy
+    ant deploy
+
+##### View the app in a web browser
+    lynx localhost:8080/springapp
+```
+                 Hello :: SpringApp
+
+   Greetings, it is now Tue Feb 09 17:43:09 EST 2016
+
+   Products
+
+   Lamp $5.75
+   Table $75.25
+   Chair $22.79
+```
