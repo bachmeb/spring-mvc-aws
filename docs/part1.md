@@ -6,6 +6,7 @@
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/part1.html
 * http://stackoverflow.com/questions/8611777/java-lang-nosuchmethoderror-javax-servlet-servletcontext-getcontextpathljava
 * http://wiki.metawerx.net/wiki/JARFilesYouShouldNeverIncludeInYourWebapp
+* https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/DispatcherServlet.html
 
 ##### Create a new vm
 https://aws.amazon.com/ec2/
@@ -577,7 +578,7 @@ Total time: 0 seconds
 	jar tf war/WEB-INF/lib/spring-webmvc.jar 
 	jar tf war/WEB-INF/lib/commons-logging.jar 
 
-##### Define a DispatcherServlet in web.xml. Map the servlet to the *.htm file pattern.
+##### Define a [DispatcherServlet](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/DispatcherServlet.html) in web.xml. Map the servlet to the *.htm file pattern.
 	vim ~/git/spring-mvc/war/WEB-INF/web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
