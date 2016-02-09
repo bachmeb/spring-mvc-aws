@@ -1,10 +1,12 @@
-# GITIGNORE FOR SPRING-MVC-AWS PROJECT
+# .GITIGNORE FOR SPRING MVC ON AWS
+
+# Java
 *.class
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.ear
@@ -12,9 +14,10 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# AWS key
+# AWS
 *.pem
 
-# Gradle folders
+# Tomcat
+build.properties
 build/
-.gradle/
+dist/
