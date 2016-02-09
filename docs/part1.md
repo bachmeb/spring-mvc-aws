@@ -814,7 +814,8 @@ Total time: 1 second
 	ant tests
 
 ##### Compile and deploy the application
-	sudo ant deploy reload
+	sudo ant deploy
+	ant reload
 
 ##### Test the web page in a browser
 	lynx http://localhost:8080/springapp/hello.htm
