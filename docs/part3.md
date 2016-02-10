@@ -6,8 +6,8 @@
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/part3.html
 
 ##### Make a POJO for a domain class called Product
-    mkdir ~/git/spring-mvc/src/springapp/domain
-    vim ~/git/spring-mvc/src/springapp/domain/Product.java
+    mkdir $DEV/src/springapp/domain
+    vim $DEV/src/springapp/domain/Product.java
 ```java
 package springapp.domain;
 
@@ -43,8 +43,8 @@ public class Product implements Serializable {
 }
 ```
 ##### Write the unit tests for the Product class
-    mkdir ~/git/spring-mvc/test/springapp/domain
-    vim ~/git/spring-mvc/test/springapp/domain/ProductTests.java
+    mkdir $DEV/test/springapp/domain
+    vim $DEV/test/springapp/domain/ProductTests.java
 ```
 package springapp.domain;
 
@@ -75,8 +75,8 @@ public class ProductTests extends TestCase {
 }
 ```
 ##### Create the service interface
-    mkdir ~/git/spring-mvc/src/springapp/service
-    vim ~/git/spring-mvc/src/springapp/service/ProductManager.java
+    mkdir $DEV/src/springapp/service
+    vim $DEV/src/springapp/service/ProductManager.java
 ```
 package springapp.service;
 
@@ -95,7 +95,7 @@ public interface ProductManager extends Serializable{
 ```
 
 ##### Create the service class
-    vim ~/git/spring-mvc/src/springapp/service/SimpleProductManager.java
+    vim $DEV/src/springapp/service/SimpleProductManager.java
 ```
 package springapp.service;
 
@@ -120,8 +120,8 @@ public class SimpleProductManager implements ProductManager {
 }
 ```
 ##### Write a unit test for the service class
-    mkdir ~/git/spring-mvc/test/springapp/service
-    vim ~/git/spring-mvc/test/springapp/service/SimpleProductManagerTests.java
+    mkdir $DEV/test/springapp/service
+    vim $DEV/test/springapp/service/SimpleProductManagerTests.java
 ```
 package springapp.service;
 
@@ -196,7 +196,7 @@ Total time: 1 second
 ```
 
 ##### Implement the unit tests
-    nano ~/git/spring-mvc/test/springapp/service/SimpleProductManagerTests.java
+    nano $DEV/test/springapp/service/SimpleProductManagerTests.java
 ```
 package springapp.service;
 
@@ -318,7 +318,7 @@ Total time: 1 second
 ```
     
 ##### Implement the getters and setters for the Product class
-    nano ~/git/spring-mvc/src/springapp/service/SimpleProductManager.java
+    nano $DEV/src/springapp/service/SimpleProductManager.java
 ```
 package springapp.service;
 
@@ -383,7 +383,7 @@ BUILD SUCCESSFUL
 Total time: 1 second
 ```
 ##### Implememt the test for increasePrice()
-    nano ~/git/spring-mvc/test/springapp/service/SimpleProductManagerTests.java
+    nano $DEV/test/springapp/service/SimpleProductManagerTests.java
 ```
 package springapp.service;
 
@@ -484,7 +484,7 @@ public class SimpleProductManagerTests extends TestCase {
 }
 ```
 ##### Implement the increasePrice() method in SimpleProductManager
-    nano ~/git/spring-mvc/src/springapp/service/SimpleProductManager.java
+    nano $DEV/src/springapp/service/SimpleProductManager.java
 ```
 package springapp.service;
 
