@@ -11,12 +11,19 @@
 ## Sequence
 #### [Part 1](/docs/part1.md)
 * Setup a VM
-* Install Java, Tomcat, and Ant
+* Install Java and Tomcat
 * Create a project folder
-* Create the project files
+* Make a web.xml, index.html, build.xml, and build.properties file
+* Edit tomcat-users.xml
+* Restart Tomcat
+* Deploy the app
+* Test the app
 * Copy the required libraries to the project
-* Compile the project 
+* Define a DispatcherServlet in web.xml
+* Create springapp-servlet.xml
+* Create a Controller
 * Test the project
+* Build the project
 * Deploy the project
 
 #### [Part 2](/docs/part2.md)
