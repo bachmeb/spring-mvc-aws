@@ -8,14 +8,14 @@
 * http://jeromejaglale.com/doc/java/spring/mvc
 
 ##### Rename HelloController to InventoryController
-    mv ~/git/spring-mvc/src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
+    mv $DEV/src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
 
 ##### Rename HelloControllerTests to InventoryControllerTests
-    mv ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java test/springapp/web/InventoryControllerTests.java
+    mv $DEV/test/springapp/web/HelloControllerTests.java test/springapp/web/InventoryControllerTests.java
 
 ##### Update InventoryController
 ```
-vim ~/git/spring-mvc/src/springapp/web/InventoryController.java
+vim $DEV/src/springapp/web/InventoryController.java
 ```
 *Give the InventoryController a reference to the ProductManager*  
 *Return a Map with both the date and time and the Products list given by the ProductManager.*  
@@ -66,7 +66,7 @@ public class InventoryController implements Controller {
 ```
 ##### Update InventoryControllerTests
 ```
-vim ~/git/spring-mvc/test/springapp/web/InventoryControllerTests.java
+vim $DEV/test/springapp/web/InventoryControllerTests.java
 ```
 ```java
 package springapp.web;
@@ -95,7 +95,7 @@ public class InventoryControllerTests extends TestCase {
 }
 ```
 ##### Iterate the Products from the model with the JSTL forEach tag
-    vim ~/git/spring-mvc/war/WEB-INF/jsp/hello.jsp
+    vim $DEV/war/WEB-INF/jsp/hello.jsp
 ```html
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 
@@ -113,7 +113,7 @@ public class InventoryControllerTests extends TestCase {
 ```
 ##### Update springapp-servlet.xml
 ```
-vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
+vim $DEV/war/WEB-INF/springapp-servlet.xml
 ```
 *Add product beans written in XML*  
 *Define a ResourceBundleMessageSource called messageSource*  
@@ -170,7 +170,7 @@ vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
 ```
 ##### Create a ResourceBundleMessageSource
 ```
-vim ~/git/spring-mvc/war/WEB-INF/classes/messages.properties
+vim $DEV/war/WEB-INF/classes/messages.properties
 ```
 *Add three entries whose keys match the fmt:message tags in 'hello.jsp'*
 ```
@@ -179,7 +179,7 @@ heading=Hello :: SpringApp
 greeting=Greetings, it is now
 ```
 ##### Add 'clean' and 'undeploy' targets to build.xml
-    vim ~/git/spring-mvc/build.xml
+    vim $DEV/build.xml
 ```
     <target name="clean" description="Clean output directories">
         <delete>
@@ -219,14 +219,14 @@ greeting=Greetings, it is now
     sudo find / | grep spring-form.tld
 
 ##### Make a tld directory in WEB-INF
-    mkdir ~/git/spring-mvc/war/WEB-INF/tld
+    mkdir $DEV/war/WEB-INF/tld
     
 ##### Copy spring-form.tld to the tld directory in WEB-INF
-    cp /opt/spring-framework/spring-framework-2.5/dist/resources/spring-form.tld ~/git/spring-mvc/war/WEB-INF/tld
-    ls -l ~/git/spring-mvc/war/WEB-INF/tld
+    cp /opt/spring-framework/spring-framework-2.5/dist/resources/spring-form.tld $DEV/war/WEB-INF/tld
+    ls -l $DEV/war/WEB-INF/tld
 
 ##### Add a taglib entry to web.xml
-    vim ~/git/spring-mvc/war/WEB-INF/web.xml
+    vim $DEV/war/WEB-INF/web.xml
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -264,7 +264,7 @@ greeting=Greetings, it is now
 ```
 
 ##### Create a JSP page called priceincrease.jsp
-    vim ~/git/spring-mvc/war/WEB-INF/jsp/priceincrease.jsp
+    vim $DEV/war/WEB-INF/jsp/priceincrease.jsp
 ```html
 <%@ include file="/WEB-INF/jsp/include.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -298,7 +298,7 @@ greeting=Greetings, it is now
 </html>
 ```
 ##### Create a JavaBean class for the price increase percentage
-    vim ~/git/spring-mvc/src/springapp/service/PriceIncrease.java
+    vim $DEV/src/springapp/service/PriceIncrease.java
 ```java
 package springapp.service;
 
@@ -324,7 +324,7 @@ public class PriceIncrease {
 }
 ```
 ##### Create a validator for PriceIncrease
-    vim ~/git/spring-mvc/src/springapp/service/PriceIncreaseValidator.java
+    vim $DEV/src/springapp/service/PriceIncreaseValidator.java
 ```java
 package springapp.service;
 
@@ -384,7 +384,7 @@ public class PriceIncreaseValidator implements Validator {
 }
 ```
 ##### Add an entry in the 'springapp-servlet.xml' file to define the new form and controller
-    vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
+    vim $DEV/war/WEB-INF/springapp-servlet.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -451,7 +451,7 @@ public class PriceIncreaseValidator implements Validator {
 </beans>
 ```
 ##### Edit PriceIncreaseFormController
-    vim src/web/PriceIncreaseFormController.java
+    vim $DEV/src/web/PriceIncreaseFormController.java
 ```java
 package springapp.web;
 
@@ -505,7 +505,7 @@ public class PriceIncreaseFormController extends SimpleFormController {
 }
 ```
 ##### Add some messages to the 'messages.properties' resource file
-    vim war/WEB-INF/classes/messages.properties
+    vim $DEV/war/WEB-INF/classes/messages.properties
 ```
 title=SpringApp
 heading=Hello :: SpringApp
