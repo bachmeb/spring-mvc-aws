@@ -325,7 +325,7 @@ public class PriceIncrease {
 ```
 ##### Create a validator for PriceIncrease
     vim ~/git/spring-mvc/src/springapp/service/PriceIncreaseValidator.java
-```
+```java
 package springapp.service;
 
 import org.springframework.validation.Validator;
