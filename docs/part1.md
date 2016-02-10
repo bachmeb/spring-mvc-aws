@@ -14,165 +14,165 @@
 https://aws.amazon.com/ec2/
 
 ##### Step 1: Choose an Amazon Machine Image (AMI)
-	Amazon Linux AMI 2015.09.1 (HVM), SSD Volume Type - ami-f0091d91
+    Amazon Linux AMI 2015.09.1 (HVM), SSD Volume Type - ami-f0091d91
 
 ##### Step 2: Choose an Instance Type
-	Family: General purpose
-	Type: t2.micro
-	vCPUs: 1
-	Memory: 1
-	Instance Storage: EBS only
-	EBS-Optimized: -
-	Network Performance: Low to Moderate
+    Family: General purpose
+    Type: t2.micro
+    vCPUs: 1
+    Memory: 1
+    Instance Storage: EBS only
+    EBS-Optimized: -
+    Network Performance: Low to Moderate
 
 ##### Step 3: Configure Instance Details
-	Number of instances: 	1
-	Network: (default)
-	Subnet: No preference (default subnet in any Availability Zone)
-	EBS-optimized: No
-	Monitoring: No
-	Termination protection: YES <---- UPDATE THIS
-	Shutdown behavior: Stop
-	IAM role: None
-	Tenancy: default
-	Host ID: 
-	Affinity: Off
-	Kernel ID: Use default
-	RAM disk ID: Use default
-	User data: 
-	Assign Public IP: Use subnet setting (Enable)
-	Network interfaces: 
-	Purchasing option: On demand
+    Number of instances:    1
+    Network: (default)
+    Subnet: No preference (default subnet in any Availability Zone)
+    EBS-optimized: No
+    Monitoring: No
+    Termination protection: YES <---- UPDATE THIS
+    Shutdown behavior: Stop
+    IAM role: None
+    Tenancy: default
+    Host ID: 
+    Affinity: Off
+    Kernel ID: Use default
+    RAM disk ID: Use default
+    User data: 
+    Assign Public IP: Use subnet setting (Enable)
+    Network interfaces: 
+    Purchasing option: On demand
 
 ##### Step 4: Add Storage
-	Volume Type: Root
-	Device: /dev/xvda
-	Snapshot: snap-ad8e61f8
-	Size (GiB): 8
-	Volume Type: General Purpose SSD (GP2)
-	IOPS: 24 / 3000
-	Delete on Termination: Yes
-	Encrypted: Not Encrypted
+    Volume Type: Root
+    Device: /dev/xvda
+    Snapshot: snap-ad8e61f8
+    Size (GiB): 8
+    Volume Type: General Purpose SSD (GP2)
+    IOPS: 24 / 3000
+    Delete on Termination: Yes
+    Encrypted: Not Encrypted
 
 ##### Step 5: Tag Instance
-	Key: Name
-	Value:
+    Key: Name
+    Value:
 
 ##### Step 6: Configure Security Group 
 *Allow ICMP, SSH, and TCP traffic from your IP address*
 
-    Type	    Protocol	Port Range	Source
-    All TCP	    TCP	        0 - 65535	your ip address/32
-    SSH	        TCP	        22	        your ip address/32
-    All ICMP	All	        N/A         your ip address/32
+    Type        Protocol    Port Range  Source
+    All TCP     TCP         0 - 65535   your ip address/32
+    SSH         TCP         22          your ip address/32
+    All ICMP    All         N/A         your ip address/32
 
 ##### Download the key pair and change the mode to 400
-	chmod 400 pemfile.pem
+    chmod 400 pemfile.pem
 
 ##### Ping the IP address to confirm that ICMP traffic is allowed from your IP address
-	ping [ec2.ipa.ddr.ess]
+    ping [ec2.ipa.ddr.ess]
 
 ##### Connect via SSH
-	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
+    ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
 
 ##### Check the time
-	date
-	
+    date
+    
 ##### List the available time zones
-	ls /usr/share/zoneinfo/
+    ls /usr/share/zoneinfo/
 
 ##### Update the /etc/sysconfig/clock file with your time zone
-	sudo vim /etc/sysconfig/clock
+    sudo vim /etc/sysconfig/clock
 ```
 ZONE="America/New_York"
 UTC=false
 ```
 
 ##### Create a symbolic link between /etc/localtime and your time zone file
-	sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+    sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
 
 ##### Reboot the system to pick up the new time zone information in all services and applications
-	sudo reboot
+    sudo reboot
 
 ##### Connect via SSH
-	ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
+    ssh -i pemfile.pem ec2-user@[ec2.ipa.ddr.ess]
 
 ##### Check the time
-	date
-	
+    date
+    
 ##### Switch to root 
-	sudo su
+    sudo su
 
 ##### Ask who am I?
-	whoami
+    whoami
 
 ##### Update yum
-	yum update
+    yum update
 
 ##### Create a user account for development
-	useradd [your new account name]
+    useradd [your new account name]
     
 ##### Set the password for your development account
-	passwd [your new account name]
+    passwd [your new account name]
 
 ##### Edit sudoers file
-	vim /etc/sudoers
+    vim /etc/sudoers
 
 ##### Add development account to sudoers file
-	## LET ME SUDO
-	[your new account name] ALL=(ALL) ALL
+    ## LET ME SUDO
+    [your new account name] ALL=(ALL) ALL
 
 ##### Switch to development user
-	su [your new account name]
+    su [your new account name]
     
 ##### Ask who am I?
-	whoami
+    whoami
     
 ##### Check the value of the home directory environment variable
-	echo $HOME
+    echo $HOME
 
 ##### Go home
-	cd ~
+    cd ~
 
 ##### Check the Linux distro version
-	cat /proc/version
+    cat /proc/version
 
 ##### Check the hostname of the ec2 instance
-	hostname
+    hostname
 
 ##### Check the DNS domain name of the ec2 instance
-	dnsdomainname
+    dnsdomainname
 
 ##### Check the internal IP address
-	ifconfig
+    ifconfig
 
 ##### Check the external IP address
-	wget http://ipinfo.io/ip -qO -
+    wget http://ipinfo.io/ip -qO -
 
 ##### Show all of the environment variables
-	declare
+    declare
 
 ##### Look for JAVA in the list of environmental variables
-	env | grep JAVA
+    env | grep JAVA
 
 ##### Echo the current JAVA_HOME
-	echo $JAVA_HOME
+    echo $JAVA_HOME
 
 ##### Ask where is Java?
-	whereis java
+    whereis java
 
 ##### Check the Java version
-	java -version
+    java -version
 
 ##### See if the Java compiler is installed
-	whereis javac
-	javac -version
+    whereis javac
+    javac -version
 
 ##### Search yum for openjdk
-	yum search openjdk
-	
+    yum search openjdk
+    
 ##### Install the Open JDK version 1.6
-	sudo yum install java-1.6.0-openjdk-devel
+    sudo yum install java-1.6.0-openjdk-devel
 
 ##### Check the Java compiler version
 ```
@@ -183,41 +183,44 @@ javac -version
 javac 1.6.0_37
 ```
 ##### Tell Linux to use the Java interpreter in the JDK 1.6
-	sudo alternatives --config java
+    sudo alternatives --config java
 
 ##### Read the symlinks in /usr/lib/jvm/
-	ls -l /usr/lib/jvm/
+    ls -l /usr/lib/jvm/
 
 ##### Confirm that /usr/lib/jvm/java points to etc/alternatives/java_sdk
-	ls -l /usr/lib/jvm/java
+    ls -l /usr/lib/jvm/java
 
 ##### Confirm that /etc/alternatives/java_sdk points to /usr/lib/jvm/java-1.7.0-openjdk.x86_64
-	ls -l /etc/alternatives/java_sdk
+    ls -l /etc/alternatives/java_sdk
 
 ##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk.x86_64 points to /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
-	ls -l /usr/lib/jvm/java-1.7.0-openjdk.x86_64
+    ls -l /usr/lib/jvm/java-1.7.0-openjdk.x86_64
 
 ##### Confirm that /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64 is the installation directory for Java SDK 1.7
-	ls -l /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
+    ls -l /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.91.x86_64
 
 ##### Echo the $JAVA_HOME environment variable
-	echo $JAVA_HOME
+    echo $JAVA_HOME
 
 ##### Set the JAVA_HOME environment variable to the Open JDK directory
-	export JAVA_HOME='/usr/lib/jvm/java'
+    export JAVA_HOME='/usr/lib/jvm/java'
 
 ##### Echo the $JAVA_HOME environment variable
-	echo $JAVA_HOME
+    echo $JAVA_HOME
 
 ##### Install git
-	sudo yum install git
+    sudo yum install git
     
 ##### Make a project directory
-	pwd
-	mkdir -p ~/git/spring-mvc
+    pwd
+    mkdir -p ~/git/spring-mvc
+
+##### Create an environment variable to refer to the project directory
+    export DEV='~/git/spring-mvc'
 
 ##### Make a .gitignore file
-	nano ~/git/spring-mvc.gitignore
+    nano $DEV/.gitignore
 ```
 # .GITIGNORE FOR SPRING MVC ON AWS
 
@@ -245,43 +248,43 @@ dist/
 ```
 
 ##### Initialize the git repository
-	cd ~/git/spring-mvc
-	git init
+    cd $DEV
+    git init
 
 ##### Make a remote repository
-	http://github.com
+    http://github.com
     
 ##### Add the remote repository
-	git remote add origin http://github.com/[username]/[reponame].git
+    git remote add origin http://github.com/[username]/[reponame].git
 
 ##### Configure git
-	git config user.name [username]
-	git config user.email [your email address]
+    git config user.name [username]
+    git config user.email [your email address]
 
 ##### Pull from the remote directory
-	git pull origin master
+    git pull origin master
 
 ##### Check the permissions on the files in the project folder and make sure that you can read, write, and execute them
-	ls -l ~/git/spring-mvc
-	chmod -R 775 ~/git/spring-mvc
+    ls -l $DEV
+    chmod -R 775 $DEV
 
 ##### Commit changes and push to the remote repository
-	git status
-	git add --all
-	git commit -m "git ignore"
-	git push --set-upstream origin master
-	
+    git status
+    git add --all
+    git commit -m "git ignore"
+    git push --set-upstream origin master
+    
 ##### Search yum for Tomcat
-	sudo yum search tomcat
-	
+    sudo yum search tomcat
+    
 ##### Install Tomcat 6
-	sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps tomcat-native
+    sudo yum install tomcat6 tomcat6-webapps tomcat6-admin-webapps tomcat-native
 
 ##### Ask where is Tomcat?
-	whereis tomcat6
+    whereis tomcat6
 
 ##### Get a listing of the Catalina Base directory
-	ls -l /usr/share/tomcat6/
+    ls -l /usr/share/tomcat6/
 ```
 total 4
 drwxr-xr-x 2 root root   4096 Feb  1 22:01 bin
@@ -293,15 +296,15 @@ lrwxrwxrwx 1 root root     24 Feb  1 22:01 webapps -> /var/lib/tomcat6/webapps
 lrwxrwxrwx 1 root root     23 Feb  1 22:01 work -> /var/cache/tomcat6/work
 ```
 ##### See what is listening on port 8080
-	sudo lsof -ni:8080
-	
+    sudo lsof -ni:8080
+    
 ##### Start the Tomcat service
-	sudo service tomcat6 status
-	sudo service tomcat6 start
-	sudo service --status-all | grep tomcat
+    sudo service tomcat6 status
+    sudo service tomcat6 start
+    sudo service --status-all | grep tomcat
 
 ##### Use the process id to see which files tomcat has open 
-	lsof -p [process id]
+    lsof -p [process id]
 ```
 COMMAND   PID   USER   FD   TYPE DEVICE  SIZE/OFF   NODE NAME
 java    28171 tomcat  cwd    DIR  202,1      4096  17757 /usr/share/tomcat6
@@ -416,19 +419,19 @@ java    28171 tomcat   49r   REG  202,1   3534509 141580 /usr/lib/jvm/java-1.6.0
 ```
 
 ##### See what is listening on port 8080
-	sudo lsof -ni:8080
+    sudo lsof -ni:8080
 
 ##### Install Lynx
-	sudo yum install lynx
+    sudo yum install lynx
 
 ##### Try the default Tomcat home page
-	lynx localhost:8080
+    lynx localhost:8080
 ```
 If you're seeing this page via a web browser, it means you've setup Tomcat successfully. Congratulations!
 ```
 
 ##### Check the external IP address
-	wget http://ipinfo.io/ip -qO -
+    wget http://ipinfo.io/ip -qO -
 
 ##### Open a web browser on your local machine and go to http://[ec2 ip address]:8080
 ```
@@ -436,10 +439,10 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 ```
 
 ##### Make a directory for the web.xml file
-	mkdir -p war/WEB-INF
+    mkdir -p war/WEB-INF
 
 ##### Make the web.xml file
-	vim ~/git/spring-mvc/war/WEB-INF/web.xml
+    vim $DEV/war/WEB-INF/web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4"
@@ -455,7 +458,7 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 </web-app>
 ```
 ##### Make an index file
-	vim ~/git/spring-mvc/war/index.jsp
+    vim $DEV/war/index.jsp
 ```html
 <html>
   <head><title>Example :: Spring Application</title></head>
@@ -469,7 +472,7 @@ If you're seeing this page via a web browser, it means you've setup Tomcat succe
 ##### Create a build.xml file.
 *Mind the project name, property file, and javac source and destination values.*
 ```
-vim ~/git/spring-mvc/build.xml
+vim $DEV/build.xml
 ```
 ```xml
 <?xml version="1.0"?>
@@ -519,14 +522,14 @@ vim ~/git/spring-mvc/build.xml
         <!-- SET THE SOURCE AND TARGET CORRECTLY -->
         <!-- ADD THE includeantruntime PROPERTY -->
         <javac destdir="${build.dir}" 
-        	source="1.6" 
-        	target="1.6" 
-        	debug="true"
-        	deprecation="false" 
-        	optimize="false" 
-        	failonerror="true"
-        	includeantruntime="false"
-        	>
+            source="1.6" 
+            target="1.6" 
+            debug="true"
+            deprecation="false" 
+            optimize="false" 
+            failonerror="true"
+            includeantruntime="false"
+            >
             <src path="${src.dir}"/>
             <classpath refid="master-classpath"/>
         </javac>
@@ -623,7 +626,7 @@ vim ~/git/spring-mvc/build.xml
 ```
 
 ##### Make a build properties file in your home directory
-	vim ~/build.properties
+    vim ~/build.properties
 ```
 # Ant properties for building the springapp
 
@@ -636,7 +639,7 @@ tomcat.manager.username=tomcat
 tomcat.manager.password=s3cret
 ```
 ##### Create Tomcat user named 'tomcat' with 's3cret' as their password
-	sudo vim /usr/share/tomcat6/conf/tomcat-users.xml
+    sudo vim /usr/share/tomcat6/conf/tomcat-users.xml
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
 <tomcat-users>
@@ -644,25 +647,25 @@ tomcat.manager.password=s3cret
   <user username="tomcat" password="s3cret" roles="manager"/>
 </tomcat-users>
 ```
-	
+    
 ##### Restart the Tomcat service to get the server to pick up the config file changes
-	sudo service tomcat6 status
-	sudo service tomcat6 restart
-	sudo service --status-all | grep tomcat
+    sudo service tomcat6 status
+    sudo service tomcat6 restart
+    sudo service --status-all | grep tomcat
 
 ##### Visit the default Tomcat home page to make sure it is up an running
-	lynx localhost:8080
-	
+    lynx localhost:8080
+    
 ##### Install Ant
-	sudo yum install ant
+    sudo yum install ant
 
 ##### Check the Ant version
-	ant -version
+    ant -version
 ```
 Apache Ant(TM) version 1.8.3 compiled on February 25 2015
 ```
 ##### Run ant
-	ant -v
+    ant -v
 ```
 usage:
      [echo] 
@@ -686,54 +689,54 @@ Total time: 0 seconds
 ```
 
 ##### List the intstalled Tomcat applications
-	ant -v list
+    ant -v list
 
 ##### Make a directory for Java files
-	mkdir src  
-	
+    mkdir src  
+    
 ##### Build the project
-	ant -v build
+    ant -v build
 
 ##### Give your developer account permission to write to the webapps directory
-	sudo chown -R [YOUR DEVELOPER ACCOUNT] /usr/share/tomcat6/webapps
+    sudo chown -R [YOUR DEVELOPER ACCOUNT] /usr/share/tomcat6/webapps
 
 ##### Deploy the project
-	ant -v deploy
+    ant -v deploy
 
 ##### Test the web app
-	lynx localhost:8080/springapp
+    lynx localhost:8080/springapp
 
 ##### Find a copy of the Spring Framework 2.5 with dependencies
 * https://github.com/bachmeb/spring-framework-2.5
 
 ##### Download and uppack Spring Framework 2.5 with dependencies
-	cd /opt
-	sudo mkdir spring-framework
-	cd spring-framework/
-	sudo wget http://s3.amazonaws.com/dist.springframework.org/release/SPR/spring-framework-2.5-with-dependencies.zip
-	sudo unzip spring-framework-2.5-with-dependencies.zip
-	
+    cd /opt
+    sudo mkdir spring-framework
+    cd spring-framework/
+    sudo wget http://s3.amazonaws.com/dist.springframework.org/release/SPR/spring-framework-2.5-with-dependencies.zip
+    sudo unzip spring-framework-2.5-with-dependencies.zip
+    
 ##### Make a lib directory in WEB-INF
-	mkdir ~/git/spring-mvc/war/WEB-INF/lib
+    mkdir $DEV/war/WEB-INF/lib
 
 ##### Find spring.jar, spring-webmvc.jar, and commons-logging.jar in the spring-framework package
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar
-	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar
+    find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar
+    find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar
+    find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar
 
 ##### Copy the libraries to WEB-INF/lib
-	find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
-	ls -l ~/git/spring-mvc/war/WEB-INF/lib/
+    find /opt/spring-framework/spring-framework-2.5/ | grep commons-logging.jar | xargs cp -t $DEV/war/WEB-INF/lib/
+    find /opt/spring-framework/spring-framework-2.5/ | grep spring-webmvc.jar | xargs cp -t $DEV/war/WEB-INF/lib/
+    find /opt/spring-framework/spring-framework-2.5/ | grep spring.jar | xargs cp -t $DEV/war/WEB-INF/lib/
+    ls -l $DEV/war/WEB-INF/lib/
 
 ##### List the contents of each jar file
-	jar tf ~/git/spring-mvc/war/WEB-INF/lib/spring.jar
-	jar tf ~/git/spring-mvc/war/WEB-INF/lib/spring-webmvc.jar 
-	jar tf ~/git/spring-mvc/war/WEB-INF/lib/commons-logging.jar 
+    jar tf $DEV/war/WEB-INF/lib/spring.jar
+    jar tf $DEV/war/WEB-INF/lib/spring-webmvc.jar 
+    jar tf $DEV/war/WEB-INF/lib/commons-logging.jar 
 
 ##### Define a [DispatcherServlet](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/DispatcherServlet.html) in web.xml. Map the servlet to the *.htm file pattern.
-	vim ~/git/spring-mvc/war/WEB-INF/web.xml
+    vim $DEV/war/WEB-INF/web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -763,12 +766,12 @@ Total time: 0 seconds
 </web-app>
 ```
 ##### Build, deploy, and test the project
-	ant build
- 	ant deploy
-	lynx localhost:8080/springapp
+    ant build
+    ant deploy
+    lynx localhost:8080/springapp
 
 ##### Create springapp-servlet.xml
-	vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
+    vim $DEV/war/WEB-INF/springapp-servlet.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -785,13 +788,13 @@ Total time: 0 seconds
 ```
 
 ##### Build, deploy, and test the project
-	ant build
-	ant deploy
-	lynx localhost:8080/springapp
-	
+    ant build
+    ant deploy
+    lynx localhost:8080/springapp
+    
 ##### Create HelloController
-	mkdir -p ~/git/spring-mvc/src/springapp/web
-	vim ~/git/spring-mvc/src/springapp/web/HelloController.java
+    mkdir -p $DEV/src/springapp/web
+    vim $DEV/src/springapp/web/HelloController.java
 ```java
 package springapp.web;
 
@@ -822,7 +825,7 @@ public class HelloController implements Controller {
 }
 ```
 ##### Update the master-classpath in build.xml to look for servlet*.jar in the spring framework 2.5 directory
-	vim ~/git/spring-mvc/build.xml
+    vim $DEV/build.xml
 ```
     <path id="master-classpath">
         <fileset dir="${web.dir}/WEB-INF/lib">
@@ -844,11 +847,11 @@ public class HelloController implements Controller {
 
 ```
 ##### Build the project
-	ant build
-	
+    ant build
+    
 ##### Create a test class
-	mkdir -p ~/git/spring-mvc/test/springapp/web
-	vim ~/git/spring-mvc/test/springapp/web/HelloControllerTests.java
+    mkdir -p $DEV/test/springapp/web
+    vim $DEV/test/springapp/web/HelloControllerTests.java
 ```java
 package springapp.web;
 
@@ -858,29 +861,29 @@ import junit.framework.TestCase;
 
 public class HelloControllerTests extends TestCase {
 
-    public void testHandleRequestView() throws Exception{		
+    public void testHandleRequestView() throws Exception{       
         HelloController controller = new HelloController();
-        ModelAndView modelAndView = controller.handleRequest(null, null);		
+        ModelAndView modelAndView = controller.handleRequest(null, null);       
         assertEquals("hello.jsp", modelAndView.getViewName());
     }
 }
 ```
 ##### Add test tasks to build script
-	vim ~/git/spring-mvc/build.xml
+    vim $DEV/build.xml
 ```xml
     <property name="test.dir" value="test"/>
     <!-- SET THE SOURCE AND TARGET VALUES CORRECTLY-->
     <target name="buildtests" description="Compile test tree java files">
         <mkdir dir="${build.dir}"/>
         <javac destdir="${build.dir}" 
-        	source="1.6" 
-        	target="1.6" 
-        	debug="true"
-            	deprecation="false" 
-            	optimize="false" 
-            	failonerror="true"
-            	includeantruntime="false"
-            	>
+            source="1.6" 
+            target="1.6" 
+            debug="true"
+                deprecation="false" 
+                optimize="false" 
+                failonerror="true"
+                includeantruntime="false"
+                >
             <src path="${test.dir}"/>
             <classpath refid="master-classpath"/>
         </javac>
@@ -914,16 +917,16 @@ public class HelloControllerTests extends TestCase {
     </target>
 ```
 ##### Install Ant JUnit
-	sudo yum search ant-junit
-	sudo yum install ant-junit
+    sudo yum search ant-junit
+    sudo yum install ant-junit
 
 ##### Copy junit-3.8.2.jar to the WEB-INF/lib directory
-	find /opt/spring-framework/spring-framework-2.5 
-	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar 
-	find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar | xargs cp -t ~/git/spring-mvc/war/WEB-INF/lib/
+    find /opt/spring-framework/spring-framework-2.5 
+    find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar 
+    find /opt/spring-framework/spring-framework-2.5 | grep junit-3.8.2.jar | xargs cp -t $DEV/war/WEB-INF/lib/
 
-##### List the contents of the WEB-INF/lib directory	
-	ls -la ~/git/spring-mvc/war/WEB-INF/lib/
+##### List the contents of the WEB-INF/lib directory    
+    ls -la $DEV/war/WEB-INF/lib/
 ```
 drwxrwxr-x 2 bachmeb bachmeb    4096 Feb  9 15:12 .
 drwxrwxr-x 4 bachmeb bachmeb    4096 Feb  9 14:43 ..
@@ -934,7 +937,7 @@ drwxrwxr-x 4 bachmeb bachmeb    4096 Feb  9 14:43 ..
 ```
 
 ##### Run test tasks
-	ant tests
+    ant tests
 ```
 Buildfile: /home/bachmeb/git/spring-mvc/build.xml
 
@@ -960,7 +963,7 @@ BUILD SUCCESSFUL
 Total time: 1 second
 ```
 ##### Make a hello.jsp file next to the index file
-	vim ~/git/spring-mvc/war/hello.jsp
+    vim $DEV/war/hello.jsp
 ```html
 <html>
   <head><title>Hello :: Spring Application</title></head>
@@ -972,22 +975,22 @@ Total time: 1 second
 ```
 
 ##### Run test tasks
-	ant tests
+    ant tests
 
 ##### Deploy and reload the application
-	ant deploy reload
+    ant deploy reload
 
 ##### Test the web page in a browser
-	lynx http://localhost:8080/springapp/hello.htm
+    lynx http://localhost:8080/springapp/hello.htm
 ```
 The HTTP request from the browser goes to springapp/hello.htm
 hello.htm is mapped to HelloController.java in springapp-servlet.xml
 HelloController returns a ModelAndView named "hello.jsp"
 The springapp/hello.jsp page is returned to the browser
 ```
-	
+    
 ##### Read the catalina.out file
-	cat /usr/share/tomcat6/logs/catalina.out
+    cat /usr/share/tomcat6/logs/catalina.out
 
 
 * * *
