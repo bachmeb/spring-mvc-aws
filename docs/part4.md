@@ -8,7 +8,7 @@
 * http://jeromejaglale.com/doc/java/spring/mvc
 
 ##### Rename HelloController to InventoryController
-    mv $DEV/src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
+    mv $DEV/src/springapp/web/HelloController.java $DEV/src/springapp/web/InventoryController.java
 
 ##### Rename HelloControllerTests to InventoryControllerTests
     mv $DEV/test/springapp/web/HelloControllerTests.java $DEV/test/springapp/web/InventoryControllerTests.java
