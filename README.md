@@ -1,4 +1,4 @@
-# spring-mvc-aws
+# Spring MVC 2.5 on AWS
 
 ## References
 * http://docs.spring.io/docs/Spring-MVC-step-by-step/
