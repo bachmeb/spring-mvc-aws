@@ -11,7 +11,7 @@
     mv $DEV/src/springapp/web/HelloController.java src/springapp/web/InventoryController.java
 
 ##### Rename HelloControllerTests to InventoryControllerTests
-    mv $DEV/test/springapp/web/HelloControllerTests.java test/springapp/web/InventoryControllerTests.java
+    mv $DEV/test/springapp/web/HelloControllerTests.java $DEV/test/springapp/web/InventoryControllerTests.java
 
 ##### Update InventoryController
 ```
@@ -65,9 +65,7 @@ public class InventoryController implements Controller {
 }
 ```
 ##### Update InventoryControllerTests
-```
-vim $DEV/test/springapp/web/InventoryControllerTests.java
-```
+    vim $DEV/test/springapp/web/InventoryControllerTests.java
 ```java
 package springapp.web;
 
@@ -262,7 +260,6 @@ greeting=Greetings, it is now
 
 </web-app>
 ```
-
 ##### Create a JSP page called priceincrease.jsp
     vim $DEV/war/WEB-INF/jsp/priceincrease.jsp
 ```html
@@ -383,7 +380,7 @@ public class PriceIncreaseValidator implements Validator {
 
 }
 ```
-##### Add an entry in the 'springapp-servlet.xml' file to define the new form and controller
+##### Add an entry in springapp-servlet.xml to define the new form and controller
     vim $DEV/war/WEB-INF/springapp-servlet.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -504,7 +501,7 @@ public class PriceIncreaseFormController extends SimpleFormController {
 
 }
 ```
-##### Add some messages to the 'messages.properties' resource file
+##### Add some messages to the messages.properties resource file
     vim $DEV/war/WEB-INF/classes/messages.properties
 ```
 title=SpringApp
@@ -541,5 +538,5 @@ typeMismatch.percentage=That is not a number!!!
     ant deploy
     ant reload
 
-##### Test the price increase feature
+##### Test the price increase page
     
