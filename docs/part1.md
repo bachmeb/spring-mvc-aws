@@ -982,12 +982,11 @@ Total time: 1 second
 
 ##### Test the web page in a browser
     lynx http://localhost:8080/springapp/hello.htm
-```
-The HTTP request from the browser goes to springapp/hello.htm
-hello.htm is mapped to HelloController.java in springapp-servlet.xml
-HelloController returns a ModelAndView named "hello.jsp"
-The springapp/hello.jsp page is returned to the browser
-```
+
+* The HTTP request from the browser goes to springapp/hello.htm
+* hello.htm is mapped to HelloController.java in springapp-servlet.xml
+* HelloController returns a ModelAndView named "hello.jsp"
+* The springapp/hello.jsp page is returned to the browser
     
 ##### Read the catalina.out file
     cat /usr/share/tomcat6/logs/catalina.out
