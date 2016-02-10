@@ -383,3 +383,138 @@ public class PriceIncreaseValidator implements Validator {
 
 }
 ```
+##### Add an entry in the 'springapp-servlet.xml' file to define the new form and controller
+    vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+<!-- the application context definition for the springapp DispatcherServlet -->
+
+<beans>
+
+    <bean id="productManager" class="springapp.service.SimpleProductManager">
+        <property name="products">
+            <list>
+                <ref bean="product1"/>
+                <ref bean="product2"/>
+                <ref bean="product3"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="product1" class="springapp.domain.Product">
+        <property name="description" value="Lamp"/>
+        <property name="price" value="5.75"/>
+    </bean>
+        
+    <bean id="product2" class="springapp.domain.Product">
+        <property name="description" value="Table"/>
+        <property name="price" value="75.25"/>
+    </bean>
+
+    <bean id="product3" class="springapp.domain.Product">
+        <property name="description" value="Chair"/>
+        <property name="price" value="22.79"/>
+    </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+    </bean>
+
+    <bean name="/hello.htm" class="springapp.web.InventoryController">
+        <property name="productManager" ref="productManager"/>
+    </bean>
+
+    <bean name="/priceincrease.htm" class="springapp.web.PriceIncreaseFormController">
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="priceIncrease"/>
+        <property name="commandClass" value="springapp.service.PriceIncrease"/>
+        <property name="validator">
+            <bean class="springapp.service.PriceIncreaseValidator"/>
+        </property>
+        <property name="formView" value="priceincrease"/>
+        <property name="successView" value="hello.htm"/>
+        <property name="productManager" ref="productManager"/>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>
+```
+##### Edit PriceIncreaseFormController
+    vim src/web/PriceIncreaseFormController.java
+```
+package springapp.web;
+
+import org.springframework.web.servlet.mvc.SimpleFormController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import springapp.service.ProductManager;
+import springapp.service.PriceIncrease;
+
+public class PriceIncreaseFormController extends SimpleFormController {
+
+    /** Logger for this class and subclasses */
+    protected final Log logger = LogFactory.getLog(getClass());
+
+    private ProductManager productManager;
+
+    public ModelAndView onSubmit(Object command)
+            throws ServletException {
+
+        int increase = ((PriceIncrease) command).getPercentage();
+        logger.info("Increasing prices by " + increase + "%.");
+
+        productManager.increasePrice(increase);
+
+        logger.info("returning from PriceIncreaseForm view to " + getSuccessView());
+
+        return new ModelAndView(new RedirectView(getSuccessView()));
+    }
+
+    protected Object formBackingObject(HttpServletRequest request) throws ServletException {
+        PriceIncrease priceIncrease = new PriceIncrease();
+        priceIncrease.setPercentage(20);
+        return priceIncrease;
+    }
+
+    public void setProductManager(ProductManager productManager) {
+        this.productManager = productManager;
+    }
+
+    public ProductManager getProductManager() {
+        return productManager;
+    }
+
+}
+```
+##### Add some messages to the 'messages.properties' resource file
+    vim war/WEB-INF/classes/messages.properties
+```
+title=SpringApp
+heading=Hello :: SpringApp
+greeting=Greetings, it is now
+priceincrease.heading=Price Increase :: SpringApp
+error.not-specified=Percentage not specified!!!
+error.too-low=You have to specify a percentage higher than {0}!
+error.too-high=Don''t be greedy - you can''t raise prices by more than {0}%!
+required=Entry required.
+typeMismatch=Invalid data.
+typeMismatch.percentage=That is not a number!!!
+```
