@@ -45,7 +45,7 @@ public class Product implements Serializable {
 ##### Write the unit tests for the Product class
     mkdir $DEV/test/springapp/domain
     vim $DEV/test/springapp/domain/ProductTests.java
-```
+```java
 package springapp.domain;
 
 import junit.framework.TestCase;
@@ -77,7 +77,7 @@ public class ProductTests extends TestCase {
 ##### Create the service interface
     mkdir $DEV/src/springapp/service
     vim $DEV/src/springapp/service/ProductManager.java
-```
+```java
 package springapp.service;
 
 import java.io.Serializable;
@@ -96,7 +96,7 @@ public interface ProductManager extends Serializable{
 
 ##### Create the service class
     vim $DEV/src/springapp/service/SimpleProductManager.java
-```
+```java
 package springapp.service;
 
 import java.util.List;
@@ -122,7 +122,7 @@ public class SimpleProductManager implements ProductManager {
 ##### Write a unit test for the service class
     mkdir $DEV/test/springapp/service
     vim $DEV/test/springapp/service/SimpleProductManagerTests.java
-```
+```java
 package springapp.service;
 
 import junit.framework.TestCase;
@@ -197,7 +197,7 @@ Total time: 1 second
 
 ##### Implement the unit tests
     nano $DEV/test/springapp/service/SimpleProductManagerTests.java
-```
+```java
 package springapp.service;
 
 import java.util.ArrayList;
@@ -319,7 +319,7 @@ Total time: 1 second
     
 ##### Implement the getters and setters for the Product class
     nano $DEV/src/springapp/service/SimpleProductManager.java
-```
+```java
 package springapp.service;
 
 import java.util.ArrayList;
@@ -384,7 +384,7 @@ Total time: 1 second
 ```
 ##### Implememt the test for increasePrice()
     nano $DEV/test/springapp/service/SimpleProductManagerTests.java
-```
+```java
 package springapp.service;
 
 import java.util.ArrayList;
@@ -485,7 +485,7 @@ public class SimpleProductManagerTests extends TestCase {
 ```
 ##### Implement the increasePrice() method in SimpleProductManager
     nano $DEV/src/springapp/service/SimpleProductManager.java
-```
+```java
 package springapp.service;
 
 import java.util.List;
