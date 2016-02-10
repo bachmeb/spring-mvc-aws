@@ -52,4 +52,14 @@
 * Run the unit tests
 
 #### [Part 4](/docs/part4.md)
-* 
+* Rename the controller
+* Give the controller a reference to the service class
+* Update the controller tests
+* Iterate list items in the View from the Model
+* Add items to the Model from springapp-servlet.xml
+* Create a ResourceBundleMessageSource
+* Add clean and undeploy targets to build.xml
+* Add spring-form.tld to the lib folder
+* Add a taglib entry to web.xml
+* Create a new JavaBean and JSP page
+
