@@ -385,7 +385,7 @@ public class PriceIncreaseValidator implements Validator {
 ```
 ##### Add an entry in the 'springapp-servlet.xml' file to define the new form and controller
     vim ~/git/spring-mvc/war/WEB-INF/springapp-servlet.xml
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -452,7 +452,7 @@ public class PriceIncreaseValidator implements Validator {
 ```
 ##### Edit PriceIncreaseFormController
     vim src/web/PriceIncreaseFormController.java
-```
+```java
 package springapp.web;
 
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -518,3 +518,28 @@ required=Entry required.
 typeMismatch=Invalid data.
 typeMismatch.percentage=That is not a number!!!
 ```
+##### Add a link to the price increase page from the 'hello.jsp'
+```html
+<%@ include file="/WEB-INF/jsp/include.jsp" %>
+
+<html>
+  <head><title><fmt:message key="title"/></title></head>
+  <body>
+    <h1><fmt:message key="heading"/></h1>
+    <p><fmt:message key="greeting"/> <c:out value="${model.now}"/></p>
+    <h3>Products</h3>
+    <c:forEach items="${model.products}" var="prod">
+      <c:out value="${prod.description}"/> <i>$<c:out value="${prod.price}"/></i><br><br>
+    </c:forEach>
+    <br>
+    <a href="<c:url value="priceincrease.htm"/>">Increase Prices</a>
+    <br>
+  </body>
+</html>
+```
+##### Deploy and Reload the app 
+    ant deploy
+    ant reload
+
+##### Test the price increase feature
+    
