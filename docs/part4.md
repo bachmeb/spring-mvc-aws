@@ -178,7 +178,7 @@ greeting=Greetings, it is now
 ```
 ##### Add 'clean' and 'undeploy' targets to build.xml
     vim $DEV/build.xml
-```
+```xml
     <target name="clean" description="Clean output directories">
         <delete>
             <fileset dir="${build.dir}">
@@ -225,7 +225,7 @@ greeting=Greetings, it is now
 
 ##### Add a taglib entry to web.xml
     vim $DEV/war/WEB-INF/web.xml
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app version="2.4"
