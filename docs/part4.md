@@ -1,4 +1,4 @@
-# Spring MVC on AWS
+# Spring MVC 2.5 on AWS
 ## Part 4
 [README](/README.md)
 
