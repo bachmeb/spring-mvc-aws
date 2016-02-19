@@ -217,7 +217,7 @@ javac 1.6.0_37
     mkdir -p ~/git/spring-mvc
 
 ##### Create an environment variable to refer to the project directory
-    export DEV='~/git/spring-mvc'
+    export DEV='/home/ [ your user name ] /git/spring-mvc'
 
 ##### Make a .gitignore file
     nano $DEV/.gitignore
